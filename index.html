@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>I miei giochi</title>
+<meta name="description" content="Apre sul telefono i giochi ricevuti come file. Nulla viene caricato su internet: il file resta sul tuo dispositivo.">
+<meta name="theme-color" content="#0F2A4A">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Giochi">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icona-180.png">
+<link rel="icon" href="icona-180.png">
+<style>
+  :root{
+    --blu:#0F2A4A; --lime:#D4FF66; --bianco:#fff; --grigio:#F4F6F9; --blu60:rgba(15,42,74,.6);
+    --ombra:0 6px 24px rgba(15,42,74,.08);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%}
+  body{
+    font-family:Manrope,"Helvetica Neue",Arial,sans-serif; font-weight:300; color:var(--blu);
+    background:var(--grigio); -webkit-text-size-adjust:100%;
+    padding:calc(16px + env(safe-area-inset-top)) 16px calc(24px + env(safe-area-inset-bottom));
+  }
+  h1{font-weight:400;font-size:28px;line-height:1.1;margin:8px 0 4px}
+  p{font-size:17px;line-height:1.4;margin:0 0 12px}
+  .sotto{color:var(--blu60);font-size:15px}
+  .card{background:var(--bianco);border-radius:16px;box-shadow:var(--ombra);padding:18px;margin:14px 0}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    border-radius:999px;padding:14px 26px;font:600 17px/1 Manrope,"Helvetica Neue",Arial,sans-serif;
+    border:2px solid var(--blu);background:var(--blu);color:var(--bianco);cursor:pointer;
+    text-decoration:none;-webkit-tap-highlight-color:transparent;min-height:48px
+  }
+  .btn.pieno{width:100%}
+  .btn.secondario{background:transparent;color:var(--blu)}
+  .btn.piccolo{padding:10px 18px;font-size:15px;min-height:40px}
+  .btn:active{transform:scale(.98)}
+  .lista{list-style:none;margin:0;padding:0}
+  .lista li{display:flex;align-items:center;gap:12px;padding:12px 0;border-top:1px solid var(--grigio)}
+  .lista li:first-child{border-top:0}
+  .lista .nome{flex:1;min-width:0}
+  .lista .nome b{display:block;font-weight:600;font-size:17px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .lista .nome span{font-size:13px;color:var(--blu60)}
+  .lista button.x{border:0;background:none;color:var(--blu60);font-size:22px;padding:6px 8px;cursor:pointer}
+  .etichetta{display:inline-block;background:var(--lime);color:var(--blu);font-weight:600;font-size:12px;
+    border-radius:999px;padding:4px 10px;letter-spacing:.3px;text-transform:uppercase}
+  .nascosto{display:none !important}
+  #avviso{background:var(--blu);color:var(--bianco)}
+  #avviso p{color:#fff}
+  #avviso .lime{color:var(--lime);font-weight:600}
+  #errore{color:#a3213f;font-weight:600}
+  input[type=file]{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+  /* Il gioco a schermo intero */
+  #schermo{position:fixed;inset:0;background:#000;z-index:50}
+  #schermo iframe{border:0;width:100%;height:100%;display:block}
+  #chiudi{
+    position:fixed;top:calc(6px + env(safe-area-inset-top));left:50%;transform:translateX(-50%);
+    z-index:60;border:0;border-radius:999px;background:rgba(15,42,74,.55);color:#fff;
+    font:600 13px/1 Manrope,Arial,sans-serif;padding:8px 14px;cursor:pointer;opacity:.85
+  }
+  footer{margin-top:24px;font-size:13px;color:var(--blu60);line-height:1.5}
+  footer code{font-family:ui-monospace,Menlo,monospace;font-size:12px}
+</style>
+</head>
+<body>
+
+<main id="home">
+  <span class="etichetta">Beta di prova</span>
+  <h1>I miei giochi</h1>
+  <p class="sotto">Hai ricevuto un gioco come file? Aprilo da qui. Il file resta sul tuo telefono: non viene caricato da nessuna parte.</p>
+
+  <div class="card">
+    <button class="btn pieno" id="apri" type="button">Apri un gioco dal telefono</button>
+    <input type="file" id="file" accept=".html,.htm,text/html">
+    <p id="errore" class="nascosto" role="alert"></p>
+    <p class="sotto" style="margin:12px 0 0">Scegli il file del gioco (finisce con <b>.html</b>). Lo trovi in File, nei Download o nell'allegato della mail: tienilo premuto e salvalo in File.</p>
+  </div>
+
+  <div class="card" id="salvati">
+    <p style="font-weight:600;margin-bottom:6px">Giochi salvati su questo telefono</p>
+    <p class="sotto" id="vuoto">Nessun gioco ancora. Quelli che apri restano qui, anche senza connessione.</p>
+    <ul class="lista" id="lista"></ul>
+  </div>
+
+  <div class="card nascosto" id="avviso">
+    <p><span class="lime">Consiglio:</span> aggiungi questa pagina alla schermata Home. Diventa un'app con i tuoi giochi, che funziona anche senza internet.</p>
+    <p id="come-ios" class="nascosto">Su iPhone: tocca il tasto <b>Condividi</b> (il quadrato con la freccia) e poi <b>Aggiungi alla schermata Home</b>.</p>
+    <p id="come-android" class="nascosto">Su Android: menu <b>⋮</b> di Chrome e poi <b>Aggiungi a schermata Home</b> o <b>Installa app</b>.</p>
+  </div>
+
+  <footer>
+    <p>Versione di prova del lanciatore. Memoria del telefono usata: <span id="spazio">–</span>.</p>
+    <p id="stato-sw"></p>
+  </footer>
+</main>
+
+<div id="schermo" class="nascosto"></div>
+<button id="chiudi" class="nascosto" type="button">Chiudi il gioco</button>
+
+<script>
+(() => {
+  const $ = s => document.querySelector(s);
+  const fileInput = $('#file'), lista = $('#lista'), vuoto = $('#vuoto'), errore = $('#errore');
+  const schermo = $('#schermo'), chiudiBtn = $('#chiudi');
+
+  // ---------- Memoria locale (IndexedDB) ----------
+  const DB_NOME = 'miei-giochi', STORE = 'giochi';
+  function db() {
+    return new Promise((ok, ko) => {
+      const r = indexedDB.open(DB_NOME, 1);
+      r.onupgradeneeded = () => {
+        const s = r.result.createObjectStore(STORE, { keyPath: 'id', autoIncrement: true });
+        s.createIndex('nome', 'nome', { unique: false });
+      };
+      r.onsuccess = () => ok(r.result);
+      r.onerror = () => ko(r.error);
+    });
+  }
+  async function tx(modo, fn) {
+    const d = await db();
+    return new Promise((ok, ko) => {
+      const t = d.transaction(STORE, modo), s = t.objectStore(STORE);
+      const req = fn(s);
+      t.oncomplete = () => ok(req && req.result);
+      t.onerror = () => ko(t.error);
+    });
+  }
+  const tutti = () => tx('readonly', s => s.getAll());
+  const salva = g => tx('readwrite', s => s.add(g));
+  const elimina = id => tx('readwrite', s => s.delete(id));
+  const uno = id => tx('readonly', s => s.get(id));
+
+  // ---------- Apertura del gioco ----------
+  function titoloDa(html, fallback) {
+    const m = html.match(/<title[^>]*>([^<]{1,80})<\/title>/i);
+    return (m ? m[1].trim() : fallback.replace(/\.html?$/i, '')) || 'Gioco';
+  }
+  function mostraErrore(t) { errore.textContent = t; errore.classList.remove('nascosto'); }
+  function nascondiErrore() { errore.classList.add('nascosto'); }
+
+  function apriHtml(html) {
+    schermo.innerHTML = '';
+    const f = document.createElement('iframe');
+    // allow-same-origin: il gioco può salvare i suoi record (localStorage) sotto il dominio del lanciatore.
+    f.setAttribute('sandbox', 'allow-scripts allow-same-origin allow-modals allow-pointer-lock allow-forms');
+    f.setAttribute('allow', 'autoplay; fullscreen');
+    f.srcdoc = html;
+    schermo.appendChild(f);
+    schermo.classList.remove('nascosto'); chiudiBtn.classList.remove('nascosto');
+    document.body.style.overflow = 'hidden';
+    try { history.pushState({ gioco: 1 }, ''); } catch (e) {}
+  }
+  function chiudi() {
+    schermo.innerHTML = ''; schermo.classList.add('nascosto'); chiudiBtn.classList.add('nascosto');
+    document.body.style.overflow = '';
+  }
+  chiudiBtn.addEventListener('click', () => { if (history.state && history.state.gioco) history.back(); else chiudi(); });
+  window.addEventListener('popstate', () => { if (!schermo.classList.contains('nascosto')) chiudi(); });
+
+  async function apriFile(file) {
+    nascondiErrore();
+    if (!file) return;
+    if (file.size > 25 * 1024 * 1024) return mostraErrore('Il file è troppo grande (oltre 25 MB).');
+    const html = await file.text();
+    if (!/<(!doctype\s+html|html)/i.test(html.slice(0, 2000))) return mostraErrore('Questo file non sembra un gioco: serve un file .html.');
+    const nome = titoloDa(html, file.name);
+    try {
+      await salva({ nome, html, peso: file.size, aggiunto: Date.now() });
+      await aggiornaLista();
+    } catch (e) { console.warn('Non salvato', e); }
+    apriHtml(html);
+  }
+
+  $('#apri').addEventListener('click', () => { fileInput.value = ''; fileInput.click(); });
+  fileInput.addEventListener('change', () => apriFile(fileInput.files[0]));
+
+  // ---------- Lista ----------
+  const kb = n => n > 1024 * 1024 ? (n / 1048576).toFixed(1).replace('.', ',') + ' MB' : Math.round(n / 1024) + ' KB';
+  const data = t => new Date(t).toLocaleDateString('it-IT', { day: '2-digit', month: '2-digit', year: 'numeric' });
+  async function aggiornaLista() {
+    let giochi = [];
+    try { giochi = await tutti(); } catch (e) {}
+    lista.innerHTML = '';
+    vuoto.classList.toggle('nascosto', giochi.length > 0);
+    let tot = 0;
+    giochi.sort((a, b) => b.aggiunto - a.aggiunto).forEach(g => {
+      tot += g.peso || 0;
+      const li = document.createElement('li');
+      li.innerHTML = `<div class="nome"><b></b><span></span></div>
+        <button class="btn piccolo" type="button">Gioca</button>
+        <button class="x" type="button" aria-label="Elimina">×</button>`;
+      li.querySelector('b').textContent = g.nome;
+      li.querySelector('span').textContent = `${kb(g.peso || 0)} · aggiunto il ${data(g.aggiunto)}`;
+      li.querySelector('.btn').addEventListener('click', async () => { const r = await uno(g.id); if (r) apriHtml(r.html); });
+      li.querySelector('.x').addEventListener('click', async () => {
+        if (confirm(`Togliere "${g.nome}" da questo telefono? Il file originale non viene toccato.`)) { await elimina(g.id); aggiornaLista(); }
+      });
+      lista.appendChild(li);
+    });
+    $('#spazio').textContent = tot ? kb(tot) : 'nessuna';
+  }
+
+  // ---------- Installazione sulla Home e offline ----------
+  const standalone = window.navigator.standalone === true || matchMedia('(display-mode: standalone)').matches;
+  const ua = navigator.userAgent;
+  const isIOS = /iPhone|iPad|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  if (!standalone) {
+    $('#avviso').classList.remove('nascosto');
+    $(isIOS ? '#come-ios' : '#come-android').classList.remove('nascosto');
+  }
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js').then(() => { $('#stato-sw').textContent = 'Pronto anche senza connessione.'; })
+      .catch(() => { $('#stato-sw').textContent = 'Modalità offline non disponibile su questo indirizzo.'; });
+  }
+  if (navigator.storage && navigator.storage.persist) { navigator.storage.persist().catch(() => {}); }
+
+  // Per le prove dal browser: apre un gioco passando direttamente il testo HTML.
+  window.__apriHtml = (html, nome) => apriFile(new File([html], nome || 'prova.html', { type: 'text/html' }));
+
+  aggiornaLista();
+})();
+</script>
+</body>
+</html>
