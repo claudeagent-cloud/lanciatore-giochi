@@ -146,8 +146,10 @@
     schermo.innerHTML = '';
     const f = document.createElement('iframe');
     // allow-same-origin: il gioco può salvare i suoi record (localStorage) sotto il dominio del lanciatore.
-    f.setAttribute('sandbox', 'allow-scripts allow-same-origin allow-modals allow-pointer-lock allow-forms');
-    f.setAttribute('allow', 'autoplay; fullscreen');
+    // allow-downloads e web-share: i tasti "Salva" e "Condividi" del gioco (foto ricordo, punteggio) funzionano anche dentro il riquadro.
+    // allow-popups (…-to-escape-sandbox): il tasto "Crea un altro gioco personalizzato" apre arcadeu.it in una scheda nuova.
+    f.setAttribute('sandbox', 'allow-scripts allow-same-origin allow-modals allow-pointer-lock allow-forms allow-downloads allow-popups allow-popups-to-escape-sandbox');
+    f.setAttribute('allow', 'autoplay; fullscreen; web-share');
     f.srcdoc = html;
     schermo.appendChild(f);
     schermo.classList.remove('nascosto'); chiudiBtn.classList.remove('nascosto');
