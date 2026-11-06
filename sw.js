@@ -1,6 +1,6 @@
 // Service worker del lanciatore: tiene in cache SOLO i file del lanciatore stesso.
 // I giochi stanno in IndexedDB e non passano mai da qui; qualunque altra richiesta va in rete.
-const VERSIONE = 'lanciatore-v4'; // v4 (06/11/2026): apre tutti i file HTML, quelli non ArcadeU in un riquadro chiuso; v3: grafica ArcadeU, font Outfit e favicon
+const VERSIONE = 'lanciatore-v5'; // v5 (06/11/2026 sera): apre solo i giochi ArcadeU, gli altri file ricevono un messaggio e non partono; v4: apriva tutti i file HTML, quelli non ArcadeU in un riquadro chiuso; v3: grafica ArcadeU, font Outfit e favicon
 const FILE = ['./', './index.html', './manifest.json', './icona-180.png', './icona-512.png', './favicon-32.png', './outfit.ttf'];
 const MIEI = new Set(FILE.map(f => new URL(f, self.registration.scope).href));
 

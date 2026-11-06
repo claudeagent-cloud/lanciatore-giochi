@@ -59,7 +59,6 @@
   .lista .nome{flex:1;min-width:0}
   .lista .nome b{display:block;font-weight:600;font-size:17px;color:var(--viola);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .lista .nome span{font-size:13px;color:var(--tenue)}
-  .lista .esterno{display:inline-block;margin-left:6px;font-size:11px;font-weight:600;color:#7a5b00;background:#FFF3C4;border-radius:999px;padding:1px 8px;vertical-align:middle}
   .lista button.x{border:0;background:none;color:var(--tenue);font-size:22px;padding:6px 8px;cursor:pointer;min-width:40px;min-height:40px}
   .etichetta{display:inline-block;background:var(--crema);color:var(--viola);font-weight:600;font-size:12px;
     border-radius:999px;padding:5px 11px;letter-spacing:.04em;text-transform:uppercase;border:1.5px dashed var(--viola)}
@@ -100,7 +99,7 @@
     <button class="btn pieno" id="apri" type="button">Apri un gioco dal telefono</button>
     <input type="file" id="file" accept=".html,.htm,text/html">
     <p id="errore" class="nascosto" role="alert"></p>
-    <p class="sotto" style="margin:12px 0 0">Scegli il file del gioco: finisce con <b>.html</b>. Lo trovi in File, nei Download o nell'allegato della mail (tienilo premuto e salvalo in File). I file che non sono giochi ArcadeU si aprono in un riquadro chiuso: non vedono gli altri giochi e non salvano i record.</p>
+    <p class="sotto" style="margin:12px 0 0">Scegli il file del gioco: finisce con <b>.html</b>. Lo trovi in File, nei Download o nell'allegato della mail (tienilo premuto e salvalo in File).</p>
   </div>
 
   <div class="card" id="salvati">
@@ -163,22 +162,22 @@
     const m = html.match(/<title[^>]*>([^<]{1,80})<\/title>/i);
     return (m ? m[1].trim() : fallback.replace(/\.html?$/i, '')) || 'Gioco';
   }
-  function mostraErrore(t) { errore.textContent = t; errore.classList.remove('nascosto'); }
+  function mostraErrore(t) { errore.textContent = t; errore.classList.remove('nascosto'); try { errore.scrollIntoView({ behavior: 'smooth', block: 'center' }); } catch (e) {} }
+  // Dal 06/11/2026 sera (versione 4, decisione di Davide) il lanciatore apre SOLO i giochi ArcadeU. Qualunque altro file
+  // (non nostro, troppo grande, non HTML) riceve lo stesso messaggio e basta: nessuna spiegazione, nessun indizio su cosa controlliamo.
+  const NON_NOSTRO = 'Questo gioco non è un gioco ArcadeU e non può essere aperto da questo lanciatore.';
   function nascondiErrore() { errore.classList.add('nascosto'); }
 
-  // Dal 06/11/2026 (versione 3) il lanciatore apre TUTTI i file HTML, in due modi (decisione di Davide):
-  // - i giochi ArcadeU riconosciuti (eNostro) girano come prima, con allow-same-origin: salvano i record sotto il dominio del lanciatore;
-  // - tutti gli altri girano "chiusi": senza allow-same-origin hanno un'origine anonima, quindi non possono leggere né toccare
-  //   i giochi salvati, la memoria e il service worker del lanciatore, né aprire pagine fuori dal riquadro. I loro record non restano.
+  // Si aprono solo i giochi ArcadeU riconosciuti (eNostro): girano con allow-same-origin e salvano i record sotto il dominio del lanciatore.
+  // (Dalla versione 3 alla 4, solo il pomeriggio del 06/11/2026, i file non nostri si aprivano in un riquadro chiuso: non più.)
   const SANDBOX_NOSTRI = 'allow-scripts allow-same-origin allow-modals allow-pointer-lock allow-forms allow-downloads allow-popups allow-popups-to-escape-sandbox';
-  const SANDBOX_ESTERNI = 'allow-scripts allow-modals allow-pointer-lock allow-downloads';
-  function apriHtml(html, esterno) {
+  function apriHtml(html) {
     schermo.innerHTML = '';
     const f = document.createElement('iframe');
     // nostri: allow-same-origin per i record (localStorage); allow-downloads e web-share per "Salva" e "Condividi";
     // allow-popups (…-to-escape-sandbox) per "Crea un altro gioco personalizzato", che apre arcadeu.it in una scheda nuova.
-    f.setAttribute('sandbox', esterno ? SANDBOX_ESTERNI : SANDBOX_NOSTRI);
-    f.setAttribute('allow', esterno ? 'autoplay; fullscreen' : 'autoplay; fullscreen; web-share');
+    f.setAttribute('sandbox', SANDBOX_NOSTRI);
+    f.setAttribute('allow', 'autoplay; fullscreen; web-share');
     f.srcdoc = html;
     schermo.appendChild(f);
     schermo.classList.remove('nascosto'); chiudiBtn.classList.remove('nascosto');
@@ -270,17 +269,16 @@
   async function apriFile(file) {
     nascondiErrore();
     if (!file) return;
-    if (file.size > 25 * 1024 * 1024) return mostraErrore('Il file è troppo grande (oltre 25 MB).');
-    const html = await file.text();
-    if (!/<(!doctype\s+html|html)/i.test(html.slice(0, 2000))) return mostraErrore('Questo file non sembra un gioco: serve un file .html.');
-    let nostro = false; try { nostro = await eNostro(html); } catch (e) { console.warn('verifica', e); }
-    const esterno = !nostro;   // si apre lo stesso, ma nel riquadro chiuso
+    if (file.size > 25 * 1024 * 1024) return mostraErrore(NON_NOSTRO);
+    let html = ''; try { html = await file.text(); } catch (e) { return mostraErrore(NON_NOSTRO); }
+    let nostro = false; try { nostro = /<(!doctype\s+html|html)/i.test(html.slice(0, 2000)) && await eNostro(html); } catch (e) {}
+    if (!nostro) return mostraErrore(NON_NOSTRO);   // non si apre e non si salva
     const nome = titoloDa(html, file.name);
     try {
-      await salva({ nome, html, peso: file.size, aggiunto: Date.now(), esterno });
+      await salva({ nome, html, peso: file.size, aggiunto: Date.now() });
       await aggiornaLista();
     } catch (e) { console.warn('Non salvato', e); }
-    apriHtml(html, esterno);
+    apriHtml(html);
   }
 
   $('#apri').addEventListener('click', () => { fileInput.value = ''; fileInput.click(); });
@@ -303,8 +301,8 @@
         <button class="x" type="button" aria-label="Elimina">×</button>`;
       li.querySelector('b').textContent = g.nome;
       li.querySelector('span').textContent = `${kb(g.peso || 0)} · aggiunto il ${data(g.aggiunto)}`;
-      if (g.esterno) { const t = document.createElement('span'); t.className = 'esterno'; t.textContent = 'file esterno'; li.querySelector('b').after(t); }
-      li.querySelector('.btn').addEventListener('click', async () => { const r = await uno(g.id); if (r) apriHtml(r.html, !!r.esterno); });
+      // anche un file salvato prima (per esempio con la versione 3) si ricontrolla a ogni apertura: se non è nostro non parte
+      li.querySelector('.btn').addEventListener('click', async () => { nascondiErrore(); const r = await uno(g.id); if (!r) return; let ok = false; try { ok = !r.esterno && await eNostro(r.html); } catch (e) {} if (ok) apriHtml(r.html); else mostraErrore(NON_NOSTRO); });
       li.querySelector('.x').addEventListener('click', async () => {
         if (confirm(`Togliere "${g.nome}" da questo telefono? Il file originale non viene toccato.`)) { await elimina(g.id); aggiornaLista(); }
       });
