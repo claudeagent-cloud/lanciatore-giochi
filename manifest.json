@@ -1,0 +1,16 @@
+{
+  "name": "ArcadeU",
+  "short_name": "ArcadeU",
+  "description": "I tuoi giochi ArcadeU sul telefono, anche senza connessione.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#FFF7E0",
+  "theme_color": "#3B1E6E",
+  "lang": "it",
+  "icons": [
+    { "src": "icona-180.png", "sizes": "180x180", "type": "image/png" },
+    { "src": "icona-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

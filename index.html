@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ArcadeU · I miei giochi</title>
+<meta name="description" content="I tuoi giochi ArcadeU sul telefono, anche senza connessione. Il file resta sul tuo dispositivo: non viene caricato da nessuna parte.">
+<meta name="theme-color" content="#3B1E6E">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="ArcadeU">
+<meta name="application-name" content="ArcadeU">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icona-180.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<style>
+  /* Grafica ArcadeU (brand guidelines v1.0, progetto/brand/brand-guidelines.md): viola, oro come accento, bianco e crema, Outfit.
+     Il font sta accanto alla pagina (outfit.ttf, licenza OFL in outfit-OFL.txt), così funziona anche senza connessione. */
+  @font-face{font-family:Outfit;src:url(outfit.ttf) format('truetype');font-weight:100 900;font-display:swap}
+  :root{
+    --viola:#3B1E6E; --oro:#F5B700; --bianco:#fff; --crema:#FFF7E0; --violascuro:#24123F; --inchiostro:#1B1230;
+    --grigio:#F3F1F8; --corallo:#FF5C5C; --verde:#2FBF71; --tenue:rgba(27,18,48,.62);
+    --ombra:0 8px 28px rgba(59,30,110,.10);
+    color-scheme:light;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;min-height:100%}
+  body{
+    font-family:Outfit,"Helvetica Neue",Arial,sans-serif; font-weight:400; color:var(--inchiostro);
+    background:var(--crema); -webkit-text-size-adjust:100%;
+    padding:calc(16px + env(safe-area-inset-top)) 16px calc(24px + env(safe-area-inset-bottom));
+  }
+  main{max-width:520px;margin:0 auto}
+  .testa{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:4px 0 18px}
+  .logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+  .logo svg{width:40px;height:40px;flex:none}
+  .logo span{font-weight:800;font-size:28px;letter-spacing:-.02em;color:var(--viola);line-height:1}
+  .logo span b{font-weight:800;color:var(--oro);-webkit-text-stroke:1px var(--viola);paint-order:stroke fill}
+  h1{font-weight:800;font-size:30px;line-height:1.1;letter-spacing:-.02em;margin:0 0 6px;color:var(--viola)}
+  p{font-size:17px;line-height:1.5;margin:0 0 12px}
+  .sotto{color:var(--tenue);font-size:15px;line-height:1.45}
+  .card{background:var(--bianco);border-radius:16px;box-shadow:var(--ombra);padding:18px;margin:14px 0}
+  .card h2{font-weight:600;font-size:18px;margin:0 0 6px;color:var(--viola)}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    border-radius:999px;padding:14px 26px;font:600 17px/1 Outfit,"Helvetica Neue",Arial,sans-serif;
+    border:2px solid var(--oro);background:var(--oro);color:var(--viola);cursor:pointer;
+    text-decoration:none;-webkit-tap-highlight-color:transparent;min-height:48px
+  }
+  .btn.pieno{width:100%}
+  .btn.secondario{background:transparent;color:var(--viola);border-color:var(--viola)}
+  .btn.piccolo{padding:10px 18px;font-size:15px;min-height:40px}
+  .btn:active{transform:scale(.98)}
+  button:focus-visible,a:focus-visible{outline:3px solid var(--oro);outline-offset:2px}
+  .lista{list-style:none;margin:0;padding:0}
+  .lista li{display:flex;align-items:center;gap:12px;padding:12px 0;border-top:1px solid var(--grigio)}
+  .lista li:first-child{border-top:0}
+  .lista .nome{flex:1;min-width:0}
+  .lista .nome b{display:block;font-weight:600;font-size:17px;color:var(--viola);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .lista .nome span{font-size:13px;color:var(--tenue)}
+  .lista .esterno{display:inline-block;margin-left:6px;font-size:11px;font-weight:600;color:#7a5b00;background:#FFF3C4;border-radius:999px;padding:1px 8px;vertical-align:middle}
+  .lista button.x{border:0;background:none;color:var(--tenue);font-size:22px;padding:6px 8px;cursor:pointer;min-width:40px;min-height:40px}
+  .etichetta{display:inline-block;background:var(--crema);color:var(--viola);font-weight:600;font-size:12px;
+    border-radius:999px;padding:5px 11px;letter-spacing:.04em;text-transform:uppercase;border:1.5px dashed var(--viola)}
+  .nascosto{display:none !important}
+  #avviso{background:var(--viola);color:var(--bianco)}
+  #avviso p{color:#fff}
+  #avviso p:last-child{margin-bottom:0}
+  #avviso .oro{color:var(--oro);font-weight:600}
+  #errore{color:#B3261E;font-weight:600;background:#FFF0F0;border-left:4px solid var(--corallo);border-radius:12px;padding:10px 12px;margin:12px 0 0}
+  input[type=file]{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+  /* Il gioco a schermo intero */
+  #schermo{position:fixed;inset:0;background:var(--violascuro);z-index:50}
+  #schermo iframe{border:0;width:100%;height:100%;display:block}
+  #chiudi{
+    position:fixed;top:calc(6px + env(safe-area-inset-top));left:50%;transform:translateX(-50%);
+    z-index:60;border:2px solid rgba(255,255,255,.7);border-radius:999px;background:rgba(36,18,63,.6);color:#fff;
+    font:600 13px/1 Outfit,Arial,sans-serif;padding:8px 14px;cursor:pointer;opacity:.9
+  }
+  footer{margin-top:24px;font-size:13px;color:var(--tenue);line-height:1.5}
+  footer p{font-size:13px;margin:0 0 6px}
+  footer a{color:var(--viola);font-weight:600}
+</style>
+</head>
+<body>
+
+<main id="home">
+  <div class="testa">
+    <a class="logo" href="https://arcadeu.it/" target="_blank" rel="noopener" aria-label="ArcadeU, vai al sito">
+      <svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="56" fill="#F5B700"/><circle cx="60" cy="60" r="47.4" fill="none" stroke="#3B1E6E" stroke-width="3.2" stroke-dasharray="4.3 4.3"/><circle cx="60" cy="60" r="23.7" fill="#3B1E6E"/><circle cx="51.4" cy="54.6" r="3.4" fill="#F5B700"/><circle cx="68.6" cy="54.6" r="3.4" fill="#F5B700"/><path d="M54.6 64.3 l12.9 6.5 l-12.9 6.5 z" fill="#F5B700"/></svg>
+      <span>Arcade<b>U</b></span>
+    </a>
+    <span class="etichetta">Beta di prova</span>
+  </div>
+  <h1>I miei giochi</h1>
+  <p class="sotto">Hai ricevuto un gioco ArcadeU come file? Aprilo da qui. Resta sul tuo telefono: non viene caricato da nessuna parte.</p>
+
+  <div class="card">
+    <button class="btn pieno" id="apri" type="button">Apri un gioco dal telefono</button>
+    <input type="file" id="file" accept=".html,.htm,text/html">
+    <p id="errore" class="nascosto" role="alert"></p>
+    <p class="sotto" style="margin:12px 0 0">Scegli il file del gioco: finisce con <b>.html</b>. Lo trovi in File, nei Download o nell'allegato della mail (tienilo premuto e salvalo in File). I file che non sono giochi ArcadeU si aprono in un riquadro chiuso: non vedono gli altri giochi e non salvano i record.</p>
+  </div>
+
+  <div class="card" id="salvati">
+    <h2>Giochi su questo telefono</h2>
+    <p class="sotto" id="vuoto" style="margin:0">Ancora nessuno. I giochi che apri restano qui e funzionano anche senza connessione.</p>
+    <ul class="lista" id="lista"></ul>
+  </div>
+
+  <div class="card nascosto" id="avviso">
+    <p><span class="oro">Consiglio:</span> aggiungi ArcadeU alla schermata Home. I tuoi giochi restano a un tocco, anche senza internet, e non devi installare niente.</p>
+    <p id="come-ios" class="nascosto">Su iPhone: tocca <b>Condividi</b> (il quadrato con la freccia) e poi <b>Aggiungi alla schermata Home</b>.</p>
+    <p id="come-android" class="nascosto">Su Android: apri il menu <b>⋮</b> di Chrome e scegli <b>Aggiungi a schermata Home</b>.</p>
+  </div>
+
+  <footer>
+    <p>Memoria del telefono usata: <span id="spazio">–</span>.</p>
+    <p id="stato-sw"></p>
+    <p>Ti è piaciuto? Crea il tuo su <a href="https://arcadeu.it/?utm_source=lanciatore&amp;utm_medium=footer&amp;utm_campaign=crea-il-tuo" target="_blank" rel="noopener">arcadeu.it</a>.</p>
+  </footer>
+</main>
+
+<div id="schermo" class="nascosto"></div>
+<button id="chiudi" class="nascosto" type="button">Chiudi il gioco</button>
+
+<script>
+(() => {
+  const $ = s => document.querySelector(s);
+  const fileInput = $('#file'), lista = $('#lista'), vuoto = $('#vuoto'), errore = $('#errore');
+  const schermo = $('#schermo'), chiudiBtn = $('#chiudi');
+
+  // ---------- Memoria locale (IndexedDB) ----------
+  const DB_NOME = 'miei-giochi', STORE = 'giochi';
+  function db() {
+    return new Promise((ok, ko) => {
+      const r = indexedDB.open(DB_NOME, 1);
+      r.onupgradeneeded = () => {
+        const s = r.result.createObjectStore(STORE, { keyPath: 'id', autoIncrement: true });
+        s.createIndex('nome', 'nome', { unique: false });
+      };
+      r.onsuccess = () => ok(r.result);
+      r.onerror = () => ko(r.error);
+    });
+  }
+  async function tx(modo, fn) {
+    const d = await db();
+    return new Promise((ok, ko) => {
+      const t = d.transaction(STORE, modo), s = t.objectStore(STORE);
+      const req = fn(s);
+      t.oncomplete = () => ok(req && req.result);
+      t.onerror = () => ko(t.error);
+    });
+  }
+  const tutti = () => tx('readonly', s => s.getAll());
+  const salva = g => tx('readwrite', s => s.add(g));
+  const elimina = id => tx('readwrite', s => s.delete(id));
+  const uno = id => tx('readonly', s => s.get(id));
+
+  // ---------- Apertura del gioco ----------
+  function titoloDa(html, fallback) {
+    const m = html.match(/<title[^>]*>([^<]{1,80})<\/title>/i);
+    return (m ? m[1].trim() : fallback.replace(/\.html?$/i, '')) || 'Gioco';
+  }
+  function mostraErrore(t) { errore.textContent = t; errore.classList.remove('nascosto'); }
+  function nascondiErrore() { errore.classList.add('nascosto'); }
+
+  // Dal 06/11/2026 (versione 3) il lanciatore apre TUTTI i file HTML, in due modi (decisione di Davide):
+  // - i giochi ArcadeU riconosciuti (eNostro) girano come prima, con allow-same-origin: salvano i record sotto il dominio del lanciatore;
+  // - tutti gli altri girano "chiusi": senza allow-same-origin hanno un'origine anonima, quindi non possono leggere né toccare
+  //   i giochi salvati, la memoria e il service worker del lanciatore, né aprire pagine fuori dal riquadro. I loro record non restano.
+  const SANDBOX_NOSTRI = 'allow-scripts allow-same-origin allow-modals allow-pointer-lock allow-forms allow-downloads allow-popups allow-popups-to-escape-sandbox';
+  const SANDBOX_ESTERNI = 'allow-scripts allow-modals allow-pointer-lock allow-downloads';
+  function apriHtml(html, esterno) {
+    schermo.innerHTML = '';
+    const f = document.createElement('iframe');
+    // nostri: allow-same-origin per i record (localStorage); allow-downloads e web-share per "Salva" e "Condividi";
+    // allow-popups (…-to-escape-sandbox) per "Crea un altro gioco personalizzato", che apre arcadeu.it in una scheda nuova.
+    f.setAttribute('sandbox', esterno ? SANDBOX_ESTERNI : SANDBOX_NOSTRI);
+    f.setAttribute('allow', esterno ? 'autoplay; fullscreen' : 'autoplay; fullscreen; web-share');
+    f.srcdoc = html;
+    schermo.appendChild(f);
+    schermo.classList.remove('nascosto'); chiudiBtn.classList.remove('nascosto');
+    document.body.style.overflow = 'hidden';
+    try { history.pushState({ gioco: 1 }, ''); } catch (e) {}
+  }
+  function chiudi() {
+    schermo.innerHTML = ''; schermo.classList.add('nascosto'); chiudiBtn.classList.add('nascosto');
+    document.body.style.overflow = '';
+  }
+  chiudiBtn.addEventListener('click', () => { if (history.state && history.state.gioco) history.back(); else chiudi(); });
+  window.addEventListener('popstate', () => { if (!schermo.classList.contains('nascosto')) chiudi(); });
+
+  // ---------- Solo i giochi ArcadeU (06/11/2026) ----------
+  // Un file si apre solo se è fatto con i nostri pezzi: lo scheletro (HTML e CSS del modello) è uno dei nostri, ogni blocco di codice è
+  // identico byte per byte a un nostro sorgente (impronte SHA-256 qui sotto, scritte da aggiorna_fidati.py) e gli altri due blocchi
+  // sono solo dati in JSON (scheda e foto), controllati qui: niente < o > nei testi, foto solo come immagini incorporate.
+  // Così un HTML qualunque, anche se si spaccia per un nostro gioco, non viene mai eseguito.
+  const FIDATI = /*@@FIDATI*/{"codice":["00001aec7f55d6baf1b63122596bf626d25fec30501fb3f6a17d22b990b3e3dd","014f123c7b0734c67f8761d7c0110bb16010eed5623e840ddbc8efbafd881479","0152bc4fac57f5b4c0e5d258ef5efb1db6dbee6fc9155ecbd50c8aee4c2399ed","01d4cb12a215df282ed6a0c91bf33166be77f02ef5b5d640795b9e5702516b45","01db349937ece1bd4f2089f89deed1459330bba11afad002708cc9dc4afd2ee5","0382b64610cc13d424e4790cbf44d90561cff275e8d068d8a2059d80e671f658","0573cf0c957d1a944a73b5ea25e81d6519fda4fcd728aef3992dea293b645d39","059113940f0b6becc9058bb3aca7632291a40f13dbc6fe4f7e6413f1e03fcf81","05a6ac44acd9615124531c6b9e4e15398b3590318e1ddf8afa9e92b833c57b54","0618a94641c9720e038bb6e991e3abe2f3768e8fb7572fe8d63ccd3598effc13","0973608280cf6cd156a109c90734771c4f7eea071a3875b4e462e43ec3497fbe","0a160d06f96ef3b31682c9b3c60e85e708a656bb977faa5eda938c1a0fc09528","102ec8e1f0b9e202c6ab3ae7c2df13d3875a512915d945b6414c92f4543673e6","10af3921f03be26f6b81e5535966a3088785f79237a3596886043559619ed260","1162434dda66aa9ade7206708f3cd7ab9ea0e4fe496d8783dac0d71ef03c5eeb","11b1fe63fa07c3113cc78fa2a90e79b7d8e5184b4a9c493b99b8740a993e97a2","11d2bf2e645563b37ccc5a9e604ed940c06c469a1182dc0a2eca70cddeaebdf1","12b8e31f5cc269b12c05b4a6a4c2eb17d88a1108a740384ffd607f7cbec3ecbe","13d3fd524ebb4412bb6b95f2c1e4b52502382de527237d484fa22a32f6cbd8be","18158f466fa07602b6c995fc5d362cabf837be7ccc7814d21290d796ea7d5231","181d5224f92d46171e11eb5f40cac23b7d2a1859a1c829d12bf7d06e927b90f4","18a4d1530e5613b4c8fd28f61062d76b11fad780fceb97613a5f0d9f879cdb73","1aaff326f01327f3628490e9f3718b0111129653d5f40c104943fee389255b93","1eda96b26a53b80180afd86d0560cc969e8745f84ba2f6a32a9cf8cc2248da00","20b33cfed999065961fbbc5eb5f149b342d71785efa73524729450a6bf9b3003","2498d6abaf90b3ef9c981d51e9561637fa0e685b72aca7bf737a2447291686e8","25499c6b268ee29c348f1045a0522346b64fa6c31540e42739bf2b115dde9850","25f4a91125ff352f533b9f17cf30cecc15a3592d56463972ab74c452deb64b52","26429436558ec97e5ecbab78ad0024d92f0e1ee48c636444d2a33d798d96410f","2c27e8dda8ffd0531b00c43eb186bd9fd9d76f8cf38511757e2a562b19ef8fe4","2fd5959adae31880a8cc984df9a8a1984f5794805d9f4d1c54e20cd894defd21","30f041aa688e38e3fcc6edfe8e17562e1cf93c9f59a33ad7b06e6ab3f4a15e9d","31c995cdc9203cc2d43328b80a8e4b0c9ecd4bb5c6537eee946f372f1ff62da3","3211e5d693c909419d3404d9ccb35aded70f2878ee005631f3bc6035e215956c","322cdbb6214df8289ca6b37f633bb9a9f34f63f0f13e9dda30cf769cb20a3f1d","34c9b2089f1d3d4fc3bba6b4b24b208f7b6b0eed902ed3e024d380bc66642af9","3608ba3b8f4473b72a9c707e398e0d5201d9a03d062a83a907bc299097fff2a7","36774382dea9616042cea8b9a27d0285ff8c4021b02a1166786a5d6089218a05","36a728f5d8ed35b51cb56a7c8613cb04c9e2e345b1355cef3aacd871b358a4e7","372ebc9c2f954c3a104637c153cbeffc84b634945a40423980ea02b0505760fc","3bb4c8e753150c0606977fda3ba583e1ce8c32d21d52e4b7266b4a81d148408c","3bcc1de98c51bf85bbe94f337b483dbeb5c41df5a08c6a5a500834d63f29c2e9","3c58b55684b1e85e02adf1c40697ea632b64450d39ad1293d74a1c9e60e9a1aa","3c885a29ba82dfc5eea001e00b48d350b6f383afef8335fbc68aa7c131047b52","3e30c4d1534e076e7b835c3de96ade6c8e23fd0b0e078880a1a417788645c114","3f01824149cbedd465180c8ade9cd869012e14ec128380ec0d5a1cd2fba6adea","3f15c4df9b416a7ac7fb1d60c81385f21849d9526508a439a7858950816f1779","3f17500fd1fe3790708c30cb7edbca260dbdb8b52d2f9fd18b0f9ac11ec43db9","3f8540c72e6ddc5344736879519e67bd8a4c09ca69a4d9876d5799de7ebf99fc","40b773239ddf2cabca5fc585752576898998fd7313a6456578d9626d1aed8f3e","423a4cfbfac82f5592729a2a7fb47991f95baaf169c3312312b2a05efb2a7860","42c88bea1a23d09b64d821774b1e7b49e367a911c0d5e9a1f6d87bda9dcd9831","43ecb2a15bc760e2caaaa8d59f0ded69259258b4ecb782c73ce7c820d2d71112","4535651a6115181b6b6bf97831d46f116b1bbf0221c252eeb683f1e35694bc37","4812a6a93f5f329f2413024135642594441bc40952e68e49729f19eb91389e5d","4856a2ec479438683de80e1761d252789e22792b6f089f165e81535241b74b6c","498368416e62850b10b406506e260d928c13b206fd436f7d10b21d2534b7130d","4c7e41d2301744b02d0ee511cc4d1374f474c86acf8f400b75dbfe203616276f","4d115a38c51043bfc5f58dd0b49cdf5f23cf75e267c74788e49850db11b8d41f","4f941d0a9b2fa4122a3568d0f1dcc8b0eb7ab68892e94d591b21a464904d8784","50fe49be666cdfd1031ef08dc6fefb0ec498e26405b08ab50a92f95ad929ab61","514cbad2ec7adc0c8eb827f48a57b391721c926456ae44580fbafbec550e3d9a","51a85af4bbe63318b49c9817f01d34c2f4804f5c385d24d2b8ad7d59b2a8814f","5314d5e90bd8d0f40ae3bcf1306e41b12d487dc7bc4cb98a867b6e4078175323","540481600c254f9b769960f2df69b4a9c5d2d2d1d37f082d9f0de281ca959945","54a5a994661b49a5e577f981346c271f902d4438c941ea0b25b7d39db9e0db9c","54fd7c2991f5caab4bd3245e44e1d739a3a49eeae06f3001bfca7befce15b19e","5586f2ee828c696abf3f36e8171e3b642c20a1dc880436d0a275d373f25e389c","58de8fbbe7a9058a3b32b75ca38105dff7466dd3eaf06907cb0d5354b0e9cc3b","5978a7621cd25f41c9c928bbd071204a9c7d2b44241e7d6bbea0153002af26b0","5a2cabc3a6683e4cde7363855a26b0bea0a17d2ec3071544e682ac621969201f","5b974b72b64d7dea98551aa85828a1bffba415dd7bbabf18ef6d3dd80716a2ba","5d9a05f2e5d698875ba3f858bb20a3da957c317e812a0a139f4104ac5154bee4","61bf0e5e89389fcd4ad518735b06035603c922c649aaa4e0cdb61c28a84a7fba","626e6265eef797c96296890c494174761eafd7a0d7863580d6cd8f9e41836de1","63a10a7c0f4f3f3351919b6e5f112910e980f0378be426adc8f3f2c054b4529c","66186459179504f6b4de88514f667095ead5e846d1c62622b4660a1c28f1d1ac","6645c6486702c6563be0a099993c58ce825b540581419c8d02d8fcdf7b549ff7","68e83208c6072cea79e9d71479704ddeda6d36a12bf1abcf2ca0db9295c461d5","6a1b18ebd55042418118ac0feeb9fb06a2487a83987b1abb2af7631edf42668f","6a5b8bae32aa3a754c623c6bf8d909f592565514e844dae60964ac705c8dc40b","6af4182e899964ce1a465ccd29d48fd20f8843b25502c2f6c4fb157bcfcaefba","6b70ade911b9da129ce6f7f572466aaa51d7a934352773579414d3b6ef357e6c","6ba6fa32228b50dc0da04b4f5ba93470c3d4defd32b4cd149d7813a554cf92cb","6de6d5264dc63601087b59ae22d505162cc6e227a8e0956caa71b3cd74b43b9c","6e1d4ee18bc1c80ce8b8de96ba6b0e03ffa9d61c4342a47e9db443f33add21da","6e6dad5593c04663c8c148e33d14854d32c62dad5b362444236a0d6c122973d8","6fac2ebf7763b7059353e61201750201e071d25ead265da587ed54213a1a09c8","70e9edfb74aab6baf5a1e6a4e3346df0e75ef442301aa4beb7cf837e9f4639bd","75688fa420299c86048b98d053ff61cad91c73d830f49f93e20a4e011a238ed5","75a384bd4e31c282d2b6c58c562cee38797fde9addff5b54fcd9f165f97cc1a7","7b4f64fd92964b81a0675f2a5880ec280e47addb751c765bcc434f55934fe2e5","7ccba4274e930828b5f8a60845b5072ad9345175db82f9dbdb8e73455b916944","804a56fb26cd9fdba072cc0a947620621c8ce6105e049501272f91c2b14be6bc","80f7437115f4d1d17f14c4a92722f8d7d42977f1ced55b5ad9bcc5baafca760c","81a19a90db0606bd8f87f7402e61d0e8a5688d65941abd5c49894bccd5472c77","87d0688ddaf5f9df106b14e9e2eab2adc5656196dec1b4656c8c3f276fb3feef","88074f617653e5699f9eae326926d5553736fcb57b0c8c0ed9c511bf10048095","88723dbfb35815b201216e04e2837f0cb885109c52ad810de7e1287c9d7d6016","89fccbbb5b5e29c31c561dff229de262b092826e5d532929e2d2da298b74b317","8a0d653b1adda153b0285f5ac7dd7a03f2cc29203b121cdb66560e87f2bdfbd5","8a9bce6c720080769a6830a47edba9a80ae72a177e83925fd3ae512ed6b6d78a","8ad835edf605736cdb44c8ac4d830ffc8c20b37f89e1738dbf9cb18fc420797b","8ba3ce6cf97295a7dd0b26293962b2eac67614f7180df75155d7e3092be220cd","8dcfd6036e04b88b06162216dfb61447bb37d29849a5f0ee7bd338d6427e8192","8e55ff5240118017e9f07c28774fbfb3829dd2582fa7103dc87fe4afe9ab231f","8f7bab1d22f487956e07eb6a43a4e3614c4c5d84703ecae44630d1cf512e07a2","8f8a3823d93c6ba81c97372238c85cdc69b26123c0389a1b5e1bf3d5d18d4a4a","90206e6e738c60893a9317f657945105b14722977bbebd2f12a3291192fb4d17","9111fb2c2f7e0c997c8732eee4617473c34d2ac978e0b02bd3ee41646efc7cac","925f2975310a792fedab5eaf5594155fbaf6a3cffe4b0bd53d7aa4f15278e74e","95782e2744ef53b1cbefe93536a24f26a165d02c9820eb4688b8d2379dafafec","95e6d20bbd77c481ed560cd507f52d21f743f24aec376e2f3ec7e6e16182ae48","963501cbdf51d139fefd6894cc7ea358a81711a9f1ae68de023a6590557ed8aa","9744da94867219ed8a4d6ae314452fff032d259f9cc427a89f8f864ea6c5ee57","974b87ae661455744424ee1754b64dcd62ea68e29b40fc834ceaf91796ce70b4","97de3ca4d50438d1e5b5ea2bfe8f1f8f1d3a4735b963bf0a66089e919fb68715","996041b5385f6151694adfe17a39c8053e32c6cccbdcc1c8942dde5a38065322","9ccb11879d3ac1243d6e0563a2e23dc65eec922fb8132f4e0bcf54c724a17ef1","9f3f711c2c61e2c661d820f682caf27075ab79c34fae75bb2441721f8cba3b92","9f5e824354d7412c846d872faea1a198dcb677d88c0e576f62dd452c57fddc47","a114fefe4988bae6c65d6e54322d6d019ee92b6c1e828a752ed9fb31b91bfead","a2004bdca7aa0aa31fc5184b541a6921c375831fa17a6fc92f745076a65986cc","a341eec3f1ef4be86d2bcebc83c3157266512b9c19e542f8f5064ed1c75fba3e","a416ffa710a86ca75cce6efbf3483fdc98acdea22306b260d499885963b766c6","a5cf6d29d9cd213dc92489e0de0d89a2fa71f88cb26fe0468c0db78aa7ee5155","a8962f94c7a49df2d155cd0457bf0aa9b17a978adaf81c8514200a3b543ca302","a9abb0be1af6f5cbfc85690623b22a93ce511fc1c48d0ce1b522454c4b0a808f","ab0796d4c098754369e18ffba6ecf9002990a07897ad47cfcb2891fb29d66722","abff48275e3f9a389d066aee04a7214ff90972a0361d80182a84a05a6a8e47ba","ac3c36cb06142313b1ee9a9e068ecaae214247cd0003658558fde687adb8d8ff","ad29239f48ee126da5810d32fe97e4176f0bb451ad2348d5152835e9c75ca8f9","ae33561a0688debb9568d927092beaba1dd0b980f29c816bffba08c4d3a4c17a","af3661150b78ee90f08dfc89f12740a5b01cc6316dedc6313b6864bf93f9e59d","b03e1abea935d2f8e79df0eb7b76d0bc1f47ec8d62eed5cff20fd76bfb6f71d8","b24281d972638e8f699a11fcc8d78a8a68c097962c67582bc4eb5ece26fda233","b3e2abe9364ea9a86db10d6851ea50ef26f21c4d5d919b36e287a72a7fe0650b","b7eaee6ed3fa7c0a2e83fe02ef0f015011ee0f031db8751603411657f25bb01a","b875583cf880e565b2969fdaa7c80ea52beb78288808111e0d59f6d0535e74e9","b8e2a72af72a08f5bcfd0bdd16d99468767ead361786d4a354707a0dab745dff","b97697ee29deceb913ff139c5e7c4d100c591dbf630434e10d88b5675d394e17","b9b3ce270596f4e6e141f0f2063adc10c4654de2aa69080ea45cad32e248be5b","ba06b300b0fb50f9fe3235a24f5331fc1d836f9c170698fc07207ba14ae6254c","bbc3cd08fa2f84070933e87243ab7cb67ff0c6bf71efadcc872c9fc8fb28db60","bc2fa9eac91d63a8939ce1cff6e1c70368ea8ab301b52415123e9062caf33f0e","bc855ef9f1863c3765d3b7b84fec3ef99c6d80bebe362ebaf2b3e20f4aec3587","bd4d6cd856ab1118df9545cd52adb4bdaa602a0ccfce9184d35b04e224b84a37","c32fa52c139391c8e9a139d76b772221bbb53fc950048f931c9d614be5b08725","c3894ab5d9dd332dad4024c12463e2bbf8aad330e3cfb244b114aaae8e4daccf","c4b496128b183592fd1802552551e62c2d79d02fdd66a3d81ecda2252f3437cd","c4da406867e97628fbe2a470f6576d34c8af6155ee0ba2b7f7d2b9f6eeb15292","c7ba07709ecff2682a47a12a204d396bf8d70540790b2ef133a9e3a38eead82f","cc0d2a5f6e1020682864dd85d94839d035df74fad9e14e3d474279459adc25d5","cc59ce600d299f2ddc7a95e842e23fd41a35a6fab996a612f28f12145098c20b","cc7a1d093da9cc4dc08c14082299440f05bbb3fe9a8179054ca456074705ea0d","d12cad649eb34bad4c330832eea449bd4e57505f066911cc0f19aa1af67d70cd","d13052856c944bcd679bff490b72776eec79042d443a20cd50111ea622baf0e5","d7b89f16f9f7d0456d2b70381d1ae417c1ffb719d535e5607297b88f2f0d2047","d93225da7c1a01ccd4a52ddffdc4989318099f79f0a07630d3ba7a4359b84055","d9b9b13c2825a889255e1352323ead62b62c9b11619359018500e82f3f1aec2e","dae099f260a6f5f092ab8b5c1b2b7837d35cb5b4d286b2967d4a18ba5541d8c5","dcb9d5b5fb28ce7eae82ad672a73b3daed00eb19db872ff59a1db1b90a721742","dd3da6c8318797909b60719bfaffbe23bf25d961b8fbd450c76dc597fba3991e","dd7fa369c09f7a19a57db6460d2c99cab291d64e3814950ecdd75b1f6de59500","de68bd4b0115246b5a86252e2678554310e191e4e637a42952f3bcae4309c6f8","e338872632800aa5805d472955ca763d29fa9952a878727b1df3ebe09b3c6ac9","e43e8dac791d0799d9b17d54b8de2af3867960def3347af55cd75d7d3325ab7d","e44f97d85fb6ed2f55816a88af6f3c132e0679007fe238f196380c0807f1c0a7","e5d9367a6a695df51db0b18939b6a63d5252308be31135b99b42edb31ddf02b2","ec4d5497d500ee370275fd94b15431b8547a283eb05bc0362d8aed0f1dbdcef8","eca710cb2285bf2f9f54e550769e33cf1dc40f4926fcc0627d5ce3bc91350bd6","ece49d8127d46b09dd8044f0ad2e8ccd7bd2fa634c12dea5924c100277cf4c79","ee0c488bd0d322a7bcb2802d0a5e9c69ce81e45a6d538268bb7f9628f0c35f25","f26f32d916623054f0ba7b30858f62a14024621c70b9dcfcd27d5c560bbe7d2d","f49cdc21ae2a16c71c93106fd57eeb7975beedb47e6a3926c0c4a937bc996b56","f6ce01bf884d023ce7f8335d0b6a66a6bd6a096d046777f661afd7a2aa654808","f7cd63c0ad95a90e4a1f9dafe6a0affa7462f04092b5c42d12a49b66cb5bc736","f7ef8127e4b704829d15d37a1714c896c34a3c99d0e29037f13c97741f721410","f9b707a077e6626fbca0abe30a227cb42c47a7115a22aab88f9b9477d8b22023","fa3ab37481a054eb8dfff445478b02e6708bf284d33370d51d5ef4e50b4eea1e","fbf3f0a6d7eb3f6e9d5ec27832b706e4b65361e5c96e74cc9d9e8937dd9e5cc5","fd1a68f70e07cbdd78695930236f32c9335b80694b7b8aa178773a6e51d756a3","fea327590528f4c3c884166303c5199d39b4a5747c654b8986d2faa1ec2cf099"],"scheletri":["4a28585e822491a2ba02757edd1b6526e77c9eb1cc10bc3b58f6e079699e12d1","9de81edf11872c0cd12415eb02d4ddba3fbd5b75460da9c610228b7e685b6017","de98e3dcdb547e810fad4cf375a2d8b08731c15a7a6dd0d4dfe751478fd1e466","e495704ed4a3903f8cbf14e06f799f3a9642d582595407c8401e9f8cffb0e163"]}/*FIDATI@@*/;
+  // Firma digitale (dal 06/11/2026): chiavi PUBBLICHE ECDSA P-256 (le scrive firma.py chiave; la privata resta sul Mac).
+  // Un gioco può portare dentro window.ARCADEU_FIRMA = {"elenco": "...", "firma": "..."}: un elenco di impronte firmato da noi.
+  // Se la firma è valida, i pezzi dell'elenco valgono come quelli di FIDATI: così i giochi fatti con un motore nuovo si aprono
+  // senza ricaricare il lanciatore. Se il blocco c'è ma la firma non torna, il file non è nostro. Il controllo è tutto sul telefono: funziona offline.
+  const CHIAVI = /*@@CHIAVI*/[{"kty":"EC","crv":"P-256","x":"L03YKxSvjH2ZLUP3PdYTo5X7SYgOKd7laC8RsZ8fmJA","y":"eSCahOekeZPK7gHq1VIK1LqhSjjcsfCyrtrtPO9Cl08","creata":"2026-11-06"}]/*CHIAVI@@*/;
+  const b64u = s => Uint8Array.from(atob(s.replace(/-/g, '+').replace(/_/g, '/') + '='.repeat((4 - s.length % 4) % 4)), c => c.charCodeAt(0));
+  async function elencoFirmato(v) {
+    if (!v || typeof v.elenco !== 'string' || typeof v.firma !== 'string' || !/^[A-Za-z0-9_-]{86}$/.test(v.firma) || v.elenco.length > 200000) return null;
+    const dati = new TextEncoder().encode(v.elenco), sig = b64u(v.firma);
+    for (const c of CHIAVI) {
+      try {
+        const k = await crypto.subtle.importKey('jwk', { kty: 'EC', crv: 'P-256', x: c.x, y: c.y, ext: true }, { name: 'ECDSA', namedCurve: 'P-256' }, false, ['verify']);
+        if (await crypto.subtle.verify({ name: 'ECDSA', hash: 'SHA-256' }, k, sig, dati)) {
+          const e = JSON.parse(v.elenco);
+          if (e && e.v === 1 && Array.isArray(e.codice) && Array.isArray(e.scheletri)) return { codice: new Set(e.codice), scheletri: new Set(e.scheletri) };
+          return null;
+        }
+      } catch (err) {}
+    }
+    return null;
+  }
+  const FONT_RE = /<style>@font-face\{font-family:'Press Start 2P';src:url\(data:font\/(?:ttf|woff2);base64,[A-Za-z0-9+\/=]+\) format\('(?:truetype|woff2)'\);font-display:swap\}<\/style>|<link rel="preconnect" href="https:\/\/fonts\.googleapis\.com"><link rel="stylesheet" href="https:\/\/fonts\.googleapis\.com\/css2\?family=Press\+Start\+2P&display=swap">/;
+  async function sha256(t) { const h = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(t)); return [...new Uint8Array(h)].map(b => b.toString(16).padStart(2, '0')).join(''); }
+  function testiPuliti(x, prof) {
+    if (prof > 12) return false;
+    if (typeof x === 'string') return !/[<>]/.test(x);
+    if (Array.isArray(x)) return x.every(v => testiPuliti(v, prof + 1));
+    if (x && typeof x === 'object') return Object.keys(x).every(k => k !== '__proto__' && k !== 'constructor' && testiPuliti(k, prof + 1) && testiPuliti(x[k], prof + 1));
+    return x === null || typeof x === 'number' || typeof x === 'boolean';
+  }
+  async function eNostro(html) {
+    if (!FIDATI || !crypto.subtle) return false;
+    // 1. scheletro: font, titolo e commento finale tolti; la zona degli script diventa un segnaposto
+    let sk = html.replace(FONT_RE, '@@FONT@@').replace(/<title>[^<]*<\/title>/, '<title></title>').replace(/<\!-- ArcadeU · [^<>]* -->\n(?=<\/body>)/, ''); // ("<\!-" + "-" scritto così: siamo dentro uno <script>)
+    const i = sk.indexOf('<script>'), j = sk.lastIndexOf('<\/script>');
+    if (i < 0 || j < i) return false;
+    const zona = sk.slice(i, j + 9); sk = sk.slice(0, i) + '@@SCRIPT@@' + sk.slice(j + 9);
+    // 2. blocchi di script uno dopo l'altro, separati solo da spazi
+    const re = /<script>([\s\S]*?)<\/script>(\s*)/y; const blocchi = []; let m;
+    while (re.lastIndex < zona.length && (m = re.exec(zona))) blocchi.push(m[1]);
+    if (re.lastIndex !== zona.length || !blocchi.length) return false;
+    // 3. elenco firmato (facoltativo, al massimo uno): se c'è deve essere valido
+    let firmati = null; const blocchiFirma = blocchi.filter(b => /^window\.ARCADEU_FIRMA = /.test(b));
+    if (blocchiFirma.length > 1) return false;
+    if (blocchiFirma.length) {
+      const f = blocchiFirma[0].match(/^window\.ARCADEU_FIRMA = ([\s\S]*);$/); if (!f) return false;
+      let v; try { v = JSON.parse(f[1]); } catch (e) { return false; }
+      firmati = await elencoFirmato(v); if (!firmati) return false;
+    }
+    const noto = (h, tipo) => FIDATI[tipo].includes(h) || !!(firmati && firmati[tipo].has(h));
+    if (!noto(await sha256(sk), 'scheletri')) return false;
+    // 4. dati (una scheda e un elenco di foto, in JSON) e codice (solo impronte note o firmate)
+    const visti = {};
+    for (const b of blocchi) {
+      if (/^window\.ARCADEU_FIRMA = /.test(b)) continue;
+      const d = b.match(/^window\.ARCADEU_(SCHEDA|FOTO) = ([\s\S]*);$/);
+      if (d) {
+        if (visti[d[1]]) return false; visti[d[1]] = true;
+        let v; try { v = JSON.parse(d[2]); } catch (e) { return false; }
+        if (!v || typeof v !== 'object' || Array.isArray(v) || !testiPuliti(v, 0)) return false;
+        if (d[1] === 'SCHEDA' && !/^[a-z0-9-]{1,30}$/.test(String(v.gioco || ''))) return false;
+        if (d[1] === 'FOTO' && !Object.values(v).every(u => typeof u === 'string' && /^data:image\/(?:png|jpeg|webp|gif);base64,[A-Za-z0-9+\/=]*$/.test(u))) return false;
+        continue;
+      }
+      if (!noto(await sha256(b), 'codice')) return false;
+    }
+    return !!(visti.SCHEDA && visti.FOTO);
+  }
+
+  async function apriFile(file) {
+    nascondiErrore();
+    if (!file) return;
+    if (file.size > 25 * 1024 * 1024) return mostraErrore('Il file è troppo grande (oltre 25 MB).');
+    const html = await file.text();
+    if (!/<(!doctype\s+html|html)/i.test(html.slice(0, 2000))) return mostraErrore('Questo file non sembra un gioco: serve un file .html.');
+    let nostro = false; try { nostro = await eNostro(html); } catch (e) { console.warn('verifica', e); }
+    const esterno = !nostro;   // si apre lo stesso, ma nel riquadro chiuso
+    const nome = titoloDa(html, file.name);
+    try {
+      await salva({ nome, html, peso: file.size, aggiunto: Date.now(), esterno });
+      await aggiornaLista();
+    } catch (e) { console.warn('Non salvato', e); }
+    apriHtml(html, esterno);
+  }
+
+  $('#apri').addEventListener('click', () => { fileInput.value = ''; fileInput.click(); });
+  fileInput.addEventListener('change', () => apriFile(fileInput.files[0]));
+
+  // ---------- Lista ----------
+  const kb = n => n > 1024 * 1024 ? (n / 1048576).toFixed(1).replace('.', ',') + ' MB' : Math.round(n / 1024) + ' KB';
+  const data = t => new Date(t).toLocaleDateString('it-IT', { day: '2-digit', month: '2-digit', year: 'numeric' });
+  async function aggiornaLista() {
+    let giochi = [];
+    try { giochi = await tutti(); } catch (e) {}
+    lista.innerHTML = '';
+    vuoto.classList.toggle('nascosto', giochi.length > 0);
+    let tot = 0;
+    giochi.sort((a, b) => b.aggiunto - a.aggiunto).forEach(g => {
+      tot += g.peso || 0;
+      const li = document.createElement('li');
+      li.innerHTML = `<div class="nome"><b></b><span></span></div>
+        <button class="btn piccolo" type="button">Gioca</button>
+        <button class="x" type="button" aria-label="Elimina">×</button>`;
+      li.querySelector('b').textContent = g.nome;
+      li.querySelector('span').textContent = `${kb(g.peso || 0)} · aggiunto il ${data(g.aggiunto)}`;
+      if (g.esterno) { const t = document.createElement('span'); t.className = 'esterno'; t.textContent = 'file esterno'; li.querySelector('b').after(t); }
+      li.querySelector('.btn').addEventListener('click', async () => { const r = await uno(g.id); if (r) apriHtml(r.html, !!r.esterno); });
+      li.querySelector('.x').addEventListener('click', async () => {
+        if (confirm(`Togliere "${g.nome}" da questo telefono? Il file originale non viene toccato.`)) { await elimina(g.id); aggiornaLista(); }
+      });
+      lista.appendChild(li);
+    });
+    $('#spazio').textContent = tot ? kb(tot) : 'nessuna';
+  }
+
+  // ---------- Installazione sulla Home e offline ----------
+  const standalone = window.navigator.standalone === true || matchMedia('(display-mode: standalone)').matches;
+  const ua = navigator.userAgent;
+  const isIOS = /iPhone|iPad|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  if (!standalone) {
+    $('#avviso').classList.remove('nascosto');
+    $(isIOS ? '#come-ios' : '#come-android').classList.remove('nascosto');
+  }
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js').then(() => { $('#stato-sw').textContent = 'Pronto anche senza connessione.'; })
+      .catch(() => { $('#stato-sw').textContent = 'Modalità offline non disponibile su questo indirizzo.'; });
+  }
+  if (navigator.storage && navigator.storage.persist) { navigator.storage.persist().catch(() => {}); }
+
+  // Per le prove dal browser: apre un gioco passando direttamente il testo HTML.
+  window.__eNostro = eNostro; // per le prove: dice se un testo HTML verrebbe accettato, senza aprirlo né salvarlo
+  window.__apriHtml = (html, nome) => apriFile(new File([html], nome || 'prova.html', { type: 'text/html' }));
+
+  aggiornaLista();
+})();
+</script>
+</body>
+</html>
