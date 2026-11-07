@@ -31,7 +31,7 @@ body.orizzontale #app{justify-content:center}
 /* dentro il lanciatore (in un riquadro) e in verticale la scena scende sotto il tasto "Chiudi il gioco", che altrimenti copre nome e barra del boss */
 body.incornice:not(.orizzontale) #app{padding-top:calc(max(12px, env(safe-area-inset-top, 0px)) + 40px)}
 /* in orizzontale Pausa va nell'angolo in alto a sinistra e Audio in quello a destra, ai lati della scena: il centro resta libero per il tasto
-   "Chiudi il gioco" del lanciatore, che prima li copriva (Davide, 06/11/2026) */
+   "Chiudi il gioco" del lanciatore, che prima li copriva (06/11/2026) */
 body.orizzontale .bar{position:fixed;top:max(6px, env(safe-area-inset-top, 0px));left:max(10px, env(safe-area-inset-left, 0px));right:max(10px, env(safe-area-inset-right, 0px));width:auto;max-width:none;gap:8px;pointer-events:none}
 body.orizzontale .bar .tasti{flex:1;justify-content:space-between}
 body.orizzontale .bar #pausa,body.orizzontale .bar #mute{pointer-events:auto;color:#fff;background:rgba(18,22,11,.62);border-color:rgba(255,255,255,.7)}
@@ -46,7 +46,7 @@ body.orizzontale .bar #aiuto{display:none}
 button:focus-visible{outline:3px solid var(--oro);outline-offset:2px}
 .overlay{position:fixed;inset:0;z-index:20;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:max(16px, env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) max(16px, env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px))}
 /* dentro il lanciatore c'è il tasto "Chiudi il gioco" in alto al centro, alto circa 40 px: tutte le schermate lasciano quella fascia libera
-   (Davide, 06/11/2026: copriva il fascicolo del codice e la schermata finale; regola valida per tutti i giochi) */
+   (06/11/2026: copriva il fascicolo del codice e la schermata finale; regola valida per tutti i giochi) */
 body.incornice .overlay{padding-top:calc(max(16px, env(safe-area-inset-top, 0px)) + 44px)}
 #photo{background:rgba(36,18,63,.88);cursor:pointer;touch-action:none}
 #tuto{background:rgba(36,18,63,.92);color:#f4f1fa}
@@ -90,7 +90,7 @@ body.incornice .overlay{padding-top:calc(max(16px, env(safe-area-inset-top, 0px)
 .arcadeu div{display:flex;flex-direction:column;align-items:flex-start;gap:6px;text-align:left;font-size:13px;line-height:1.3;color:#d9d6ee}
 .arcadeu b{display:block;color:#fff;font-weight:600}
 .arcadeu .btn-oro{font-size:14px;padding:10px 18px}
-/* orizzontale sul telefono (Davide, 06/11/2026: la schermata finale non ci stava tutta): foto | rapporto | comandi su tre colonne (due senza foto),
+/* orizzontale sul telefono (06/11/2026: la schermata finale non ci stava tutta): foto | rapporto | comandi su tre colonne (due senza foto),
    tutto dentro lo schermo; se proprio non ci sta, la card scorre dall'alto */
 @media (orientation:landscape) and (max-height:520px){
   .card{max-width:900px}
@@ -114,7 +114,7 @@ body.incornice .overlay{padding-top:calc(max(16px, env(safe-area-inset-top, 0px)
 .btn-oro{font:600 15px var(--text);color:var(--viola);background:var(--oro);border:0;border-radius:999px;padding:12px 24px;cursor:pointer;text-decoration:none;display:inline-block}
 @media (max-height:620px){ .cond{padding:8px 14px;font-size:13px} #cardImg{max-height:52vh} }
 
-/* ===== Tema militare delle schermate (Davide, 06/11/2026: "falle più militari") =====
+/* ===== Tema militare delle schermate (06/11/2026: "falle più militari") =====
    mimetica verde oliva, pannelli in lamiera con le strisce di pericolo giallo-nere, scritte gialle con il contorno come l'HUD,
    foto come fascicoli con il nastro adesivo e il timbro rosso, rapporto di missione per il riepilogo. Il gettone ArcadeU in fondo resta del brand. */
 :root{
@@ -150,7 +150,7 @@ body.incornice .overlay{padding-top:calc(max(16px, env(safe-area-inset-top, 0px)
 .polaroid::before{content:"";position:absolute;top:-13px;left:50%;width:96px;height:26px;transform:translateX(-50%) rotate(3deg);background:rgba(222,208,160,.88);box-shadow:0 1px 3px rgba(0,0,0,.3)}
 .polaroid img{background:#2b2f22;border:2px solid var(--m-nero)}
 .polaroid figcaption{font:700 15px/1.35 "Courier New", Courier, ui-monospace, monospace;color:#2a2a1e}
-/* il timbro sporge dall'angolo del fascicolo, fuori dalla foto e dalla didascalia (Davide, 06/11/2026: "foto e messaggi restano indisturbati") */
+/* il timbro sporge dall'angolo del fascicolo, fuori dalla foto e dalla didascalia (06/11/2026: "foto e messaggi restano indisturbati") */
 .timbro{position:absolute;right:-16px;top:-18px;transform:rotate(12deg);font:10px/1.3 var(--pixel);letter-spacing:.08em;color:var(--m-rosso);border:3px solid var(--m-rosso);border-radius:5px;padding:6px 8px 5px;background:rgba(239,230,200,.55);text-transform:uppercase;text-align:center;max-width:70%;pointer-events:none;animation:timbra .35s .45s cubic-bezier(.2,1.6,.4,1) both}
 @keyframes timbra{from{transform:rotate(12deg) scale(2.4);opacity:0}}
 /* schermata finale: rapporto di missione */
@@ -165,12 +165,12 @@ body.incornice .overlay{padding-top:calc(max(16px, env(safe-area-inset-top, 0px)
 #recap dd{color:#fff}
 #recap .tot{border-top:2px dashed var(--m-bordo);color:var(--m-giallo)}
 .arcadeu div{color:var(--m-cachi)}
-/* trucco dell'invincibilità: fascicolo "top secret" dopo il terzo boss, tasto nella pausa, promemoria nel finale (Davide, 06/11/2026) */
+/* trucco dell'invincibilità: fascicolo "top secret" dopo il terzo boss, tasto nella pausa, promemoria nel finale (06/11/2026) */
 #segreto{background:linear-gradient(180deg, rgba(18,22,11,.8), rgba(18,22,11,.94)), var(--m-macchia) center/cover;color:var(--m-chiaro);z-index:25}
 .dossier{position:relative;width:100%;max-width:400px;max-height:100%;overflow:auto;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center;background:#efe6c8;color:#2a2a1e;border-radius:3px;padding:26px 20px 20px;box-shadow:0 0 0 1px #b9ad86, 0 18px 40px rgba(0,0,0,.6);transform:rotate(-1.2deg);animation:drop .5s cubic-bezier(.2,1.4,.4,1);touch-action:pan-y}
 .dossier > *{flex-shrink:0}
 .dsx,.ddx{display:flex;flex-direction:column;align-items:center;gap:12px;width:100%}
-/* in orizzontale il fascicolo sta tutto nello schermo: intestazione e visi a sinistra, testo e tasti a destra (Davide, 06/11/2026: era tagliato) */
+/* in orizzontale il fascicolo sta tutto nello schermo: intestazione e visi a sinistra, testo e tasti a destra (06/11/2026: era tagliato) */
 @media (orientation:landscape) and (max-height:520px){
   .dossier{max-width:700px;display:grid;grid-template-columns:minmax(0,.7fr) minmax(0,1.3fr);align-items:center;gap:10px 18px;padding:18px 18px 16px;transform:rotate(-.6deg)}
   .dsx,.ddx{gap:9px}
@@ -279,15 +279,15 @@ body.demo #app{justify-content:center;padding:6px}
   </div>
 </div>
 
-<script>window.ARCADEU_FIRMA = {"elenco": "{\"v\":1,\"data\":\"2026-11-06\",\"codice\":[\"00001aec7f55d6baf1b63122596bf626d25fec30501fb3f6a17d22b990b3e3dd\",\"0152bc4fac57f5b4c0e5d258ef5efb1db6dbee6fc9155ecbd50c8aee4c2399ed\",\"01d4cb12a215df282ed6a0c91bf33166be77f02ef5b5d640795b9e5702516b45\",\"01db349937ece1bd4f2089f89deed1459330bba11afad002708cc9dc4afd2ee5\",\"0382b64610cc13d424e4790cbf44d90561cff275e8d068d8a2059d80e671f658\",\"0573cf0c957d1a944a73b5ea25e81d6519fda4fcd728aef3992dea293b645d39\",\"059113940f0b6becc9058bb3aca7632291a40f13dbc6fe4f7e6413f1e03fcf81\",\"05a6ac44acd9615124531c6b9e4e15398b3590318e1ddf8afa9e92b833c57b54\",\"0618a94641c9720e038bb6e991e3abe2f3768e8fb7572fe8d63ccd3598effc13\",\"0687cdd8320a0227bfb61da6ec706c1e932a589e4cd43726b0deb5121a13944a\",\"09455d01fba2f87a14a06af44c55c46e1449da8c6ae4346fbb2dc21e339f19f3\",\"0a160d06f96ef3b31682c9b3c60e85e708a656bb977faa5eda938c1a0fc09528\",\"0c0e2cd420d41397d91e3bb6c2d81b925e1fba2acbfebf4181c8612c386fd942\",\"0f33f624257dbd3eeff632d25394eec823e0e50316f96f5c8ac7de4a015efc70\",\"102ec8e1f0b9e202c6ab3ae7c2df13d3875a512915d945b6414c92f4543673e6\",\"10af3921f03be26f6b81e5535966a3088785f79237a3596886043559619ed260\",\"1162434dda66aa9ade7206708f3cd7ab9ea0e4fe496d8783dac0d71ef03c5eeb\",\"11b1fe63fa07c3113cc78fa2a90e79b7d8e5184b4a9c493b99b8740a993e97a2\",\"12b8e31f5cc269b12c05b4a6a4c2eb17d88a1108a740384ffd607f7cbec3ecbe\",\"181d5224f92d46171e11eb5f40cac23b7d2a1859a1c829d12bf7d06e927b90f4\",\"1aaff326f01327f3628490e9f3718b0111129653d5f40c104943fee389255b93\",\"1eda96b26a53b80180afd86d0560cc969e8745f84ba2f6a32a9cf8cc2248da00\",\"20b33cfed999065961fbbc5eb5f149b342d71785efa73524729450a6bf9b3003\",\"25f4a91125ff352f533b9f17cf30cecc15a3592d56463972ab74c452deb64b52\",\"28d123c9d4765891f1d0e6209f5b344c6b7898fc75426b64897c73a81028ae87\",\"2c27e8dda8ffd0531b00c43eb186bd9fd9d76f8cf38511757e2a562b19ef8fe4\",\"2fd5959adae31880a8cc984df9a8a1984f5794805d9f4d1c54e20cd894defd21\",\"3013582bda07f680ef182b83661736dc96cffe0237c8b6ade70d5c1bde5ab92a\",\"30f041aa688e38e3fcc6edfe8e17562e1cf93c9f59a33ad7b06e6ab3f4a15e9d\",\"3211e5d693c909419d3404d9ccb35aded70f2878ee005631f3bc6035e215956c\",\"322cdbb6214df8289ca6b37f633bb9a9f34f63f0f13e9dda30cf769cb20a3f1d\",\"34c9b2089f1d3d4fc3bba6b4b24b208f7b6b0eed902ed3e024d380bc66642af9\",\"3547a0cb722adef8f117be0e0001b3e520eef78672deaafceaf1c77c5eb403bb\",\"3608ba3b8f4473b72a9c707e398e0d5201d9a03d062a83a907bc299097fff2a7\",\"3625f2ec8b37ce1973cfc730aebe5b1fea8dfaa9a7782a1fdb4ce5b566a64261\",\"36774382dea9616042cea8b9a27d0285ff8c4021b02a1166786a5d6089218a05\",\"36a728f5d8ed35b51cb56a7c8613cb04c9e2e345b1355cef3aacd871b358a4e7\",\"3730d23a0facdd7a43bc7fa416a8eba9f700a9ce98e7fa2a4a33dcbd75e1fe71\",\"38de02d6ed47fd45869d89b64c243638b66434a2625bbcdd2a58f27b470c47fb\",\"39d27394b8a46234770eb78ad268b9be94aa169005ece35d14580cbdb7599c9b\",\"3a4529bb40149b8679fb0d2120f1f323da328aa7e3f996d2bec4e9b19974e108\",\"3bb4c8e753150c0606977fda3ba583e1ce8c32d21d52e4b7266b4a81d148408c\",\"3bcc1de98c51bf85bbe94f337b483dbeb5c41df5a08c6a5a500834d63f29c2e9\",\"3be805d25c6a3122ae78d2920fa8b0a6f10aa26c5906247986047273dcd11d0e\",\"3c58b55684b1e85e02adf1c40697ea632b64450d39ad1293d74a1c9e60e9a1aa\",\"3c885a29ba82dfc5eea001e00b48d350b6f383afef8335fbc68aa7c131047b52\",\"3f01824149cbedd465180c8ade9cd869012e14ec128380ec0d5a1cd2fba6adea\",\"3f15c4df9b416a7ac7fb1d60c81385f21849d9526508a439a7858950816f1779\",\"3f17500fd1fe3790708c30cb7edbca260dbdb8b52d2f9fd18b0f9ac11ec43db9\",\"3f8540c72e6ddc5344736879519e67bd8a4c09ca69a4d9876d5799de7ebf99fc\",\"40b773239ddf2cabca5fc585752576898998fd7313a6456578d9626d1aed8f3e\",\"4224b317bc1f4893752d4ba3f2b9e4b8048edd51dfdcd29f03e0356d93ec9ce3\",\"423a4cfbfac82f5592729a2a7fb47991f95baaf169c3312312b2a05efb2a7860\",\"42c88bea1a23d09b64d821774b1e7b49e367a911c0d5e9a1f6d87bda9dcd9831\",\"43ecb2a15bc760e2caaaa8d59f0ded69259258b4ecb782c73ce7c820d2d71112\",\"44631d15f5eac7e0020795dee32bd3c8eb1e480954576b5cacd9a9a4e2836499\",\"45a5f2cb111b2b8f8c11d27a7655cc447ba6e0d1b60f2a6e51c4c3274e98a8e0\",\"4812a6a93f5f329f2413024135642594441bc40952e68e49729f19eb91389e5d\",\"4856a2ec479438683de80e1761d252789e22792b6f089f165e81535241b74b6c\",\"4896fc65380440cc13298de539403158b1a0c8a77a699a35964a23e9529115a7\",\"498368416e62850b10b406506e260d928c13b206fd436f7d10b21d2534b7130d\",\"4c7e41d2301744b02d0ee511cc4d1374f474c86acf8f400b75dbfe203616276f\",\"4ce20044ebd5433e302acd63ecb739977c95c6fe3dc8faef56a2fcd536d8972d\",\"4d115a38c51043bfc5f58dd0b49cdf5f23cf75e267c74788e49850db11b8d41f\",\"4eb47dba02633459a1be0440198556f2b76c4a2ad7e810b2114232c57b958b8f\",\"4f941d0a9b2fa4122a3568d0f1dcc8b0eb7ab68892e94d591b21a464904d8784\",\"50fe49be666cdfd1031ef08dc6fefb0ec498e26405b08ab50a92f95ad929ab61\",\"51a85af4bbe63318b49c9817f01d34c2f4804f5c385d24d2b8ad7d59b2a8814f\",\"5314d5e90bd8d0f40ae3bcf1306e41b12d487dc7bc4cb98a867b6e4078175323\",\"54a5a994661b49a5e577f981346c271f902d4438c941ea0b25b7d39db9e0db9c\",\"5586f2ee828c696abf3f36e8171e3b642c20a1dc880436d0a275d373f25e389c\",\"57eb77ac62e2a150bd14740eb62ea5830616f378839c01e57f6eff723e3b2bfb\",\"58de8fbbe7a9058a3b32b75ca38105dff7466dd3eaf06907cb0d5354b0e9cc3b\",\"59f30f173103bb28d69ff4c507b579f572f4fccdcfeebbbee7ae06456bbba587\",\"5a2cabc3a6683e4cde7363855a26b0bea0a17d2ec3071544e682ac621969201f\",\"5b974b72b64d7dea98551aa85828a1bffba415dd7bbabf18ef6d3dd80716a2ba\",\"5c717b1ac8953f1d47a4d95a95cc2874c768c88c0e67f08509a43bd6bcf583c1\",\"601fa2a3542b8ebb8401eb9afd8c20a41acb87503fba6c56ce59a06615aedc12\",\"61bf0e5e89389fcd4ad518735b06035603c922c649aaa4e0cdb61c28a84a7fba\",\"626e6265eef797c96296890c494174761eafd7a0d7863580d6cd8f9e41836de1\",\"63a10a7c0f4f3f3351919b6e5f112910e980f0378be426adc8f3f2c054b4529c\",\"65a5e400378b75dcb9c823b889a6a8e90dc852576f4f700f7b86659c7c8c4ceb\",\"66186459179504f6b4de88514f667095ead5e846d1c62622b4660a1c28f1d1ac\",\"6645c6486702c6563be0a099993c58ce825b540581419c8d02d8fcdf7b549ff7\",\"6a0e63de752fbadc9b1fb2cf97e92ad438315ccc40e7b2a62372beed4a72f2dc\",\"6a1b18ebd55042418118ac0feeb9fb06a2487a83987b1abb2af7631edf42668f\",\"6af4182e899964ce1a465ccd29d48fd20f8843b25502c2f6c4fb157bcfcaefba\",\"6ba6fa32228b50dc0da04b4f5ba93470c3d4defd32b4cd149d7813a554cf92cb\",\"6de6d5264dc63601087b59ae22d505162cc6e227a8e0956caa71b3cd74b43b9c\",\"6e1d4ee18bc1c80ce8b8de96ba6b0e03ffa9d61c4342a47e9db443f33add21da\",\"6e6dad5593c04663c8c148e33d14854d32c62dad5b362444236a0d6c122973d8\",\"6fac2ebf7763b7059353e61201750201e071d25ead265da587ed54213a1a09c8\",\"7322b6a3a1ff5c93d042636aa927a4095ac8fa72933ce84a0c2b6c1e2cc92d27\",\"75688fa420299c86048b98d053ff61cad91c73d830f49f93e20a4e011a238ed5\",\"75a384bd4e31c282d2b6c58c562cee38797fde9addff5b54fcd9f165f97cc1a7\",\"75c345f4e6663069a8969371f7914b0540f43e88b2625b10206df81b0fdc318f\",\"7b4f64fd92964b81a0675f2a5880ec280e47addb751c765bcc434f55934fe2e5\",\"7ccba4274e930828b5f8a60845b5072ad9345175db82f9dbdb8e73455b916944\",\"7e61603fc48d69ed3c511e26ed2a233c5e8e8f7539b7a602b28a809e581d7cf0\",\"804a56fb26cd9fdba072cc0a947620621c8ce6105e049501272f91c2b14be6bc\",\"80f7437115f4d1d17f14c4a92722f8d7d42977f1ced55b5ad9bcc5baafca760c\",\"80f7dfed1ee8254633fb578ba9a527742df42255aab566b696dc563b62daa2e5\",\"82033b907fc314af23c71d59aefb4fb79fdf02a3b90b73cfe4ef8bbb3ddb05d5\",\"8218c4fe80bb08aad23b399616432ed6e4f9c477b5e50a0f329c35aee4042e2b\",\"86d6fd8e8996e4bc07bf8cbb3f1abe6ee9aae9435a0fe2beb3a7b67352f06a7c\",\"88074f617653e5699f9eae326926d5553736fcb57b0c8c0ed9c511bf10048095\",\"88723dbfb35815b201216e04e2837f0cb885109c52ad810de7e1287c9d7d6016\",\"89fccbbb5b5e29c31c561dff229de262b092826e5d532929e2d2da298b74b317\",\"8a0d653b1adda153b0285f5ac7dd7a03f2cc29203b121cdb66560e87f2bdfbd5\",\"8ad835edf605736cdb44c8ac4d830ffc8c20b37f89e1738dbf9cb18fc420797b\",\"8ba3ce6cf97295a7dd0b26293962b2eac67614f7180df75155d7e3092be220cd\",\"8c107230a402ec961f9b04c886d7e509458d136ea07cfd9f8e857f673788d1ca\",\"8dcfd6036e04b88b06162216dfb61447bb37d29849a5f0ee7bd338d6427e8192\",\"8e55ff5240118017e9f07c28774fbfb3829dd2582fa7103dc87fe4afe9ab231f\",\"8f722ef425f0b640592a602071c3d875d74fffa33ac5197c9bdec484f146d458\",\"8f7bab1d22f487956e07eb6a43a4e3614c4c5d84703ecae44630d1cf512e07a2\",\"90206e6e738c60893a9317f657945105b14722977bbebd2f12a3291192fb4d17\",\"9111fb2c2f7e0c997c8732eee4617473c34d2ac978e0b02bd3ee41646efc7cac\",\"925f2975310a792fedab5eaf5594155fbaf6a3cffe4b0bd53d7aa4f15278e74e\",\"947bc34c92518fb7587c282af921f8952a7db309275adb35bcdabef26c2147cb\",\"9499071e35a5a32564efd9a499a8288914929c998671404f1487505631e6788d\",\"95782e2744ef53b1cbefe93536a24f26a165d02c9820eb4688b8d2379dafafec\",\"95e6d20bbd77c481ed560cd507f52d21f743f24aec376e2f3ec7e6e16182ae48\",\"963501cbdf51d139fefd6894cc7ea358a81711a9f1ae68de023a6590557ed8aa\",\"9744da94867219ed8a4d6ae314452fff032d259f9cc427a89f8f864ea6c5ee57\",\"974b87ae661455744424ee1754b64dcd62ea68e29b40fc834ceaf91796ce70b4\",\"97de3ca4d50438d1e5b5ea2bfe8f1f8f1d3a4735b963bf0a66089e919fb68715\",\"99054ea3fe4f44bda7cf09ee718f12b6295aa3bf2e62a2f07b3fd91d57a40d2f\",\"996041b5385f6151694adfe17a39c8053e32c6cccbdcc1c8942dde5a38065322\",\"9ea31a226269af39ff8014408a4ca402b7689e1a13124bcfe5478074e5fa5742\",\"9f3f711c2c61e2c661d820f682caf27075ab79c34fae75bb2441721f8cba3b92\",\"9f5e824354d7412c846d872faea1a198dcb677d88c0e576f62dd452c57fddc47\",\"a114fefe4988bae6c65d6e54322d6d019ee92b6c1e828a752ed9fb31b91bfead\",\"a2004bdca7aa0aa31fc5184b541a6921c375831fa17a6fc92f745076a65986cc\",\"a2144540a1877cec576b7bd6705b7b4155cb66a4512e585a38d17935b9fee87e\",\"a341eec3f1ef4be86d2bcebc83c3157266512b9c19e542f8f5064ed1c75fba3e\",\"a416ffa710a86ca75cce6efbf3483fdc98acdea22306b260d499885963b766c6\",\"a5cf6d29d9cd213dc92489e0de0d89a2fa71f88cb26fe0468c0db78aa7ee5155\",\"a874cfd6e7f03cd119c3b9f4dc857becd5e3acd4a7a387f8aabf03c1b954cd37\",\"a8962f94c7a49df2d155cd0457bf0aa9b17a978adaf81c8514200a3b543ca302\",\"ab0796d4c098754369e18ffba6ecf9002990a07897ad47cfcb2891fb29d66722\",\"ad29239f48ee126da5810d32fe97e4176f0bb451ad2348d5152835e9c75ca8f9\",\"ad40f65563b9559422d66ad47afb766d902de6b6e06eab48dab7041a5d44d288\",\"ae33561a0688debb9568d927092beaba1dd0b980f29c816bffba08c4d3a4c17a\",\"af3661150b78ee90f08dfc89f12740a5b01cc6316dedc6313b6864bf93f9e59d\",\"b03e1abea935d2f8e79df0eb7b76d0bc1f47ec8d62eed5cff20fd76bfb6f71d8\",\"b19c7eb9488d99b65917cf1f6648f0a9d5c61cfc138c651ccf50a23048055dbc\",\"b24281d972638e8f699a11fcc8d78a8a68c097962c67582bc4eb5ece26fda233\",\"b3e2abe9364ea9a86db10d6851ea50ef26f21c4d5d919b36e287a72a7fe0650b\",\"b45ee7ce322328b485d13bfdccc0e6fda6877ad12b5fa8491c0bb6b8703046e7\",\"b75e17d7036e3505789a9d0091e21fff0169f49a79aa37b9f6847bff49be0987\",\"b7eaee6ed3fa7c0a2e83fe02ef0f015011ee0f031db8751603411657f25bb01a\",\"b875583cf880e565b2969fdaa7c80ea52beb78288808111e0d59f6d0535e74e9\",\"b8b8cd5e405ab59d27b2012fdf2e720980de775a060004171c0014e26052c7c2\",\"b8e2a72af72a08f5bcfd0bdd16d99468767ead361786d4a354707a0dab745dff\",\"b90c56f84e9a6bd34827375ba4fa642f871b3d8f181e3b56eeb477a6d24fc667\",\"b97697ee29deceb913ff139c5e7c4d100c591dbf630434e10d88b5675d394e17\",\"b9b3ce270596f4e6e141f0f2063adc10c4654de2aa69080ea45cad32e248be5b\",\"ba06b300b0fb50f9fe3235a24f5331fc1d836f9c170698fc07207ba14ae6254c\",\"ba8efdd68920563ad414862cc1d75086764fb2788b79fc35edb505297e11b548\",\"bb13cf4bd016720c2ca1d1d00b5bc2ce9239cc9d059ed1e444d6c547d0c4c5d1\",\"bbc3cd08fa2f84070933e87243ab7cb67ff0c6bf71efadcc872c9fc8fb28db60\",\"bc2fa9eac91d63a8939ce1cff6e1c70368ea8ab301b52415123e9062caf33f0e\",\"bc855ef9f1863c3765d3b7b84fec3ef99c6d80bebe362ebaf2b3e20f4aec3587\",\"bd4ba633d71eb2adc8f4f2c97db1239dfe7138550d43afcb2890e101437680bb\",\"bd4d6cd856ab1118df9545cd52adb4bdaa602a0ccfce9184d35b04e224b84a37\",\"be38d4bd0c277577e304409bfd3d7be223a56015599e0cfae36f10efbfa172dc\",\"c1f720039a4e548c70a3f41ec5bfa7e1a428d24e7d262f9c78214db4fea8342b\",\"c32fa52c139391c8e9a139d76b772221bbb53fc950048f931c9d614be5b08725\",\"c3894ab5d9dd332dad4024c12463e2bbf8aad330e3cfb244b114aaae8e4daccf\",\"c476b1bdf9f8cfea87bd66c7bb4a5e977786666919afbd393f1ab03ed1b93403\",\"c4da406867e97628fbe2a470f6576d34c8af6155ee0ba2b7f7d2b9f6eeb15292\",\"c545cc0213ddaacd744f932444d91bc9a808c14676d061cb0f180f7f3531fb45\",\"c7ba07709ecff2682a47a12a204d396bf8d70540790b2ef133a9e3a38eead82f\",\"cc7a1d093da9cc4dc08c14082299440f05bbb3fe9a8179054ca456074705ea0d\",\"d0840d003384c70854feacaddd592399a08f2e091f02cdf3d99ca0f26d041565\",\"d12cad649eb34bad4c330832eea449bd4e57505f066911cc0f19aa1af67d70cd\",\"d13052856c944bcd679bff490b72776eec79042d443a20cd50111ea622baf0e5\",\"d7b89f16f9f7d0456d2b70381d1ae417c1ffb719d535e5607297b88f2f0d2047\",\"d9b9b13c2825a889255e1352323ead62b62c9b11619359018500e82f3f1aec2e\",\"da54d2d9c599e4e14e56987e82e6bfd91f97d711122ad12d34eb2863a5b17181\",\"dae099f260a6f5f092ab8b5c1b2b7837d35cb5b4d286b2967d4a18ba5541d8c5\",\"dcb9d5b5fb28ce7eae82ad672a73b3daed00eb19db872ff59a1db1b90a721742\",\"dd3da6c8318797909b60719bfaffbe23bf25d961b8fbd450c76dc597fba3991e\",\"dd7fa369c09f7a19a57db6460d2c99cab291d64e3814950ecdd75b1f6de59500\",\"de68bd4b0115246b5a86252e2678554310e191e4e637a42952f3bcae4309c6f8\",\"e41c9784a1c502d202394e159417632510663868a247d8de78e39c9d7c5717c3\",\"e43e8dac791d0799d9b17d54b8de2af3867960def3347af55cd75d7d3325ab7d\",\"e44f97d85fb6ed2f55816a88af6f3c132e0679007fe238f196380c0807f1c0a7\",\"e5d9367a6a695df51db0b18939b6a63d5252308be31135b99b42edb31ddf02b2\",\"e8030204e47ad85c08775d89936c4febafd9dab024f423742b6466a1b86979f9\",\"eaf35af4e069b5b8d9618e822a352daae2c5a6b5f95fe403d44be95823959ca5\",\"eca710cb2285bf2f9f54e550769e33cf1dc40f4926fcc0627d5ce3bc91350bd6\",\"ece49d8127d46b09dd8044f0ad2e8ccd7bd2fa634c12dea5924c100277cf4c79\",\"ee0c488bd0d322a7bcb2802d0a5e9c69ce81e45a6d538268bb7f9628f0c35f25\",\"eee62f9470983863c3c5e0c6e65e5608c907aa1df441c340adf894d81aadd159\",\"f0aa649cb656be6aaa265c2fb37a121df7f046bac726742fc7896c694572f3f1\",\"f26f32d916623054f0ba7b30858f62a14024621c70b9dcfcd27d5c560bbe7d2d\",\"f4888be8379f417c523bf039ea7cf9aa5d8525f4ea013e408f8a24ca50bdc9ff\",\"f49cdc21ae2a16c71c93106fd57eeb7975beedb47e6a3926c0c4a937bc996b56\",\"f56db10229d5c2fbcb8f4723bad6b02f0b04c6d7bdb5c27be36046426e2e8cc7\",\"f6ce01bf884d023ce7f8335d0b6a66a6bd6a096d046777f661afd7a2aa654808\",\"f89e751a778ed6cf03930065961c80aba29301262676e9f3f16877d6c0e5683e\",\"f9b707a077e6626fbca0abe30a227cb42c47a7115a22aab88f9b9477d8b22023\",\"fa3ab37481a054eb8dfff445478b02e6708bf284d33370d51d5ef4e50b4eea1e\",\"fbf3f0a6d7eb3f6e9d5ec27832b706e4b65361e5c96e74cc9d9e8937dd9e5cc5\",\"fd1a68f70e07cbdd78695930236f32c9335b80694b7b8aa178773a6e51d756a3\",\"fe12ebafeb4ea8aaa00a93379df19e09c979a891b1cc8f78aa39794c4cff9dec\",\"fea327590528f4c3c884166303c5199d39b4a5747c654b8986d2faa1ec2cf099\"],\"scheletri\":[\"2346f2bbd6e16b7b861f60a58feb5fa14ec344ca207c0e5aed6fcf1ed556b2a7\",\"aed0bf60608a4797e5907e387e33be3cfd7c5e626ec50c82c15f4a2c72d671a3\"]}", "firma": "coqeBjgvIQbszsvPj6Q2Zt-MNn3-7ysYB9qqRwSnkAl1A96V3gJkVfpcElXmuI3ok0k-UMK6b8snVpT44pXuhA"};</script>
-<script>window.ARCADEU_SCHEDA = {"gioco": "boom", "versione_modello": "0.2", "lingua": "it", "titolo": "Leo Boom", "protagonista": {"nome": "Leo", "corpo": "commando", "foto": "viso-leo"}, "nemici": [{"nome": "lo zio Gino", "corpo": "granatiere", "foto": "viso-zio", "frasi": ["Vieni qua che ti abbraccio!", "Granata in arrivo!"], "arma": "granate"}, {"nome": "il robot", "corpo": "ribelle", "foto": "viso-robot", "frasi": ["Bip bop, fermati."], "arma": "fucile"}, {"nome": "il cecchino Gino", "corpo": "cecchino", "foto": "viso-zio", "frasi": ["Ti ho nel mirino!"]}, {"nome": "il robot d'assalto", "corpo": "assaltatore", "foto": "viso-robot", "frasi": ["Carica!"]}], "boss": [{"nome": "il Carro armato", "corpo": "carro-armato", "foto": "viso-zio", "frasi": ["Ora ti stritolo di affetto!"]}, {"nome": "l'Elicottero", "corpo": "elicottero-da-combattimento", "foto": "viso-robot", "frasi": ["Dall'alto vedo tutto!"]}, {"nome": "il Mech", "corpo": "mech", "foto": "viso-zio", "frasi": ["Senti che raggio!"]}], "livelli": ["rovine-nella-giungla", "avamposto-tra-i-ghiacci", "fabbrica-di-armi"], "mosse": ["granata", "bombardamento-aereo"], "mezzi": ["jeep", "elicottero", "carro-armato"], "bonus": ["pollo-arrosto", "medaglia", "elmetto-d-oro", "emoji:🍩"], "pericoli": ["filo-spinato", "tagliola", "fuoco", "drone", "avvoltoio", "emoji:🐝:volo"], "frasi": ["Avanti tutta!", "Non mi prendete", "Che salto!", "Copritemi!"], "musica": "assalto", "foto_speciali": [{"foto": "ricordo-1", "didascalia": "La prima avventura al parco."}, {"foto": "ricordo-2", "didascalia": "Il tramonto delle vacanze."}, {"foto": "finale", "didascalia": "La festa più bella."}], "finale": {"foto": "finale", "testo": "Tanti auguri, campione!", "colore": "#2E3A1F"}, "id": "arcadeu-boom-53e86e3396cb20a3"};</script>
-<script>window.ARCADEU_FOTO = {"viso-zio": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHgAAACgCAYAAADHCaiQAAACcElEQVR42u3dsVEDMRCG0avEMTHVuRIqoSbagCEgwvZg7k7S7v++mc0crPS4wGYw2yZJkiRJkiRJkiRJkiRN7Xq9frqF4oB7xy02AwUeiAo7DBZ0CCzoEFjQQbiQm8OCDsKF3BwWdBBuPHICbixyEm4cciJuDHIybntkuI2RoTZGhtkYec/hP97f7k4X4O+zRAI/wu0C/XMGuM2Qb50BbhPkR2doD/xf3ErILYBn4FZA/sv+cIsCP3MGwMWQn90fbjHk/+wPtwjwnjMAXhx57/5wF0c+Yv+SwKNwZwIftb+nd0Hko/f39C6G3Aa4Cu5I4LP2B7wA8pm7Lw88G3cEcivgirhnAo/YHfAk5FF7w52EPHLvpYBXxT0SefTOywCvjnsE8IydPb2DkGfu7Ok9GXn2vlOBq+E+i7zCrlOAq8I+A73KjqfhdkHsMIABAwYMOAfYpTZHdqGADWAD2IwHdpnNkV0k4FPm5XK5O/YpDvzoMmdc6mr7lAb+y2WOvNTV9gEMGDBgwIABAwYMGLD3wd4H+yTLJ1k+h/Z5NGS/bDCADWAD2AA2gAEDBgwYsAFsABvAxp+vwAUMGDBgA9j4Ihbja5QMYMCAAVdAvr68/pp73Xrtka9viQsYMGDAgJcGnokMeNC/1QEMGHBl4FnI6cDbyAA3B56BnAy8zQgwYFMZGHJzXMABwJCb4wIOAIbcHBdwADDk5riQA3ABBwBDbo4LOQAXcAAw5Oa4kANwAQcAQ26OCzkAF3IALuQAXMgBuMnIW1pwIcOFDBc0WMhwQYNNRqbVFJpOU2gaTaHdfkNst9wM3C0W/wFwC5IkSdrVF7kTEFrlwLK4AAAAAElFTkSuQmCC", "ricordo-1": "data:image/png;base64,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", "finale": "data:image/png;base64,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", "viso-robot": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHgAAACgCAYAAADHCaiQAAACgElEQVR42u3dsXHbQBAFUFTCWEUoVhEq1rGLcC/SOHBmQiQB3N3+fX/m53v7hAAgCW2biIiIiIiIiIiIiIiIiIiIiMjUvH98ftlCccCjtcUwUOANUWE3gwXdBBZ0E1jQjXAhh8OCboQLORwWdCPc9sgdcNsid8Jth9wRtw1yZ9x4ZLjByFCDkWEGIx85/K/ff+42BfjvWVoC7+GmQP87A9ww5P+dAW4I8t4Z4oFfxa2EHAE8A7cC8iPzwy0K/MwZABdDfnZ+uMWQX5kfbhHgI2cAvDjy0fnhLo58xvwlgUfhzgQ+a35X74LIZ8/v6l0MOQa4Cu5I4KvmB7wA8pWzLw88G3cEchRwRdwrgUfMDngS8qi54U5CHjn3UsCr4p6JPHrmZYBXxz0DeMbMrt5ByDNndvVejDx73qnA1XCfRV5h1inAVWGfgV5lxstwUxATChgwYMCA+wBbajiyhQJWwApYxwNbZjiyRQK+pG+3292apzjw3jJnLHW1eUoDP7LMkUtdbR7AgAEDBgwYMGDAgAG7D3Yf7EmWJ1meQ3seDdmHDQpYAStgBayAAQMGDBiwAlbAClj9fAUuYMCAAStg9SIW9RolBfxTP29vdwu4OPAebmVkLyR9ELci8qWvE07ErYYMGHA28Cu4lZAv/8ccgINxAQMGXB14deRU4G1kAIcDr4ycCLzNCGDAgCsDpyHDBdwPOAUZbvAtk1ujYGS4vq8FGHIDXMgNcAE3AIYcjgu5AS7gBsCQw3EhN8AF3AAYcjgu5Aa4kBvgQm6AC7kBbmfkrVvgQoYLGS5osJDhggbbGZlWKDSdUGgaodC2H4hty2Hgtlj8D8AWRERERORQvgGcTFVzyROeaQAAAABJRU5ErkJggg==", "viso-leo": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHgAAACgCAYAAADHCaiQAAACt0lEQVR42u3dO1IbURAFUK2EmNixYxbB/px4I+yHDZgiILNUkmbe69+5VR2C7uvDBMwUw+UiIiIiIiIiIiIiIiIiIiIiIhKa99+v/2yhOODRscVmoMAHosIeBgt6CCzoIbCgB+FCbg4LehAu5OawoAfhjkeegDsWeRLuOOSJuGOQJ+O2R4bbGBlqY2SYjZGPHP7z48/V6QL8fZaRwLdwu0D/nAFuM+T/nQFuE+RbZ2gP/CxuJeQWwBG4FZDv6Q+3KPAjZwBcDPnR/nCLIT/TH24R4CNnAJwc+Wh/uMmRz+hfEngXbiTwWf1dvQmRz+7v6k2G3Aa4Cu5O4FX9ASdAXtk9PXA07g7kVsAVcVcC7+gOOAh5V2+4Qcg7e6cCzop7JvLuzmmAs+OeARzR2dW7CTmys6t3MXJ031DgariPImfoGgJcFfYR6Cwdl+F2QewwgAEDBgx4DrClNke2UMAGsAFs9gNbZnNkiwS8ZF5fXq6OPsWBby0zYqnZ+pQGvmeZO5earQ9gwIABAwYMGDBgwID9Huz3YHey3MlyH9r9aMgeNhjABrABbAAbwIABAwYM2AA2gA1g489X4AIGDBiwAWy8iMV4jZIBDLg48N9fbymXHNmr1QtJvxeZDTmy09LXCUcuMwtydJ/WwNHIGbq0B45abJYey/8xR4bF7lxw9Odvxc10Fa9edMRnjgW+Z+FnLX3X56QFzo78LMDK710KN/qu1r0Q13COfv0I4MrIcAvdm+4OOx54JXT7hwsVnzB1gw3FzfwIsQNsCmDPiZvjAh4ADLk5LuABwJCb40IegAt4ADDk5riQB+ACHgAMuTku5AG4gAcAQ26OC3kALuQBuJAH4EIegDsZ+TItcCHDhQwXNFjIcEGDnYxMqyk0nabQNJpC235DbFtuBm6LxX8AbEFEREREDuULlHtp1G3av8kAAAAASUVORK5CYII=", "ricordo-2": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUAAAADwCAYAAABxLb1rAAAHQ0lEQVR42u3U6XdeVRXA4f0nupYDTjjiLIjikKRJmqRtIs4DU5nK1AIFBVScRVABBVRQHEEFFFBxHkAFPO6VtVJdSqXQ5L733P18ePY6n7Le7HPPL9rhuQZQUfzzyrkGUFE8mQOgonjyijwAFBRP5ACoKJ64PA8ABcXjOQAqiscP5QGgoPhHDoCK4u8H5xpARQII1A3g3y6bawAVZQDnG0BF8VgOgIrisUvzAFBQPJoDoKJ49JI8ABQUf80BUFH85eL5BlCRAAJ1A/jni+YbQEUCCNQN4J8OzDeAigQQqBvAPx5YaAAVxR8uXGgAFQkgUDeAv79goQFUJIBA3QD+7vyFBlCRAAJ1A/jb8xYa0L8295xnrerOBBCKRk8MM4C/OXehAf3YiegdzdR3GY/kAPowZPy2THmf8cj+PACjNovw/U8IJ7jX+PX+XQ0YrzHEb8vUdiuAIHxlQxi/OmdXA8ZlzPHbMoU9CyCIX9kIxi/P3tWAcegpflt63nc8nAOYvR7jt6XXncfDZ+UBmLmuA9jpzuOhHMBs9Ry/LT3uPR46Mw/AzEwhfkci2Nnu48EcwOxMKYC97T4ePCMPwExMKX5HItjR/uMXOYDhTTF+W3q5gwzgYgOGN+0A9nEH8fOPLjZgeFMOYC93EA/kAIY15fht6eEe4oGP5AEYVIkAdnAPcX8OYFgVAtjDPcT9H84DMJgK8TsSwZHfRdyXAxhOpQCO/S7ivg/lARhMqQCO/C7iZzmA4VQK4NjvIn76wcUGDKdSAMd+FwIIAlg3gD/5wGIDhlMpgGO/iwzgUgOGUyuA476LuDcHMJxKARz7XcS9788DMJhSARz5XcQ9OYDhVArg2O8i7nlfHoDBlArgyO8ifpwDGE6lAI79LuJH711qwHAqBXDsdyGAIIB1A/jD9yw1YFgV4tfDPQggCGDdAP7g9KUGDKtCAHu4BwEEESwZv80Afv/05QYMb8oB7OUO4nvvXm7A8KYcwF7uQABBBEvGbzOAd28sN2B2phS/3nYvgCCAdQP43fXlBszWFOLX494FEESwZPw2A/idfcsNmL2eA9jrzgUQRLBk/DYDeNfe5QaMR0/x633XcWcOYFx6iN8U9hx37skDMDqjjt9Edhzf3rO7AeM1pvBNbbcCCCJYMn6bAfzW2u4G9GEW4ZvyPgUQRLBk/DYD+M3V3Q3o005Er9L+4o4cQP+OJ3pVdxZ3rOQBoKC4PQdARXH77jwAFBS35QCoKG5bzgNAQfGNHAAVZQBXGkBF8fWllQZQUdyaA6CiuHUxDwAFxS05ACqKW3blAaCguDkHQEVx80IeAAqKr+UAqCi+Or/SACoSQKBuAL8yt9IAKsoArjaAiuKmHAAVxU3vygNAQXFjDoCK4sZ35gGgoPhyDoCK4oZ3rDaAigQQqBvAL719tQFUJIBA3QB+8bTVBlCRAAJ1A/iF09YaQEXx+betNYCKBBCoG8DPvXWtAVQkgEDdAH721LUGUJEAAnUD+Jm3rDWAigQQqBvAT5+y1gAqiutzAFQU15+cB4CC4lMn72kAFQkgUDeAn3zzngZQkQACdQP4iTftaQAVxXU5ACqK696YB4CC4tocABXFtW/IA0BBcU0OgIrimtfnAaCg+HgOgIoygHsbQEXxsdftbQAVxdU5ACqKq1+bB4CC4qocABXFVa/JA0BBcTgHQEVx+KQ8QKdOueGkQdj1NMWVOaAHQ8XuWLmT/sUVr97bYIzGFryn4876I4AIniDWDeDlr9rbYFamFr2jcdfjlAHc12BIVaJ39Bj6BsYiDuWAnVY9ekfj25itOPTKPMAOEbljDKFvZSbiYA7YToJ2fHxDw4mDr8gDbAPx2uYQ+qZ2XFyWA46HWO0s39jOiUtfvq/BsyFOw/LNbT8BRPTEsG4AL3nZvgZPR3TGybd5fAQQ4RPCugG8+MR9Df6bqPTJt/vMCCDCJ4R1A3jRiesNRGOafNv/Xxx46XqjLpGowbf+1ARQ+BDCugH8z+Vc+JJ1Jk4E8Nb/LSxH+BBCAXwKF7x4nc555ByLqu8jLEf4oOpbj2eynPNftM7IecRshyrvJSxH+KDqW4/jWc55L1xnxjxShjDV9xPbsZxz8w8xLI+SWZjaO4ptXc4J6+wgD5DRhHAibyp2Yjn7T9hgG3lwjFnPbyssR/ig6luPoZZzzgs2OAYeElPQy3sLyxE+qPrWY9YLOvv5G2V5IFQyxjcYY1nOWfljKvAQYDzvPUa7oOdtTIYPHsb51qOHBZ2ZP7Q3PmwY/1uPLpf03I1R8eFCn+89prSoM/If2mk+SJjOWw/LBKoSQEAAAQQQQAABBBBAAAEEEEAAAQQQQAABBBBAAAEEEEAAAQQQQAABBBBAAAEEEEAAAQQQQAABBBBAAAEEEEAAAQQQQAABBBAQQEsABBBAAAEEEEAAAQQQQAABBBBAAAEEEEAAAQQQQAABBBBAAAEEEEAAAQQQQAABBBBgG/0L/iMcRNEaWeoAAAAASUVORK5CYII="};</script>
-<script>/* ArcadeU — gioco "Boom", motore v0.25 (06/11/2026 sera, revisione di Mr Robot: cuori giusti dopo "Rigioca", laser più corto, piattaforme alte abbassate se non hanno un appoggio,
+<script>window.ARCADEU_FIRMA = {"elenco": "{\"v\":1,\"data\":\"2026-11-07\",\"codice\":[\"00001aec7f55d6baf1b63122596bf626d25fec30501fb3f6a17d22b990b3e3dd\",\"0152bc4fac57f5b4c0e5d258ef5efb1db6dbee6fc9155ecbd50c8aee4c2399ed\",\"01d4cb12a215df282ed6a0c91bf33166be77f02ef5b5d640795b9e5702516b45\",\"01db349937ece1bd4f2089f89deed1459330bba11afad002708cc9dc4afd2ee5\",\"0382b64610cc13d424e4790cbf44d90561cff275e8d068d8a2059d80e671f658\",\"0573cf0c957d1a944a73b5ea25e81d6519fda4fcd728aef3992dea293b645d39\",\"059113940f0b6becc9058bb3aca7632291a40f13dbc6fe4f7e6413f1e03fcf81\",\"05a6ac44acd9615124531c6b9e4e15398b3590318e1ddf8afa9e92b833c57b54\",\"0618a94641c9720e038bb6e991e3abe2f3768e8fb7572fe8d63ccd3598effc13\",\"0687cdd8320a0227bfb61da6ec706c1e932a589e4cd43726b0deb5121a13944a\",\"074b2b55ef3de477ba9f794ca381f3f0324c1cba8c91b4af07395f39c22d54cc\",\"0a160d06f96ef3b31682c9b3c60e85e708a656bb977faa5eda938c1a0fc09528\",\"102ec8e1f0b9e202c6ab3ae7c2df13d3875a512915d945b6414c92f4543673e6\",\"10af3921f03be26f6b81e5535966a3088785f79237a3596886043559619ed260\",\"1162434dda66aa9ade7206708f3cd7ab9ea0e4fe496d8783dac0d71ef03c5eeb\",\"11b1fe63fa07c3113cc78fa2a90e79b7d8e5184b4a9c493b99b8740a993e97a2\",\"12b8e31f5cc269b12c05b4a6a4c2eb17d88a1108a740384ffd607f7cbec3ecbe\",\"181d5224f92d46171e11eb5f40cac23b7d2a1859a1c829d12bf7d06e927b90f4\",\"1aaff326f01327f3628490e9f3718b0111129653d5f40c104943fee389255b93\",\"1eb9e06b8db3433e91c3c8d4a6b981a8e962023ffc3e658e2bec1a3b39798614\",\"1eda96b26a53b80180afd86d0560cc969e8745f84ba2f6a32a9cf8cc2248da00\",\"20b33cfed999065961fbbc5eb5f149b342d71785efa73524729450a6bf9b3003\",\"25f4a91125ff352f533b9f17cf30cecc15a3592d56463972ab74c452deb64b52\",\"28d123c9d4765891f1d0e6209f5b344c6b7898fc75426b64897c73a81028ae87\",\"2c27e8dda8ffd0531b00c43eb186bd9fd9d76f8cf38511757e2a562b19ef8fe4\",\"2fd5959adae31880a8cc984df9a8a1984f5794805d9f4d1c54e20cd894defd21\",\"3013582bda07f680ef182b83661736dc96cffe0237c8b6ade70d5c1bde5ab92a\",\"30f041aa688e38e3fcc6edfe8e17562e1cf93c9f59a33ad7b06e6ab3f4a15e9d\",\"3211e5d693c909419d3404d9ccb35aded70f2878ee005631f3bc6035e215956c\",\"322cdbb6214df8289ca6b37f633bb9a9f34f63f0f13e9dda30cf769cb20a3f1d\",\"32ef50b75ab97db9b3f13abc50a1c683e78d65a4e3da1abd7ae11463a534d4c5\",\"34c9b2089f1d3d4fc3bba6b4b24b208f7b6b0eed902ed3e024d380bc66642af9\",\"3608ba3b8f4473b72a9c707e398e0d5201d9a03d062a83a907bc299097fff2a7\",\"3625f2ec8b37ce1973cfc730aebe5b1fea8dfaa9a7782a1fdb4ce5b566a64261\",\"36774382dea9616042cea8b9a27d0285ff8c4021b02a1166786a5d6089218a05\",\"36a728f5d8ed35b51cb56a7c8613cb04c9e2e345b1355cef3aacd871b358a4e7\",\"3730d23a0facdd7a43bc7fa416a8eba9f700a9ce98e7fa2a4a33dcbd75e1fe71\",\"39d27394b8a46234770eb78ad268b9be94aa169005ece35d14580cbdb7599c9b\",\"3a4529bb40149b8679fb0d2120f1f323da328aa7e3f996d2bec4e9b19974e108\",\"3bb4c8e753150c0606977fda3ba583e1ce8c32d21d52e4b7266b4a81d148408c\",\"3bcc1de98c51bf85bbe94f337b483dbeb5c41df5a08c6a5a500834d63f29c2e9\",\"3c58b55684b1e85e02adf1c40697ea632b64450d39ad1293d74a1c9e60e9a1aa\",\"3c885a29ba82dfc5eea001e00b48d350b6f383afef8335fbc68aa7c131047b52\",\"3f01824149cbedd465180c8ade9cd869012e14ec128380ec0d5a1cd2fba6adea\",\"3f15c4df9b416a7ac7fb1d60c81385f21849d9526508a439a7858950816f1779\",\"3f17500fd1fe3790708c30cb7edbca260dbdb8b52d2f9fd18b0f9ac11ec43db9\",\"3f1aab9331ab882ed095ee2db17974473d0417c14e7c05e13321610f976f6470\",\"3f8540c72e6ddc5344736879519e67bd8a4c09ca69a4d9876d5799de7ebf99fc\",\"40b773239ddf2cabca5fc585752576898998fd7313a6456578d9626d1aed8f3e\",\"4224b317bc1f4893752d4ba3f2b9e4b8048edd51dfdcd29f03e0356d93ec9ce3\",\"423a4cfbfac82f5592729a2a7fb47991f95baaf169c3312312b2a05efb2a7860\",\"425ed8251af679aaccf186ee427795719050bf27ade1cd46540e43df0ce1c7de\",\"42c88bea1a23d09b64d821774b1e7b49e367a911c0d5e9a1f6d87bda9dcd9831\",\"43b97cfbbf13f149e75c76726c41d05a1695da306bd32e01b9d9b575eb9fc7a3\",\"43ecb2a15bc760e2caaaa8d59f0ded69259258b4ecb782c73ce7c820d2d71112\",\"45a5f2cb111b2b8f8c11d27a7655cc447ba6e0d1b60f2a6e51c4c3274e98a8e0\",\"4812a6a93f5f329f2413024135642594441bc40952e68e49729f19eb91389e5d\",\"4856a2ec479438683de80e1761d252789e22792b6f089f165e81535241b74b6c\",\"4896fc65380440cc13298de539403158b1a0c8a77a699a35964a23e9529115a7\",\"498368416e62850b10b406506e260d928c13b206fd436f7d10b21d2534b7130d\",\"4a3bc40b576efb18d6fdb7297f4ed29770a89b6981dba1c8dc0d715a9a4f06db\",\"4c7e41d2301744b02d0ee511cc4d1374f474c86acf8f400b75dbfe203616276f\",\"4d115a38c51043bfc5f58dd0b49cdf5f23cf75e267c74788e49850db11b8d41f\",\"4eb47dba02633459a1be0440198556f2b76c4a2ad7e810b2114232c57b958b8f\",\"4f941d0a9b2fa4122a3568d0f1dcc8b0eb7ab68892e94d591b21a464904d8784\",\"505e7fa5fd631d55b64b2e85d73d344e67813e2bbcb8ed37b8676eea0b4b3d14\",\"50fe49be666cdfd1031ef08dc6fefb0ec498e26405b08ab50a92f95ad929ab61\",\"51a85af4bbe63318b49c9817f01d34c2f4804f5c385d24d2b8ad7d59b2a8814f\",\"5314d5e90bd8d0f40ae3bcf1306e41b12d487dc7bc4cb98a867b6e4078175323\",\"54a5a994661b49a5e577f981346c271f902d4438c941ea0b25b7d39db9e0db9c\",\"5586f2ee828c696abf3f36e8171e3b642c20a1dc880436d0a275d373f25e389c\",\"57eb77ac62e2a150bd14740eb62ea5830616f378839c01e57f6eff723e3b2bfb\",\"58de8fbbe7a9058a3b32b75ca38105dff7466dd3eaf06907cb0d5354b0e9cc3b\",\"59f30f173103bb28d69ff4c507b579f572f4fccdcfeebbbee7ae06456bbba587\",\"5a2cabc3a6683e4cde7363855a26b0bea0a17d2ec3071544e682ac621969201f\",\"5b13b0c334e19f10fe2f8a951020efcd818da0c4abdafdd3ee3ebb3a8a282be3\",\"5b974b72b64d7dea98551aa85828a1bffba415dd7bbabf18ef6d3dd80716a2ba\",\"608a37ce1b54f4707ed3d194c40ecd897d4fa9a6814420ce4805fff77b1f935d\",\"61bf0e5e89389fcd4ad518735b06035603c922c649aaa4e0cdb61c28a84a7fba\",\"626e6265eef797c96296890c494174761eafd7a0d7863580d6cd8f9e41836de1\",\"63a10a7c0f4f3f3351919b6e5f112910e980f0378be426adc8f3f2c054b4529c\",\"65a5e400378b75dcb9c823b889a6a8e90dc852576f4f700f7b86659c7c8c4ceb\",\"66186459179504f6b4de88514f667095ead5e846d1c62622b4660a1c28f1d1ac\",\"6645c6486702c6563be0a099993c58ce825b540581419c8d02d8fcdf7b549ff7\",\"6a0e63de752fbadc9b1fb2cf97e92ad438315ccc40e7b2a62372beed4a72f2dc\",\"6a1b18ebd55042418118ac0feeb9fb06a2487a83987b1abb2af7631edf42668f\",\"6af4182e899964ce1a465ccd29d48fd20f8843b25502c2f6c4fb157bcfcaefba\",\"6ba6fa32228b50dc0da04b4f5ba93470c3d4defd32b4cd149d7813a554cf92cb\",\"6de6d5264dc63601087b59ae22d505162cc6e227a8e0956caa71b3cd74b43b9c\",\"6e1d4ee18bc1c80ce8b8de96ba6b0e03ffa9d61c4342a47e9db443f33add21da\",\"6e6dad5593c04663c8c148e33d14854d32c62dad5b362444236a0d6c122973d8\",\"6fac2ebf7763b7059353e61201750201e071d25ead265da587ed54213a1a09c8\",\"70535d3b0f3d91279e0cc26c3a46b3fa8027ddeffb0f0947cd22ce966aacdbf7\",\"71612ce289056a76b79b5d762d3acd34f48a5078f267f6d9572fb5d3a8e0d213\",\"75688fa420299c86048b98d053ff61cad91c73d830f49f93e20a4e011a238ed5\",\"75a384bd4e31c282d2b6c58c562cee38797fde9addff5b54fcd9f165f97cc1a7\",\"790e50cd28e029ebfc594a272e6f84740a5396da3285b4404975fffc0fd4dc5d\",\"7b4f64fd92964b81a0675f2a5880ec280e47addb751c765bcc434f55934fe2e5\",\"7ccba4274e930828b5f8a60845b5072ad9345175db82f9dbdb8e73455b916944\",\"7e61603fc48d69ed3c511e26ed2a233c5e8e8f7539b7a602b28a809e581d7cf0\",\"804a56fb26cd9fdba072cc0a947620621c8ce6105e049501272f91c2b14be6bc\",\"80f7437115f4d1d17f14c4a92722f8d7d42977f1ced55b5ad9bcc5baafca760c\",\"80f7dfed1ee8254633fb578ba9a527742df42255aab566b696dc563b62daa2e5\",\"82033b907fc314af23c71d59aefb4fb79fdf02a3b90b73cfe4ef8bbb3ddb05d5\",\"86d6fd8e8996e4bc07bf8cbb3f1abe6ee9aae9435a0fe2beb3a7b67352f06a7c\",\"88074f617653e5699f9eae326926d5553736fcb57b0c8c0ed9c511bf10048095\",\"88723dbfb35815b201216e04e2837f0cb885109c52ad810de7e1287c9d7d6016\",\"89fccbbb5b5e29c31c561dff229de262b092826e5d532929e2d2da298b74b317\",\"8a0d653b1adda153b0285f5ac7dd7a03f2cc29203b121cdb66560e87f2bdfbd5\",\"8ad835edf605736cdb44c8ac4d830ffc8c20b37f89e1738dbf9cb18fc420797b\",\"8ba3ce6cf97295a7dd0b26293962b2eac67614f7180df75155d7e3092be220cd\",\"8dcfd6036e04b88b06162216dfb61447bb37d29849a5f0ee7bd338d6427e8192\",\"8e55ff5240118017e9f07c28774fbfb3829dd2582fa7103dc87fe4afe9ab231f\",\"8f722ef425f0b640592a602071c3d875d74fffa33ac5197c9bdec484f146d458\",\"8f7bab1d22f487956e07eb6a43a4e3614c4c5d84703ecae44630d1cf512e07a2\",\"90206e6e738c60893a9317f657945105b14722977bbebd2f12a3291192fb4d17\",\"9111fb2c2f7e0c997c8732eee4617473c34d2ac978e0b02bd3ee41646efc7cac\",\"925f2975310a792fedab5eaf5594155fbaf6a3cffe4b0bd53d7aa4f15278e74e\",\"947bc34c92518fb7587c282af921f8952a7db309275adb35bcdabef26c2147cb\",\"9499071e35a5a32564efd9a499a8288914929c998671404f1487505631e6788d\",\"95782e2744ef53b1cbefe93536a24f26a165d02c9820eb4688b8d2379dafafec\",\"95e6d20bbd77c481ed560cd507f52d21f743f24aec376e2f3ec7e6e16182ae48\",\"963501cbdf51d139fefd6894cc7ea358a81711a9f1ae68de023a6590557ed8aa\",\"9744da94867219ed8a4d6ae314452fff032d259f9cc427a89f8f864ea6c5ee57\",\"974b87ae661455744424ee1754b64dcd62ea68e29b40fc834ceaf91796ce70b4\",\"97de3ca4d50438d1e5b5ea2bfe8f1f8f1d3a4735b963bf0a66089e919fb68715\",\"99054ea3fe4f44bda7cf09ee718f12b6295aa3bf2e62a2f07b3fd91d57a40d2f\",\"996041b5385f6151694adfe17a39c8053e32c6cccbdcc1c8942dde5a38065322\",\"9ea31a226269af39ff8014408a4ca402b7689e1a13124bcfe5478074e5fa5742\",\"9f3f711c2c61e2c661d820f682caf27075ab79c34fae75bb2441721f8cba3b92\",\"9f5e824354d7412c846d872faea1a198dcb677d88c0e576f62dd452c57fddc47\",\"a114fefe4988bae6c65d6e54322d6d019ee92b6c1e828a752ed9fb31b91bfead\",\"a2004bdca7aa0aa31fc5184b541a6921c375831fa17a6fc92f745076a65986cc\",\"a2144540a1877cec576b7bd6705b7b4155cb66a4512e585a38d17935b9fee87e\",\"a341eec3f1ef4be86d2bcebc83c3157266512b9c19e542f8f5064ed1c75fba3e\",\"a416ffa710a86ca75cce6efbf3483fdc98acdea22306b260d499885963b766c6\",\"a46a5a3e4a05e8d359a91da760b4c0a60a6528c7f46777051f43b4c8666e73f6\",\"a5cf6d29d9cd213dc92489e0de0d89a2fa71f88cb26fe0468c0db78aa7ee5155\",\"a8962f94c7a49df2d155cd0457bf0aa9b17a978adaf81c8514200a3b543ca302\",\"aa0579430a9e04f077e3f3f8ee9fe901fe41e1ca1bb06af8bcaea6374e59af6e\",\"ab0796d4c098754369e18ffba6ecf9002990a07897ad47cfcb2891fb29d66722\",\"acebe9f35a8c34976a7cb9f25f1b6835f59f0146484834d3d339afb6b7d72909\",\"ad29239f48ee126da5810d32fe97e4176f0bb451ad2348d5152835e9c75ca8f9\",\"ae33561a0688debb9568d927092beaba1dd0b980f29c816bffba08c4d3a4c17a\",\"af3661150b78ee90f08dfc89f12740a5b01cc6316dedc6313b6864bf93f9e59d\",\"b03e1abea935d2f8e79df0eb7b76d0bc1f47ec8d62eed5cff20fd76bfb6f71d8\",\"b19c7eb9488d99b65917cf1f6648f0a9d5c61cfc138c651ccf50a23048055dbc\",\"b1e6a72fd20ba06f9bdda1087dbcfc5df7705a4e0960a99efac55585b33baf6b\",\"b24281d972638e8f699a11fcc8d78a8a68c097962c67582bc4eb5ece26fda233\",\"b3e2abe9364ea9a86db10d6851ea50ef26f21c4d5d919b36e287a72a7fe0650b\",\"b45ee7ce322328b485d13bfdccc0e6fda6877ad12b5fa8491c0bb6b8703046e7\",\"b7eaee6ed3fa7c0a2e83fe02ef0f015011ee0f031db8751603411657f25bb01a\",\"b875583cf880e565b2969fdaa7c80ea52beb78288808111e0d59f6d0535e74e9\",\"b8b8cd5e405ab59d27b2012fdf2e720980de775a060004171c0014e26052c7c2\",\"b8e2a72af72a08f5bcfd0bdd16d99468767ead361786d4a354707a0dab745dff\",\"b90c56f84e9a6bd34827375ba4fa642f871b3d8f181e3b56eeb477a6d24fc667\",\"b97697ee29deceb913ff139c5e7c4d100c591dbf630434e10d88b5675d394e17\",\"b9b3ce270596f4e6e141f0f2063adc10c4654de2aa69080ea45cad32e248be5b\",\"ba06b300b0fb50f9fe3235a24f5331fc1d836f9c170698fc07207ba14ae6254c\",\"ba8efdd68920563ad414862cc1d75086764fb2788b79fc35edb505297e11b548\",\"bb13cf4bd016720c2ca1d1d00b5bc2ce9239cc9d059ed1e444d6c547d0c4c5d1\",\"bbc3cd08fa2f84070933e87243ab7cb67ff0c6bf71efadcc872c9fc8fb28db60\",\"bc2fa9eac91d63a8939ce1cff6e1c70368ea8ab301b52415123e9062caf33f0e\",\"bc855ef9f1863c3765d3b7b84fec3ef99c6d80bebe362ebaf2b3e20f4aec3587\",\"bd4d6cd856ab1118df9545cd52adb4bdaa602a0ccfce9184d35b04e224b84a37\",\"be38d4bd0c277577e304409bfd3d7be223a56015599e0cfae36f10efbfa172dc\",\"c1c58bcd710a98ebe8167333dc27ef752603d4e99f6fdfbb1ad54ff01ab9b40d\",\"c1f720039a4e548c70a3f41ec5bfa7e1a428d24e7d262f9c78214db4fea8342b\",\"c32fa52c139391c8e9a139d76b772221bbb53fc950048f931c9d614be5b08725\",\"c3894ab5d9dd332dad4024c12463e2bbf8aad330e3cfb244b114aaae8e4daccf\",\"c476b1bdf9f8cfea87bd66c7bb4a5e977786666919afbd393f1ab03ed1b93403\",\"c4d54ed98ec886117d2a004cd321ff60f2f02a4ce3050f0bf8044f67f0c7c2d1\",\"c4da406867e97628fbe2a470f6576d34c8af6155ee0ba2b7f7d2b9f6eeb15292\",\"c545cc0213ddaacd744f932444d91bc9a808c14676d061cb0f180f7f3531fb45\",\"c7ba07709ecff2682a47a12a204d396bf8d70540790b2ef133a9e3a38eead82f\",\"cc7a1d093da9cc4dc08c14082299440f05bbb3fe9a8179054ca456074705ea0d\",\"d0840d003384c70854feacaddd592399a08f2e091f02cdf3d99ca0f26d041565\",\"d12cad649eb34bad4c330832eea449bd4e57505f066911cc0f19aa1af67d70cd\",\"d13052856c944bcd679bff490b72776eec79042d443a20cd50111ea622baf0e5\",\"d7b89f16f9f7d0456d2b70381d1ae417c1ffb719d535e5607297b88f2f0d2047\",\"d9b9b13c2825a889255e1352323ead62b62c9b11619359018500e82f3f1aec2e\",\"da54d2d9c599e4e14e56987e82e6bfd91f97d711122ad12d34eb2863a5b17181\",\"dae099f260a6f5f092ab8b5c1b2b7837d35cb5b4d286b2967d4a18ba5541d8c5\",\"dcb9d5b5fb28ce7eae82ad672a73b3daed00eb19db872ff59a1db1b90a721742\",\"dd3da6c8318797909b60719bfaffbe23bf25d961b8fbd450c76dc597fba3991e\",\"dd7fa369c09f7a19a57db6460d2c99cab291d64e3814950ecdd75b1f6de59500\",\"de68bd4b0115246b5a86252e2678554310e191e4e637a42952f3bcae4309c6f8\",\"df0daf0a8e768fda79f245a1067bac003fe1bea7c8ec7bb75db2efad1df404df\",\"e1a1be0edd6c56a7d9a2aabef3340d50c0c81137e50b88debd30db1c0f775e7d\",\"e41c9784a1c502d202394e159417632510663868a247d8de78e39c9d7c5717c3\",\"e43e8dac791d0799d9b17d54b8de2af3867960def3347af55cd75d7d3325ab7d\",\"e44f97d85fb6ed2f55816a88af6f3c132e0679007fe238f196380c0807f1c0a7\",\"e5d9367a6a695df51db0b18939b6a63d5252308be31135b99b42edb31ddf02b2\",\"e608f28356422d1a9558f1c7220c0c7f0a86d5cc70a4b395864b75fdb25ee011\",\"e8030204e47ad85c08775d89936c4febafd9dab024f423742b6466a1b86979f9\",\"ea17001429dcf63ab5f6ee3baa5da7388c3e70ff27e227ebacab82ca5b364f24\",\"eca710cb2285bf2f9f54e550769e33cf1dc40f4926fcc0627d5ce3bc91350bd6\",\"ece49d8127d46b09dd8044f0ad2e8ccd7bd2fa634c12dea5924c100277cf4c79\",\"ee0c488bd0d322a7bcb2802d0a5e9c69ce81e45a6d538268bb7f9628f0c35f25\",\"ee8a1df747e9b0135b53dc17f8a4efc2b57e0e2c6cee46be434d675ca61693ee\",\"eee62f9470983863c3c5e0c6e65e5608c907aa1df441c340adf894d81aadd159\",\"ef21efc7e71522ef57de7d3de20463bea577f2326f53926895a934701d1df112\",\"f0aa649cb656be6aaa265c2fb37a121df7f046bac726742fc7896c694572f3f1\",\"f26f32d916623054f0ba7b30858f62a14024621c70b9dcfcd27d5c560bbe7d2d\",\"f4888be8379f417c523bf039ea7cf9aa5d8525f4ea013e408f8a24ca50bdc9ff\",\"f49cdc21ae2a16c71c93106fd57eeb7975beedb47e6a3926c0c4a937bc996b56\",\"f56db10229d5c2fbcb8f4723bad6b02f0b04c6d7bdb5c27be36046426e2e8cc7\",\"f6ce01bf884d023ce7f8335d0b6a66a6bd6a096d046777f661afd7a2aa654808\",\"f9b707a077e6626fbca0abe30a227cb42c47a7115a22aab88f9b9477d8b22023\",\"fa3ab37481a054eb8dfff445478b02e6708bf284d33370d51d5ef4e50b4eea1e\",\"fbf3f0a6d7eb3f6e9d5ec27832b706e4b65361e5c96e74cc9d9e8937dd9e5cc5\",\"fd1a68f70e07cbdd78695930236f32c9335b80694b7b8aa178773a6e51d756a3\",\"fe12ebafeb4ea8aaa00a93379df19e09c979a891b1cc8f78aa39794c4cff9dec\",\"fea327590528f4c3c884166303c5199d39b4a5747c654b8986d2faa1ec2cf099\"],\"scheletri\":[\"2751d4d1d8e68d463fa710c359356eb72f6d0b3f95743bbc21e7d319e21611e7\",\"4594793937cc87a6ad29ab52607315c616bf7e9f8476c2fdb2a04295599156ef\",\"feaae10a25af624d25675afc2bbfbb3a9a7fe859cd123df757aa145bf1c264fb\"]}", "firma": "gcBqWByBKSk9QCTlNud6yHBtQalyMqFSOz-PvRcakFJsPyQc1sbcN_fMhSDJSiZhhOfaH6S8HXRW4LU_ca2tbg"};</script>
+<script>window.ARCADEU_SCHEDA = {"gioco": "boom", "versione_modello": "0.2", "lingua": "it", "titolo": "Leo Boom", "protagonista": {"nome": "Leo", "corpo": "commando", "foto": "viso-leo"}, "nemici": [{"nome": "lo zio Gino", "corpo": "granatiere", "foto": "viso-zio", "frasi": ["Vieni qua che ti abbraccio!", "Granata in arrivo!"], "arma": "granate"}, {"nome": "il robot", "corpo": "ribelle", "foto": "viso-robot", "frasi": ["Bip bop, fermati."], "arma": "fucile"}, {"nome": "il cecchino Gino", "corpo": "cecchino", "foto": "viso-zio", "frasi": ["Ti ho nel mirino!"]}, {"nome": "il robot d'assalto", "corpo": "assaltatore", "foto": "viso-robot", "frasi": ["Carica!"]}], "boss": [{"nome": "il Carro armato", "corpo": "carro-armato", "foto": "viso-zio", "frasi": ["Ora ti stritolo di affetto!"]}, {"nome": "l'Elicottero", "corpo": "elicottero-da-combattimento", "foto": "viso-robot", "frasi": ["Dall'alto vedo tutto!"]}, {"nome": "il Mech", "corpo": "mech", "foto": "viso-zio", "frasi": ["Senti che raggio!"]}], "livelli": ["rovine-nella-giungla", "avamposto-tra-i-ghiacci", "fabbrica-di-armi"], "mosse": ["granata", "bombardamento-aereo"], "mezzi": ["jeep", "elicottero", "carro-armato"], "bonus": ["pollo-arrosto", "medaglia", "elmetto-d-oro", "emoji:🍩"], "pericoli": ["filo-spinato", "tagliola", "fuoco", "drone", "avvoltoio", "emoji:🐝:volo"], "frasi": ["Avanti tutta!", "Non mi prendete", "Che salto!", "Copritemi!"], "musica": "assalto", "foto_speciali": [{"foto": "ricordo-1", "didascalia": "La prima avventura al parco."}, {"foto": "ricordo-2", "didascalia": "Il tramonto delle vacanze."}, {"foto": "finale", "didascalia": "La festa più bella."}], "finale": {"foto": "finale", "testo": "Tanti auguri, campione!", "colore": "#2E3A1F"}, "id": "arcadeu-boom-e468363639ddc2df"};</script>
+<script>window.ARCADEU_FOTO = {"viso-zio": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHgAAACgCAYAAADHCaiQAAACcElEQVR42u3dsVEDMRCG0avEMTHVuRIqoSbagCEgwvZg7k7S7v++mc0crPS4wGYw2yZJkiRJkiRJkiRJkiRN7Xq9frqF4oB7xy02AwUeiAo7DBZ0CCzoEFjQQbiQm8OCDsKF3BwWdBBuPHICbixyEm4cciJuDHIybntkuI2RoTZGhtkYec/hP97f7k4X4O+zRAI/wu0C/XMGuM2Qb50BbhPkR2doD/xf3ErILYBn4FZA/sv+cIsCP3MGwMWQn90fbjHk/+wPtwjwnjMAXhx57/5wF0c+Yv+SwKNwZwIftb+nd0Hko/f39C6G3Aa4Cu5I4LP2B7wA8pm7Lw88G3cEcivgirhnAo/YHfAk5FF7w52EPHLvpYBXxT0SefTOywCvjnsE8IydPb2DkGfu7Ok9GXn2vlOBq+E+i7zCrlOAq8I+A73KjqfhdkHsMIABAwYMOAfYpTZHdqGADWAD2IwHdpnNkV0k4FPm5XK5O/YpDvzoMmdc6mr7lAb+y2WOvNTV9gEMGDBgwIABAwYMGLD3wd4H+yTLJ1k+h/Z5NGS/bDCADWAD2AA2gAEDBgwYsAFsABvAxp+vwAUMGDBgA9j4Ihbja5QMYMCAAVdAvr68/pp73Xrtka9viQsYMGDAgJcGnokMeNC/1QEMGHBl4FnI6cDbyAA3B56BnAy8zQgwYFMZGHJzXMABwJCb4wIOAIbcHBdwADDk5riQA3ABBwBDbo4LOQAXcAAw5Oa4kANwAQcAQ26OCzkAF3IALuQAXMgBuMnIW1pwIcOFDBc0WMhwQYNNRqbVFJpOU2gaTaHdfkNst9wM3C0W/wFwC5IkSdrVF7kTEFrlwLK4AAAAAElFTkSuQmCC", "finale": "data:image/png;base64,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", "ricordo-1": "data:image/png;base64,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", "viso-robot": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHgAAACgCAYAAADHCaiQAAACgElEQVR42u3dsXHbQBAFUFTCWEUoVhEq1rGLcC/SOHBmQiQB3N3+fX/m53v7hAAgCW2biIiIiIiIiIiIiIiIiIiIiMjUvH98ftlCccCjtcUwUOANUWE3gwXdBBZ0E1jQjXAhh8OCboQLORwWdCPc9sgdcNsid8Jth9wRtw1yZ9x4ZLjByFCDkWEGIx85/K/ff+42BfjvWVoC7+GmQP87A9ww5P+dAW4I8t4Z4oFfxa2EHAE8A7cC8iPzwy0K/MwZABdDfnZ+uMWQX5kfbhHgI2cAvDjy0fnhLo58xvwlgUfhzgQ+a35X74LIZ8/v6l0MOQa4Cu5I4KvmB7wA8pWzLw88G3cEchRwRdwrgUfMDngS8qi54U5CHjn3UsCr4p6JPHrmZYBXxz0DeMbMrt5ByDNndvVejDx73qnA1XCfRV5h1inAVWGfgV5lxstwUxATChgwYMCA+wBbajiyhQJWwApYxwNbZjiyRQK+pG+3292apzjw3jJnLHW1eUoDP7LMkUtdbR7AgAEDBgwYMGDAgAG7D3Yf7EmWJ1meQ3seDdmHDQpYAStgBayAAQMGDBiwAlbAClj9fAUuYMCAAStg9SIW9RolBfxTP29vdwu4OPAebmVkLyR9ELci8qWvE07ErYYMGHA28Cu4lZAv/8ccgINxAQMGXB14deRU4G1kAIcDr4ycCLzNCGDAgCsDpyHDBdwPOAUZbvAtk1ujYGS4vq8FGHIDXMgNcAE3AIYcjgu5AS7gBsCQw3EhN8AF3AAYcjgu5Aa4kBvgQm6AC7kBbmfkrVvgQoYLGS5osJDhggbbGZlWKDSdUGgaodC2H4hty2Hgtlj8D8AWRERERORQvgGcTFVzyROeaQAAAABJRU5ErkJggg==", "ricordo-2": "data:image/png;base64,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", "viso-leo": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHgAAACgCAYAAADHCaiQAAACt0lEQVR42u3dO1IbURAFUK2EmNixYxbB/px4I+yHDZgiILNUkmbe69+5VR2C7uvDBMwUw+UiIiIiIiIiIiIiIiIiIiIiIhKa99+v/2yhOODRscVmoMAHosIeBgt6CCzoIbCgB+FCbg4LehAu5OawoAfhjkeegDsWeRLuOOSJuGOQJ+O2R4bbGBlqY2SYjZGPHP7z48/V6QL8fZaRwLdwu0D/nAFuM+T/nQFuE+RbZ2gP/CxuJeQWwBG4FZDv6Q+3KPAjZwBcDPnR/nCLIT/TH24R4CNnAJwc+Wh/uMmRz+hfEngXbiTwWf1dvQmRz+7v6k2G3Aa4Cu5O4FX9ASdAXtk9PXA07g7kVsAVcVcC7+gOOAh5V2+4Qcg7e6cCzop7JvLuzmmAs+OeARzR2dW7CTmys6t3MXJ031DgariPImfoGgJcFfYR6Cwdl+F2QewwgAEDBgx4DrClNke2UMAGsAFs9gNbZnNkiwS8ZF5fXq6OPsWBby0zYqnZ+pQGvmeZO5earQ9gwIABAwYMGDBgwID9Huz3YHey3MlyH9r9aMgeNhjABrABbAAbwIABAwYM2AA2gA1g489X4AIGDBiwAWy8iMV4jZIBDLg48N9fbymXHNmr1QtJvxeZDTmy09LXCUcuMwtydJ/WwNHIGbq0B45abJYey/8xR4bF7lxw9Odvxc10Fa9edMRnjgW+Z+FnLX3X56QFzo78LMDK710KN/qu1r0Q13COfv0I4MrIcAvdm+4OOx54JXT7hwsVnzB1gw3FzfwIsQNsCmDPiZvjAh4ADLk5LuABwJCb40IegAt4ADDk5riQB+ACHgAMuTku5AG4gAcAQ26OC3kALuQBuJAH4EIegDsZ+TItcCHDhQwXNFjIcEGDnYxMqyk0nabQNJpC235DbFtuBm6LxX8AbEFEREREDuULlHtp1G3av8kAAAAASUVORK5CYII="};</script>
+<script>/* ArcadeU — gioco "Boom", motore v0.26 (07/11/2026: solo commenti, senza nomi di persone né il nome di lavoro dei giochi); v0.25 (06/11/2026 sera, revisione di Mr Robot: cuori giusti dopo "Rigioca", laser più corto, piattaforme alte abbassate se non hanno un appoggio,
    pericoli emoji a terra saltabili (34 px), comandi bloccati durante il mezzo e il cambio di livello, nomi resi innocui in innerHTML, pausa e audio dopo telefonate e interruzioni);
    v0.24 (06/11/2026 sera: ogni pericolo è evitabile, a terra al massimo 44 px di altezza e in volo con almeno 48 px liberi sotto);
    v0.23 (06/11/2026 sera, terza prova: anteprime "I pericoli" e "I bonus" in vetrina, piattaforme sempre raggiungibili, emoji più grandi);
    v0.22 (06/11/2026 sera, seconda prova: il bersaglio delle mosse segue lo schermo, livelli con seme nuovo a ogni partita, oggetti mai sovrapposti);
-   v0.21 (06/11/2026 sera, dopo la prova del configuratore di Davide: mosse finali lanciate nella seconda metà dello schermo e che spazzano tutto solo quando scoppiano,
+   v0.21 (06/11/2026 sera, dopo la prova del configuratore di mosse finali lanciate nella seconda metà dello schermo e che spazzano tutto solo quando scoppiano,
    nuke, raccolte solo a contatto (niente più a colpi), scorte delle mosse grandi, mine che scoppiano anche atterrandoci sopra, laser dei boss annunciato con la fascia e la scritta,
    pilota automatico che non arretra mai, anteprima "I cattivi" su misura (il protagonista non spara, i cattivi scelti sfilano e attaccano), livelli con una struttura propria (`struttura` nel modulo),
    il mezzo si prende sempre da terra, fascicolo segreto e codice mai in anteprima; v0.20 configuratore: in anteprima la scena riempie la cornice, senza spazio per la barra; v0.19 verso il configuratore: nemici con sei armi e comportamenti (fucile, granate, mitra, cecchino con il mirino,
@@ -302,7 +302,7 @@ body.demo #app{justify-content:center;padding:6px}
    Niente violenza: chi viene colpito vola via con stelline e "OUCH!"; le armi sono comiche (popcorn, tappi, torte, coriandoli). */
 window.AU = (() => {
   'use strict';
-  // bonus e pericoli (i "malus") sono moduli disegnati apposta per Boom (catalogo/bonus, catalogo/pericoli), emoji comprese: niente pezzi di Corsa (Davide, 06/11/2026)
+  // bonus e pericoli (i "malus") sono moduli disegnati apposta per Boom (catalogo/bonus, catalogo/pericoli), emoji comprese: niente pezzi di Corsa (06/11/2026)
   const reg = { livello: {}, mossa: {}, musica: {}, corpo: {}, bonus: {}, pericolo: {}, mezzo: {} };
   function registra(tipo, id, def) { if (!reg[tipo]) throw new Error('tipo sconosciuto: ' + tipo); reg[tipo][id] = Object.assign({ id }, def); }
 
@@ -369,7 +369,7 @@ window.AU = (() => {
       condTestoFinale: '{protagonista} ha fatto {punti} punti in {titolo}!', condTestoRicordo: 'Boss {n} battuto nel gioco di {protagonista}: un ricordo da {titolo}.',
       segTag: 'Top secret', segTitolo: 'Codice segreto sbloccato!', segTesto: 'Hai battuto il terzo boss: ecco il trucco dei veri soldati. Tocca <b>5 volte di fila</b>, veloce, i visi nella schermata iniziale oppure il punteggio nella schermata finale: diventi <b>invincibile</b>, avvolto da un\'aura d\'oro. Rifallo per spegnerlo, oppure usa il tasto nella pausa.', segPiede: 'Acqua in bocca: è un segreto tra soldati.', segAttiva: 'Attivalo ora', segChiudi: 'Continua', cheatOn: 'Invincibile!', cheatOff: 'Invincibilità spenta', disattiva: 'Disattiva invincibilità', codice: 'Codice segreto: tocca 5 volte il punteggio',
       briefing: 'Briefing di missione', rapporto: 'Rapporto di missione', timbroFoto: 'Missione compiuta', timbroBoss: 'Boss {n} battuto',
-      // tutorial interattivo (Davide, 06/11/2026: "il tutorial iniziale è troppo lungo, sostituiscilo con un tasto Tutorial")
+      // tutorial interattivo (06/11/2026: "il tutorial iniziale è troppo lungo, sostituiscilo con un tasto Tutorial")
       tutBtn: 'Tutorial', tutTitolo: 'ADDESTRAMENTO {n}/{tot}', esciTut: 'Esci dal tutorial', tutOk: ['OK!', 'BRAVO!', 'PERFETTO!'],
       tpMuovi: 'Usa il joystick per correre fino alla bandiera.',
       tpMira: 'La mitragliatrice spara da sola: punta il joystick in alto e in diagonale e abbatti i 3 bersagli.',
@@ -440,7 +440,7 @@ window.AU = (() => {
     const L = TESTI[EN ? 'en' : 'it'];
     const vars = {};
     const T = (k, v) => { let s = L[k]; if (Array.isArray(s)) s = pick(s); return String(s).replace(/\{(\w+)\}/g, (_, n) => (v && v[n] != null ? v[n] : vars[n] != null ? vars[n] : '')); };
-    // per i testi che finiscono in innerHTML (v0.25, come Leo Rush v0.3): i valori (nomi scritti dal cliente) vengono resi innocui, il testo fisso resta HTML
+    // per i testi che finiscono in innerHTML (v0.25, come Corsa v0.3): i valori (nomi scritti dal cliente) vengono resi innocui, il testo fisso resta HTML
     const esc = x => String(x).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
     const TH = (k, v) => { const e = {}; for (const n in vars) e[n] = esc(vars[n]); if (v) for (const n in v) e[n] = esc(v[n]); return T(k, e); };
     const nomeDi = (def, k) => (def && def.nome && (def.nome[SCH.lingua] || def.nome.it)) || k || '';
@@ -457,7 +457,7 @@ window.AU = (() => {
     const bonusDefs = (SCH.bonus || []).map(id => id.startsWith('emoji:') ? (reg.bonus.emoji && reg.bonus.emoji.crea(id.slice(6))) : reg.bonus[id]).filter(Boolean).slice(0, 5);
     const malusDefs = (SCH.pericoli || []).map(id => { if (id.startsWith('emoji:')) { const [, ch, fam] = id.split(':'); return reg.pericolo.emoji && reg.pericolo.emoji.crea(ch, fam || 'terra'); } return reg.pericolo[id]; }).filter(Boolean).slice(0, 8);
     const misura = d => ({ w: d.img ? d.img.width * (d.px || 2) : d.w || 24, h: d.img ? d.img.height * (d.px || 2) : d.h || 24 });
-    // ogni pericolo deve potersi evitare (Davide, 06/11/2026 sera): a terra mai più alto di MALUS_H_MAX (si salta sempre, come gli ostacoli; il salto arriva a ~73 px),
+    // ogni pericolo deve potersi evitare (06/11/2026 sera): a terra mai più alto di MALUS_H_MAX (si salta sempre, come gli ostacoli; il salto arriva a ~73 px),
     // in volo con il bordo inferiore ad almeno MALUS_VOLO_MIN da terra (abbassati si è alti 30 px: si passa sempre sotto). Vale anche per le emoji grandi.
     // v0.25 (revisione di Mr Robot): un pericolo a terra non va solo superato in altezza, va scavalcato in lunghezza mentre si è in aria (a 118 px/s).
     // Simulato a 60, 30 e 25 fps: fino a 34×34, con il contatto 5 px dentro i bordi per le emoji (il disegno ha i bordi tondi e trasparenti),
@@ -505,16 +505,16 @@ window.AU = (() => {
     if (NEMICI[0] && NEMICI[0].faccia) { const s = document.createElement('span'); s.textContent = T('vs'); vs.append(s, facciaTag(NEMICI[0].faccia, NEMICI[0].nome)); }
     // difficoltà: velocità dei nemici e cadenza del loro fuoco
     // abbassate tutte e tre il 06/11/2026 ("mi sembra abbastanza difficile"): v = velocità dei nemici, fuoco = moltiplicatore delle pause tra un colpo e l'altro, hp = colpi in più per abbatterli
-    // cuori = vita massima (Davide, 06/11/2026: 6 in Facile, 4 in Normale, 3 in Difficile)
-    // rialzate il 06/11/2026 (v0.14, Davide: "adesso è troppo semplice: l'attuale normale mettila come facile, poi ne fai due più difficili a salire")
-    // v0.16 (Davide, 06/11/2026: "in modalità normale i nemici devono essere più resistenti ed in modalità difficile devono essercene proprio di più"):
+    // cuori = vita massima (06/11/2026: 6 in Facile, 4 in Normale, 3 in Difficile)
+    // rialzate il 06/11/2026 (v0.14, "adesso è troppo semplice: l'attuale normale mettila come facile, poi ne fai due più difficili a salire")
+    // v0.16 (06/11/2026: "in modalità normale i nemici devono essere più resistenti ed in modalità difficile devono essercene proprio di più"):
     // nemici = quanti se ne provano a piazzare per livello (+2 per giro; quelli che non trovano posto si tolgono), scena = quanti al massimo sullo schermo, distanza = spazio minimo tra due nemici; hp = colpi in più oltre i 2 di base
     const DIFF = { facile: { v: 0.88, fuoco: 1.35, hp: 0, boss: 0, cuori: 6, nemici: 8, scena: 2, distanza: 150, primo: 620 },
       normale: { v: 1.0, fuoco: 1.1, hp: 3, boss: 6, cuori: 4, nemici: 8, scena: 2, distanza: 150, primo: 620 },
       difficile: { v: 1.14, fuoco: 0.82, hp: 4, boss: 14, cuori: 3, nemici: 16, scena: 3, distanza: 90, primo: 480 },   // primo = dove sta il primo nemico (in Difficile poco più di una schermata di calma)
-      // "extreme" (v0.22, Davide): non si sceglie all'inizio, ci si arriva salendo; come Difficile ma con un cuore solo e punti tripli (MOLT)
+      // "extreme" (v0.22): non si sceglie all'inizio, ci si arriva salendo; come Difficile ma con un cuore solo e punti tripli (MOLT)
       extreme: { v: 1.2, fuoco: 0.74, hp: 5, boss: 20, cuori: 1, nemici: 18, scena: 3, distanza: 80, primo: 420 } };
-    // la difficoltà sale (Davide, 06/11/2026 sera): dal quarto livello in poi ogni boss battuto alza la difficoltà di uno scalino rispetto a quella scelta,
+    // la difficoltà sale (06/11/2026 sera): dal quarto livello in poi ogni boss battuto alza la difficoltà di uno scalino rispetto a quella scelta,
     // fino a "extreme". diffA() è la difficoltà del momento; `diff` resta quella scelta nel briefing.
     const ORDINE_DIFF = ['facile', 'normale', 'difficile', 'extreme'];
     const diffA = () => ORDINE_DIFF[Math.min(3, ORDINE_DIFF.indexOf(diff) + Math.max(0, S.livelliFatti - 2))];
@@ -598,7 +598,7 @@ window.AU = (() => {
       if (ac && ac.state !== 'running' && ac.state !== 'closed') { try { const pr = ac.resume(); if (pr && pr.catch) pr.catch(() => {}); } catch (e) {} }
       if (ac && !rumore) { rumore = ac.createBuffer(1, ac.sampleRate * 0.3, ac.sampleRate); const d = rumore.getChannelData(0); for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1; }
     }
-    // v0.25 (Davide: "se il gioco viene interrotto da telefonate o cose varie, va in pausa e poi si riprende"): se l'audio passa da 'running' a interrotto
+    // v0.25 ("se il gioco viene interrotto da telefonate o cose varie, va in pausa e poi si riprende"): se l'audio passa da 'running' a interrotto
     // o sospeso dal sistema mentre si gioca, il gioco va in pausa; con "Riprendi" l'audio riparte (initAudio in riprendi)
     let statoAudio = null;
     function audioCambiato() { const prima = statoAudio; statoAudio = ac ? ac.state : null; if (prima === 'running' && statoAudio !== 'running') interrotto(); }
@@ -663,13 +663,13 @@ window.AU = (() => {
     const fuocoN = () => DIFF[diffA()].fuoco / (1 + 0.1 * (S.giro - 1));
 
     // ---------- Costruzione del livello: piattaforme, pozze, nemici piazzati e raccolte, dal seme ----------
-    // ogni livello ha una struttura propria (v0.21, Davide: "falli tutti diversi tra loro come disposizione di ostacoli, nemici, mine"): il modulo la dichiara in `struttura`
+    // ogni livello ha una struttura propria (v0.21, "falli tutti diversi tra loro come disposizione di ostacoli, nemici, mine"): il modulo la dichiara in `struttura`
     // (piatt: distanza tra le piattaforme [min, max]; doppie: quante hanno una seconda piattaforma sopra; ostacoli: distanza tra gli ostacoli; colline: quante; arcate: quante
     // delle colline sono arcate; nemiciSopra: quanti nemici stanno sulle piattaforme); senza, i valori della giungla. Anche il seme cambia da livello a livello (dal nome).
     const STRUTTURA = { piatt: [160, 300], doppie: 0.35, ostacoli: [200, 380], colline: 4, arcate: 0.35, nemiciSopra: 0.45 };
     const semeDi = s => { let h = 7; for (const ch of String(s)) h = (h * 31 + ch.charCodeAt(0)) % 100003; return h; };
     function costruisciLivello() {
-      // il seme cambia a ogni partita (S.semeGioco, estratto in reset): lo stesso livello non è mai uguale due volte (Davide, 06/11/2026 sera)
+      // il seme cambia a ogni partita (S.semeGioco, estratto in reset): lo stesso livello non è mai uguale due volte (06/11/2026 sera)
       const def = LV(), r = rng(1 + S.lv * 131 + S.giro * 7 + semeDi(def.id) + (S.semeGioco || 0)), ST = Object.assign({}, STRUTTURA, def.struttura || {});
       S.L = def.lunghezza || 2500; S.piatt = []; S.pozze = []; S.posti = []; S.oggetti = []; S.nemici = []; S.colpi = []; S.colpiN = []; S.onde = []; S.effetti = []; S.boss = null; S.laser = null; S.arena = false; S.rinforzo = 4;
       const arena = S.L - W;
@@ -682,7 +682,7 @@ window.AU = (() => {
       }
       // pozze a terra solo se il livello le chiede (dal 06/11/2026 i pericoli a terra sono le mine, ben visibili)
       if (def.pozze) { const nPoz = Math.round((3 + r() * 2) * def.pozze); for (let i = 0; i < nPoz; i++) { const x = 420 + r() * (arena - 700); if (!S.pozze.some(p => Math.abs(p.x - x) < 180)) S.pozze.push({ x, w: 44 + r() * 36 }); } }
-      // colline di roccia a gradini (ogni gradino si salta) e arcate da passare abbassati, se il livello le vuole (Davide, 06/11/2026: "piccole montagne da scalare, tunnel")
+      // colline di roccia a gradini (ogni gradino si salta) e arcate da passare abbassati, se il livello le vuole (06/11/2026: "piccole montagne da scalare, tunnel")
       S.solidi = [];
       if (def.rilievi) {
         const libero = (x0, w0) => x0 + w0 < arena - 300;   // le piattaforme che capitano sopra una roccia si tolgono dopo: le colline hanno la precedenza
@@ -694,7 +694,7 @@ window.AU = (() => {
             if (!libero(x, tot)) continue;
             let xx = x; gr.forEach((h, i) => { S.solidi.push({ roccia: true, x: xx, y: G - h, w: larg[i], h, seme: r() }); xx += larg[i]; });
           } else { // arcata: sotto ci si passa abbassati (34 px liberi); dal 06/11/2026 (v0.14) la volta è alta 60 px, cima a 94 da terra:
-            // con il salto (73 px) non si scavalca più, si passa solo strisciando sotto (Davide: "rendili attraversabili solo strisciando sotto")
+            // con il salto (73 px) non si scavalca più, si passa solo strisciando sotto ("rendili attraversabili solo strisciando sotto")
             const w = 84 + Math.floor(r() * 3) * 10; if (!libero(x, w)) continue;
             S.solidi.push({ roccia: true, arco: true, x, y: G - 34 - 60, w, h: 60, seme: r() });
           }
@@ -705,7 +705,7 @@ window.AU = (() => {
       // ostacoli bloccanti (casse, sacchi di sabbia, relitti): ci si salta sopra o non si passa; mai attaccati a una pozza o a una roccia,
       // mai più alti di quanto si salta (il livello deve essere sempre completabile)
       const OST = def.ostacoli || [];
-      // arena del boss: una piattaforma nella metà sinistra, per schivare le onde d'urto e le raffiche (Davide, 06/11/2026)
+      // arena del boss: una piattaforma nella metà sinistra, per schivare le onde d'urto e le raffiche (06/11/2026)
       S.piatt.push({ x: arena + 56, y: G - 56, w: 88, arena: true });
       if (OST.length) { let x = 300; while (x < arena - 240) {
         const o = OST[Math.floor(r() * OST.length)];
@@ -717,10 +717,10 @@ window.AU = (() => {
         S.solidi.push({ def: o, x, y: G - Math.min(o.h, 44), w: o.w, h: Math.min(o.h, 44), seme: r() });
         x += ST.ostacoli[0] + r() * (ST.ostacoli[1] - ST.ostacoli[0]);
       } }
-      // piattaforme raggiungibili (v0.23, Davide: "quelle più alte devono sempre avere un appoggio"): una piattaforma più alta di un salto da terra
+      // piattaforme raggiungibili (v0.23, "quelle più alte devono sempre avere un appoggio"): una piattaforma più alta di un salto da terra
       // resta solo se sotto di lei, entro un salto e con un po' di sovrapposizione, c'è un'altra piattaforma o un ostacolo a sua volta raggiungibile.
       // v0.25 (revisione di Mr Robot): il salto vero non arriva a 73 px ma a ~70 a 60 fps e ~64 a 25 fps (la velocità cambia prima della posizione);
-      // si conta SALTO_VERO = 62. Una piattaforma della prima fila (`base`) senza appoggio non si toglie: scende a 62 px da terra (Davide: "abbassale leggermente,
+      // si conta SALTO_VERO = 62. Una piattaforma della prima fila (`base`) senza appoggio non si toglie: scende a 62 px da terra ("abbassale leggermente,
       // ma prima controlla se vicino ci sono ostacoli o altre cose per raggiungerle"); la seconda fila si ricontrolla dopo, con la prima già abbassata
       {
         const SALTO = SALTO_VERO, appoggi = S.solidi.filter(s => !s.arco).map(s => ({ x: s.x, w: s.w, y: s.y, ok: true }));
@@ -745,9 +745,9 @@ window.AU = (() => {
         S.mine.push({ x: xm, stato: 'armata', prog: 0 });
       }
       // nemici piazzati: a terra, sulle rocce o sulla piattaforma che copre quel punto, mai dentro un ostacolo né su una mina
-      // sono tutti i nemici del livello: uccisi, non tornano (niente rinforzi dal bordo, Davide 06/11/2026)
-      // il primo nemico sta a una schermata e mezza dall'inizio: si parte con calma (Davide, 06/11/2026)
-      // meno nemici e distanziati (Davide, 06/11/2026): 8 per livello (+2 per giro), almeno DISTANZA px l'uno dall'altro, l'ultimo prima dell'arena
+      // sono tutti i nemici del livello: uccisi, non tornano (niente rinforzi dal bordo, 06/11/2026)
+      // il primo nemico sta a una schermata e mezza dall'inizio: si parte con calma (06/11/2026)
+      // meno nemici e distanziati (06/11/2026): 8 per livello (+2 per giro), almeno DISTANZA px l'uno dall'altro, l'ultimo prima dell'arena
       const n = Math.round((DIFF[diffA()].nemici + 2 * (S.giro - 1)) * (def.densita || 1)), DISTANZA = DIFF[diffA()].distanza, ultimoX = arena - 160;
       let prec = -1e9;
       for (let i = 0; i < n; i++) {
@@ -755,7 +755,7 @@ window.AU = (() => {
         if (x < prec + DISTANZA) x = prec + DISTANZA;
         const mina = S.mine.find(m => Math.abs(m.x - x - 18) < 40); if (mina) x = mina.x + 44;
         const arco = S.solidi.find(s => s.arco && x + 36 > s.x - 12 && x < s.x + s.w + 12); if (arco) x = arco.x + arco.w + 30;   // mai sotto un'arcata
-        // mai dentro una roccia o un ostacolo (Davide, 06/11/2026: "continuano a comparire nemici all'interno delle montagne"; prima si guardava solo il centro
+        // mai dentro una roccia o un ostacolo (06/11/2026: "continuano a comparire nemici all'interno delle montagne"; prima si guardava solo il centro
         // del corpo e, sulle colline a gradini, il nemico spostato dopo il primo gradino finiva dentro il secondo). Ora si guarda tutta la larghezza del corpo:
         // su una collina il nemico va al centro del gradino più alto che tocca, e si ricontrolla finché non tocca più niente; un ostacolo lo sposta dopo di sé
         const chi = NEMICI.length ? NEMICI[Math.floor(r() * NEMICI.length)] : null, nw = chi ? corpoW(chi.corpo) : 36;
@@ -774,7 +774,7 @@ window.AU = (() => {
         S.posti.push({ x, y: sopra && r() < ST.nemiciSopra ? sopra.y : y, chi, fatto: false });
       }
       // raccolte: gettoni a file sulle piattaforme, scorte delle mosse (grandi: v0.21) e un cuore raro
-      // dal v0.22 niente oggetti uno sopra l'altro (Davide: "dove c'è già un oggetto non dovrebbe comparirne un altro"): ogni pezzo nuovo cerca un posto libero
+      // dal v0.22 niente oggetti uno sopra l'altro ("dove c'è già un oggetto non dovrebbe comparirne un altro"): ogni pezzo nuovo cerca un posto libero
       const vicino = (x, y, raggio) => S.oggetti.some(o => Math.abs(o.x - x) < raggio && Math.abs(o.y - y) < 34) || S.mine.some(mm => Math.abs(mm.x - x) < raggio + 24) || S.malus.some(mm => Math.abs(mm.x + mm.w / 2 - x) < raggio + 10);
       for (const p of S.piatt) if (r() < 0.55) for (let k = 0; k < 3; k++) S.oggetti.push({ tipo: 'gettone', x: p.x + p.w / 2 - 16 + k * 16, y: p.y - 16 });
       const scorte = ['X', 'Y', r() < 0.5 ? 'X' : 'Y'];
@@ -786,7 +786,7 @@ window.AU = (() => {
         S.oggetti = S.oggetti.filter(o => !(o.tipo === 'gettone' && Math.abs(o.x - cx) < 40 && Math.abs(o.y - (p.y - 16)) < 4));
         S.oggetti.push({ tipo: t === 'X' ? 'scortaX' : 'scortaY', x: cx, y: p.y - 22, w: 30, h: 30 });
       }
-      // cuori: due per livello, a un terzo e a due terzi, più uno a caso una volta su due (Davide, 06/11/2026: "più frequenti")
+      // cuori: due per livello, a un terzo e a due terzi, più uno a caso una volta su due (06/11/2026: "più frequenti")
       for (const f of [0.33, 0.66].concat(r() < 0.5 ? [0.2 + r() * 0.6] : [])) { let x = 500 + (arena - 800) * f + (r() - 0.5) * 80; for (let k = 0; k < 8 && vicino(x, G - 16, 30); k++) x += 36; if (!vicino(x, G - 16, 30)) S.oggetti.push({ tipo: 'cuore', x, y: G - 16 }); }
       // bonus scelti dal cliente: a terra e sulle piattaforme, a gruppi; malus (pericoli): a terra fermi, in volo a pattuglia, lontani da rocce, mine, nemici e altri oggetti
       S.malus = [];
@@ -804,7 +804,7 @@ window.AU = (() => {
         if (occupato(x) || x > arena - 120) continue;
         S.malus.push({ def: d, w: m.w, h: m.h, x, y: volo ? quotaVolo(m.h, i) : G - m.h, x0: x, volo, dir: r() < 0.5 ? -1 : 1, hp: 2, hit: 0, nome: nomeDi(d) });
       }
-      // niente dentro le rocce o gli ostacoli: quello che ci capita va in cima (Davide, 06/11/2026: "impossibili da prendere")
+      // niente dentro le rocce o gli ostacoli: quello che ci capita va in cima (06/11/2026: "impossibili da prendere")
       // sotto un'arcata invece l'oggetto resta a terra, da prendere strisciando: in cima all'arcata non si arriva più (v0.14)
       for (const o of S.oggetti) { const s = S.solidi.find(s => o.x > s.x - 8 && o.x < s.x + s.w + 8 && o.y > s.y - 14); if (s) o.y = s.arco ? G - (o.h || 14) / 2 - 4 : s.y - (o.h || 16); if (S.mine.some(m => Math.abs(m.x - o.x) < 24)) o.y = Math.min(o.y, G - 40); }
       Object.assign(S.pl, { x: 40, y: G, vx: 0, vy: 0, aria: false, duck: false, dir: 1, aimx: 1, aimy: 0, drop: 0, piatt: null, blast: null });
@@ -834,14 +834,14 @@ window.AU = (() => {
     function termina() { if (S.state !== 'pausa') return; if (pausaOv) pausaOv.hidden = true; reset(); S.state = 'ready'; aggiornaPad(); tuto.hidden = false; }
     function riprendi() { if (S.state !== 'pausa') return; if (pausaOv) pausaOv.hidden = true; S.state = 'play'; aggiornaPad(); initAudio(); startMusic(); pad.azzera(); }
 
-    // ---------- Tutorial interattivo (v0.13; Davide, 06/11/2026: "prepara un tutorial interattivo che mostra come spostarsi, mirare, saltare, abbassarsi, usare le mosse finali e disinnescare bombe") ----------
+    // ---------- Tutorial interattivo (v0.13, 06/11/2026: "prepara un tutorial interattivo che mostra come spostarsi, mirare, saltare, abbassarsi, usare le mosse finali e disinnescare bombe") ----------
     // Campo d'addestramento con la grafica del primo livello: ogni passo mette davanti al protagonista la cosa da provare e va avanti solo quando è fatta.
     // Qui non si perdono cuori (colpitoPl dà solo il contraccolpo), niente boss né arena, i nemici non sparano e reggono la mitragliatrice: li spazza solo la mossa.
     const PASSI = ['muovi', 'mira', 'salta', 'giu', 'mina', 'mossa'].concat(mosse[1] ? ['mossa2'] : []);
     const CHIAVE_PASSO = { muovi: 'tpMuovi', mira: 'tpMira', salta: 'tpSalta', giu: 'tpGiu', mina: 'tpMina', mossa: 'tpMossa', mossa2: 'tpMossa2' };
     function testoPasso(k) {
       const m = k === 'mossa2' ? 1 : 0, v = { emoji: (mosse[m] && mosse[m].emoji) || TASTO_MOSSA[m], mossa: nomeDi(mosse[m]) };
-      return T(CHIAVE_PASSO[k], v);   // senza i tasti della tastiera (Davide, 06/11/2026: "nel tutorial togli le indicazioni su come usare la tastiera")
+      return T(CHIAVE_PASSO[k], v);   // senza i tasti della tastiera (06/11/2026: "nel tutorial togli le indicazioni su come usare la tastiera")
     }
     function avviaTutorial() {
       tuto.hidden = true; initAudio(); pad.azzera(); reset();
@@ -958,7 +958,7 @@ window.AU = (() => {
     }
     function morte(chi) {
       S.state = 'over'; S.pl.blast = blastDi(-S.pl.dir); S.fine = 1.1;
-      // il motivo della fine si dice chiaro (Davide, 06/11/2026: "muoio e non so perché")
+      // il motivo della fine si dice chiaro (06/11/2026: "muoio e non so perché")
       S.line = chi && chi.tipo === 'mina' ? T('lineaMina') : chi && chi.tipo === 'granata' ? T('lineaGranata') : chi && chi.tipo === 'malus' ? T('lineaMalus', { malus: chi.nome }) : chi && chi.boss ? T('lineaBoss', { boss: S.boss ? S.boss.nome : '' }) : chi && chi.nemico ? T('lineaNemico', { nemico: chi.nemico.nome }) : T('lineaColpo');
       if (S.score > best) { best = S.score; S.newBest = true; try { localStorage.setItem(ID + '-record', String(best)); } catch (e) {} }
       stopMusic(); aggiornaPad(); beep(330, 0.5, 'sawtooth', 0.06, 70);
@@ -985,7 +985,7 @@ window.AU = (() => {
       const p = S.pl, st = pad.stato;
       if (p.safe > 0) p.safe -= dt; if (p.drop > 0) p.drop -= dt; p.fuoco -= dt;
       // comandi: joystick muove e mira, A salta, B si abbassa
-      // il joystick serve solo a muoversi a destra e a sinistra e a mirare (16 direzioni); salto e abbassarsi hanno i tasti A e B (Davide, 06/11/2026)
+      // il joystick serve solo a muoversi a destra e a sinistra e a mirare (16 direzioni); salto e abbassarsi hanno i tasti A e B (06/11/2026)
       const dx = st.dx, mx = st.mx || 0, my = st.my || 0, mira = mx !== 0 || my !== 0;
       const pw = corpoW(PRO.corpo), ph0 = altezzaTot(PRO.corpo);
       // sotto un'arcata si resta abbassati finché non si esce (e non si salta)
@@ -1028,10 +1028,10 @@ window.AU = (() => {
       const aTerra = !p.aria && p.y >= G, pcx = p.x + pw / 2;
       for (const m of S.mine) {
         if (m.stato !== 'armata') continue;
-        // in piedi sopra la mina scoppia; vale anche quando ci si atterra sopra da un salto, guardando tutto il tratto percorso nel fotogramma (v0.21, Davide: "salta sulle mine senza farle esplodere")
+        // in piedi sopra la mina scoppia; vale anche quando ci si atterra sopra da un salto, guardando tutto il tratto percorso nel fotogramma (v0.21, "salta sulle mine senza farle esplodere")
         const toccata = Math.abs(pcx - m.x) < 9 || (eraInAria && !p.aria && m.x >= Math.min(prevX, pcx) - 8 && m.x <= Math.max(prevX, pcx) + 8);
         if (aTerra && !p.duck && toccata) { esplodiMina(m, true); break; }
-        // basta essere abbassati vicino alla mina, anche camminando (Davide, 06/11/2026: uscendo abbassato da un'arcata bisognava rialzarsi e riabbassarsi)
+        // basta essere abbassati vicino alla mina, anche camminando (06/11/2026: uscendo abbassato da un'arcata bisognava rialzarsi e riabbassarsi)
         if (aTerra && p.duck && Math.abs(pcx - m.x) < DISINNESCO) { m.prog += dt; if (m.prog >= 1) { m.stato = 'disinnescata'; S.score += MOLT() * 150; S.mineDis++; pop(m.x, G - 16, T('disinnescata'), '#7fb069'); fanfare(); } }
         else m.prog = Math.max(0, m.prog - dt * 2);
       }
@@ -1041,7 +1041,7 @@ window.AU = (() => {
       const target = S.arena ? S.L - W : clamp(p.x - W * 0.42 + p.dir * 26, 0, S.L - W);
       S.cam += (target - S.cam) * Math.min(1, dt * (S.arena ? 3 : 5));
       if (!S.arena && !S.tut && p.x >= S.L - W - 16) entraArena();
-      // raccolte: solo toccandole (dal v0.21 non si prendono più a colpi: Davide, "bisogna raggiungerli per prenderli")
+      // raccolte: solo toccandole (dal v0.21 non si prendono più a colpi: "bisogna raggiungerli per prenderli")
       const bp = boxPl();
       for (const o of S.oggetti) if (!o.preso && urta(bp, { x: o.x - (o.w || 14) / 2, y: o.y - (o.h || 14) / 2, w: o.w || 14, h: o.h || 14 })) raccogli(o);
       S.oggetti = S.oggetti.filter(o => !o.preso);
@@ -1088,7 +1088,7 @@ window.AU = (() => {
     function updateNemici(dt) {
       const p = S.pl, pc = p.x + corpoW(PRO.corpo) / 2;
       // piazzati dal livello: entrano in scena quando la telecamera si avvicina
-      // al massimo MAX_IN_SCENA nemici vivi sullo schermo (Davide, 06/11/2026); chi resta in attesa entra quando uno viene spazzato via
+      // al massimo MAX_IN_SCENA nemici vivi sullo schermo (06/11/2026); chi resta in attesa entra quando uno viene spazzato via
       let inScenaN = S.nemici.filter(n => !n.blast && n.x > S.cam - 40 && n.x < S.cam + W + 40).length;
       for (const q of S.posti) {
         if (q.fatto || !q.chi) continue;
@@ -1210,7 +1210,7 @@ window.AU = (() => {
       if (b.fase === 'down') { b.blast.t += dt; b.x += b.blast.vx * dt; b.y += b.blast.vy * dt; b.blast.vy += 700 * dt; b.blast.rot += 3 * dt; if (b.t > 2.2) livelloCompletato(); return; }
       const pc = p.x + corpoW(PRO.corpo) / 2, bc = b.x + b.w / 2, dx = pc - bc; b.dir = dx < 0 ? -1 : 1;
       if (b.fase === 'in') { b.x += (S.L - 20 - b.w - b.x) * Math.min(1, dt * 2); if (b.t > 1.6) { b.fase = 'fight'; if (b.frasi.length) say(pick(b.frasi), 'boss'); } return; }
-      // resta nella metà destra dello schermo e non viene mai addosso (Davide, 06/11/2026): pattuglia avanti e indietro,
+      // resta nella metà destra dello schermo e non viene mai addosso (06/11/2026): pattuglia avanti e indietro,
       // e se il protagonista entra nella sua metà si ritira verso il bordo destro
       const minX = S.cam + W / 2, maxX = S.L - b.w - 4;
       const meta = b.corpo.boss && b.corpo.boss.fermo ? maxX : pc > minX - 24 ? maxX : minX + (maxX - minX) * (0.5 + 0.5 * Math.sin(b.t * 0.7));   // un boss `fermo` (bunker) resta sul fondo
@@ -1245,7 +1245,7 @@ window.AU = (() => {
     function livelloCompletato() {
       if (DEMO === 'boss') { S.boss = null; S.livelliFatti++; S.colpiN = []; S.laser = null; S.prossimoBoss = 0.7; return; }   // nell'anteprima arriva subito il boss dopo
       S.boss = null; S.livelliFatti++; S.score += MOLT() * 500; S.state = 'cambio'; S.fine = 0; aggiornaPad();
-      if (S.livelliFatti === 3 && !CHEAT && !DEMO) S.svela = true;   // chi batte il terzo boss scopre il codice segreto (Davide, 06/11/2026); mai nell'anteprima del configuratore
+      if (S.livelliFatti === 3 && !CHEAT && !DEMO) S.svela = true;   // chi batte il terzo boss scopre il codice segreto (06/11/2026); mai nell'anteprima del configuratore
       const sp = SPECIALI[S.livelliFatti - 1];
       if (sp && sp.img) showPhoto(sp, S.livelliFatti); else S.toast = { text: T('livelloFatto'), t: 2 };
     }
@@ -1254,7 +1254,7 @@ window.AU = (() => {
       const m = mezzi.length ? mezzi[(S.livelliFatti - 1 + mezzi.length) % mezzi.length] : null;
       if (!m) return prossimoLivello();
       const p = S.pl; S.state = 'mezzo'; aggiornaPad(); S.colpi = []; S.colpiN = []; S.effetti = [];
-      // il mezzo si prende sempre da terra: se il protagonista sta su una piattaforma scende (v0.21, Davide)
+      // il mezzo si prende sempre da terra: se il protagonista sta su una piattaforma scende (v0.21)
       Object.assign(p, { y: G, vy: 0, aria: false, piatt: null, duck: false, dir: 1 });
       S.cut = { t: 0, mezzo: m, rx: S.cam - 110, ry: m.terra ? G : G - 80, tx: Math.max(S.cam + 20, p.x - (m.sella ? m.sella.x : 20) - 6), mounted: false, switched: false, parts: [] };
       const suDi = n => EN ? n : n.replace(/^il /, 'sul ').replace(/^lo /, 'sullo ').replace(/^la /, 'sulla ').replace(/^l'/, "sull'");
@@ -1281,7 +1281,7 @@ window.AU = (() => {
       costruisciLivello(); S.pl.safe = 1.2; S.state = 'play'; aggiornaPad(); startMusic();
       if (S.pausaDopo || document.hidden) pausa();   // v0.25: interrotto durante il mezzo o il cambio di livello
       S.toast = { text: T('livello', { n: S.livelliFatti + 1, livello: nomeDi(LV()) }) + (S.lv === 0 ? ' ' + T('giro') : ''), t: 3.2 };
-      // la difficoltà è salita di uno scalino? l'avviso dice al giocatore che è una macchina da guerra (Davide, 06/11/2026); i cuori si adeguano al massimo nuovo
+      // la difficoltà è salita di uno scalino? l'avviso dice al giocatore che è una macchina da guerra (06/11/2026); i cuori si adeguano al massimo nuovo
       const d = diffA(); if (d !== S.diffVista) { S.diffVista = d; S.cuori = Math.min(S.cuori, MAXC()); S.toast = { text: d === 'extreme' ? T('extremeOn') : T('diffSu', { diff: T(d) }), t: 4.2 }; }
       fanfare();
     }
@@ -1304,13 +1304,13 @@ window.AU = (() => {
       else S.effetti.push({ def: m, tipo: 'esplosione', x: cx, y: cy, x0: cx, y0: cy, tx, ty, cam: S.cam, dir: p.dir, t: 0, scoppiata: false, grido });
       if (ac && m.suono) m.suono(audio, ac.currentTime);
     }
-    // la mossa finale distrugge subito tutti i proiettili e le granate dei nemici (e le onde d'urto del boss): spariscono con un lampo, senza scoppiare e senza danni (Davide, 06/11/2026)
+    // la mossa finale distrugge subito tutti i proiettili e le granate dei nemici (e le onde d'urto del boss): spariscono con un lampo, senza scoppiare e senza danni (06/11/2026)
     function disarmaColpi() {
       for (const c of S.colpiN) { stelline(c.x, c.y, c.tipo === 'granata' ? 5 : 2); if (c.tipo === 'granata') fumo(c.x, c.y, 3); }
       for (const o of S.onde) fumo(o.x, G - 4, 2);
       S.colpiN = []; S.onde = [];
     }
-    // ogni mossa finale spazza via tutti i nemici sullo schermo, cancella i loro colpi e colpisce il boss: cambia solo l'animazione (Davide, 06/11/2026)
+    // ogni mossa finale spazza via tutti i nemici sullo schermo, cancella i loro colpi e colpisce il boss: cambia solo l'animazione (06/11/2026)
     function spazzaTutto(e) {
       e.scoppiata = true; S.pl.safe = Math.max(S.pl.safe, 0.8); pop(e.tx != null ? e.tx : e.x, (e.ty != null ? e.ty : e.y) - 50, e.grido, '#fff');
       for (const n of S.nemici) if (!n.blast && inScena(n.x, 40)) { colpisciNemico(n, n.tut ? n.hp : 99); scoppio(n.x + n.w / 2, n.y - n.h / 2, 14); }
@@ -1322,7 +1322,7 @@ window.AU = (() => {
       for (const e of S.effetti) {
         e.t += dt; const m = e.def;
         if (e.tipo === 'esplosione') {
-          // il bersaglio segue lo schermo finché il colpo è in volo (v0.22, Davide: "cadono tutte in testa al protagonista"): la scena scorre con il
+          // il bersaglio segue lo schermo finché il colpo è in volo (v0.22, "cadono tutte in testa al protagonista"): la scena scorre con il
           // protagonista che corre, quindi il punto fissato al lancio gli finiva addosso; ora sta sempre nei tre quarti dello schermo davanti a lui
           if (!e.scoppiata && e.tx != null) { const pc = S.pl.x + corpoW(PRO.corpo) / 2; e.cam = S.cam; e.tx = e.dir > 0 ? clamp(Math.max(S.cam + W * 0.76, pc + 90), S.cam + 40, S.cam + W - 28) : clamp(Math.min(S.cam + W * 0.24, pc - 90), S.cam + 28, S.cam + W - 40); }
           if (!e.scoppiata && e.t >= (m.ritardo || 0.35)) { spazzaTutto(e); coriandoli(e.tx != null ? e.tx : e.x, e.ty != null ? e.ty - 20 : e.y, 70); if (m.scossa) S.flash = Math.max(S.flash, m.scossa); }
@@ -1355,7 +1355,7 @@ window.AU = (() => {
         return;
       }
       if (S.flash > 0) S.flash = Math.max(0, S.flash - dt * 1.4);
-      // v0.25 (Davide): durante il mezzo e il cambio di livello i comandi sono bloccati (il pad si spegne e le pressioni non restano in coda)
+      // v0.25: durante il mezzo e il cambio di livello i comandi sono bloccati (il pad si spegne e le pressioni non restano in coda)
       const fermo = S.state === 'mezzo' || S.state === 'cambio';
       if (fermo !== !!pad.bloccato) { pad.blocca(fermo); }
       if (S.state === 'mezzo') { updateMezzo(dt); return; }
@@ -1487,7 +1487,7 @@ window.AU = (() => {
       const f = corre && Math.floor(S.anim * 11) % 2 ? 0 : 1;
       const blink = p.safe > 0 && S.state === 'play' && Math.floor(S.anim * 12) % 2;
       if (blink) ctx.globalAlpha = 0.45;
-      const conAura = CHEAT && !S.tut;   // nel tutorial niente aura d'oro, anche se non si perdono cuori (Davide, 06/11/2026)
+      const conAura = CHEAT && !S.tut;   // nel tutorial niente aura d'oro, anche se non si perdono cuori (06/11/2026)
       if (conAura) aura(p, c, true);
       drawPersona(c, PRO.faccia, p.x, p.y, p.aria ? 0 : f, p.dir, p.duck && !p.aria ? 0.55 : 1, p.blast ? p.blast.rot : 0, true);
       if (!p.blast) drawArma(p);
@@ -1524,7 +1524,7 @@ window.AU = (() => {
       if (b.atterra > 0) { ctx.fillStyle = `rgba(255,255,255,${b.atterra})`; ctx.fillRect(b.x - 10, G - 3, b.w + 20, 3); }
     }
     // laser del boss (v0.19): 0,7 s di mirino tratteggiato, poi mezzo secondo di raggio; alto (si passa abbassati) o basso (si salta)
-    // v0.21 (Davide: "non si capisce quando sta per sparare il laser e a che altezza"): un secondo di preavviso con una fascia rossa larga quanto il raggio,
+    // v0.21 ("non si capisce quando sta per sparare il laser e a che altezza"): un secondo di preavviso con una fascia rossa larga quanto il raggio,
     // la linea tratteggiata che lampeggia sempre più in fretta, le frecce che dicono dove passerà e la scritta "ABBASSATI!" (laser alto) o "SALTA!" (laser basso)
     function drawLaser() {
       const l = S.laser; if (!l) return;
@@ -1566,14 +1566,14 @@ window.AU = (() => {
       if (o.tipo === 'bonus') { const d = o.def, box = { x: o.x - o.w / 2, y: o.y - o.h / 2, w: o.w, h: o.h }; if (d.disegna) d.disegna(ctx, box, S, bob); else drawImg(d.img, box.x, box.y + bob, d.px || 2); return; }
       if (o.tipo === 'gettone') { ctx.fillStyle = '#F5B700'; ctx.beginPath(); ctx.arc(o.x, y, 6, 0, 7); ctx.fill(); ctx.fillStyle = '#3B1E6E'; ctx.beginPath(); ctx.arc(o.x, y, 2.6, 0, 7); ctx.fill(); ctx.fillStyle = '#F5B700'; ctx.fillRect(o.x - 1.6, y - 1.2, 1.2, 1.2); ctx.fillRect(o.x + 0.4, y - 1.2, 1.2, 1.2); }
       else if (o.tipo === 'cuore') { cuoreIcona(o.x, y - 7, 14, true); }
-      else { // scorta di una mossa finale: grande e vistosa (v0.21, Davide: "non ti accorgi nemmeno di averle raccolte"): cassa gialla con l'emoji della mossa, l'anello che pulsa e il tasto
+      else { // scorta di una mossa finale: grande e vistosa (v0.21, "non ti accorgi nemmeno di averle raccolte"): cassa gialla con l'emoji della mossa, l'anello che pulsa e il tasto
         const m = o.tipo === 'scortaX' ? mosse[0] : (mosse[1] || mosse[0]), k = 0.5 + 0.5 * Math.sin(S.anim * 5);
         ctx.save(); ctx.globalAlpha = 0.35 + 0.3 * k; ctx.strokeStyle = '#ffd166'; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(o.x, y, 17 + k * 4, 0, 7); ctx.stroke(); ctx.restore();
         ctx.fillStyle = '#2b2b2b'; ctx.fillRect(o.x - 14, y - 14, 28, 28); ctx.fillStyle = '#F5B700'; ctx.fillRect(o.x - 12, y - 12, 24, 24); ctx.fillStyle = '#c78f00'; ctx.fillRect(o.x - 12, y + 8, 24, 4);
         ctx.font = '16px -apple-system, "Apple Color Emoji", "Segoe UI Emoji", sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillStyle = '#3B1E6E'; ctx.fillText(m.emoji || (o.tipo === 'scortaX' ? 'X' : 'Y'), o.x, y - 1);
         ctx.font = '6px "Press Start 2P", ui-monospace, monospace'; ctx.fillStyle = '#fff'; ctx.lineWidth = 2; ctx.strokeStyle = '#2b2b2b'; ctx.strokeText(o.tipo === 'scortaX' ? 'X' : 'Y', o.x, y + 18); ctx.fillText(o.tipo === 'scortaX' ? 'X' : 'Y', o.x, y + 18); ctx.textBaseline = 'alphabetic'; }
     }
-    // colpi dei nemici: grandi ed evidenti (Davide, 06/11/2026: "non sempre si vedono, muori senza accorgertene")
+    // colpi dei nemici: grandi ed evidenti (06/11/2026: "non sempre si vedono, muori senza accorgertene")
     function drawColpoN(c) {
       ctx.save(); ctx.translate(c.x, c.y);
       if (c.tipo === 'fiamma') { // lingua di fuoco del lanciafiamme: cresce e si spegne
@@ -1717,10 +1717,10 @@ window.AU = (() => {
       for (const n of S.nemici) if (!n.blast && inScena(n.x, 0)) { const d = Math.abs(n.x + n.w / 2 - pc); if (d < bd) { bd = d; best = { x: n.x + n.w / 2, y: n.y - n.h * 0.55 }; } }
       if (S.boss && S.boss.fase === 'fight') { const b = S.boss; best = { x: b.x + b.w / 2, y: b.y - b.h * 0.5 }; }
       if (best) { const ax = best.x - pc, ay = best.y - (p.y - 19), d = Math.hypot(ax, ay) || 1; st.mx = ax / d; st.my = ay / d; } else { st.mx = 0; st.my = 0; }
-      // dove andare: avanti, mai indietro (v0.21, Davide: nel gioco non si cammina all'indietro sparando avanti); nell'arena si ferma nella metà sinistra;
+      // dove andare: avanti, mai indietro (v0.21, nel gioco non si cammina all'indietro sparando avanti); nell'arena si ferma nella metà sinistra;
       // fermo davanti ai nemici che reggono (mossa in arrivo); nell'anteprima "I cattivi" si ferma dopo pochi passi e guarda i cattivi che arrivano
       let dx = 1, B = false;
-      // anteprime "I pericoli" e "I bonus" (v0.23, Davide): livello vuoto, il protagonista cammina, incontra l'elemento scelto e si ferma un attimo, poi riparte verso il successivo
+      // anteprime "I pericoli" e "I bonus" (v0.23): livello vuoto, il protagonista cammina, incontra l'elemento scelto e si ferma un attimo, poi riparte verso il successivo
       if (DEMO === 'pericolo' || DEMO === 'bonus') {
         const lista = DEMO === 'pericolo' ? malusDefs : bonusDefs;
         if (!demoVetrina && lista.length) { // ne mette uno nuovo davanti
@@ -1774,10 +1774,10 @@ window.AU = (() => {
     if (DEMO) setTimeout(avviaDemo, 60);
     $('#go').addEventListener('click', () => { tuto.hidden = true; initAudio(); pad.azzera(); start(); });
     $('#again').addEventListener('click', () => { end.hidden = true; fxOn = false; pad.visibile = true; pad.azzera(); start(); });
-    // il tutorial si apre anche dalla schermata finale (Davide, 06/11/2026); alla fine si torna al briefing
+    // il tutorial si apre anche dalla schermata finale (06/11/2026); alla fine si torna al briefing
     const tutFine = $('#tutFine'); if (tutFine) { tutFine.textContent = T('tutBtn'); tutFine.addEventListener('click', e => { e.stopPropagation(); end.hidden = true; fxOn = false; pad.visibile = true; avviaTutorial(); }); }
     end.addEventListener('touchmove', e => e.stopPropagation(), { passive: true });
-    // tema militare (Davide, 06/11/2026: "falle più militari"): fondale mimetico al posto della tinta unita, esplosioni con il fumo al posto dei fuochi d'artificio
+    // tema militare (06/11/2026: "falle più militari"): fondale mimetico al posto della tinta unita, esplosioni con il fumo al posto dei fuochi d'artificio
     let fxOn = false, parts = [], fxLast = 0, fxNext = 0, fw = 0, fh = 0, fxBg = null;
     const FXCOL = ['#ffb000', '#ff7a00', '#ffd34d', '#fff3c4', '#ff4b2b'];
     const MIMETICA = ['#3c4a25', '#56633a', '#2a3419', '#7a6e48'];
@@ -1879,7 +1879,7 @@ window.AU = (() => {
         if (im) { const d = contieni(im.naturalWidth, im.naturalHeight, pw - 60, fh0); g.drawImage(im, px + 30 + (pw - 60 - d.w) / 2, py + 30 + (fh0 - d.h) / 2, d.w, d.h); }
         g.fillStyle = '#2a2a1e'; g.textAlign = 'center'; g.textBaseline = 'top'; g.font = `700 30px "Courier New", Courier, monospace`;
         const cap = righe(g, T('speciale', { n: dati.n }) + ' ' + dati.didascalia, pw - 80).slice(0, 3); cap.forEach((r, i) => g.fillText(r, CW / 2, py + fh0 + 50 + i * 36));
-        timbro(g, T('timbroFoto').toUpperCase(), px + pw - 60, py - 34, 0.22);   // il timbro sull'angolo del fascicolo, fuori dalla foto (v0.21, Davide: "foto e messaggi restano indisturbati")
+        timbro(g, T('timbroFoto').toUpperCase(), px + pw - 60, py - 34, 0.22);   // il timbro sull'angolo del fascicolo, fuori dalla foto (v0.21, "foto e messaggi restano indisturbati")
         g.save(); g.translate(CW / 2, py - 6); g.rotate(0.05); g.fillStyle = 'rgba(222,208,160,.9)'; g.shadowColor = 'rgba(0,0,0,.3)'; g.shadowBlur = 6; g.fillRect(-110, -26, 220, 52); g.restore();
         g.restore();
       } else {
@@ -1950,11 +1950,11 @@ window.AU = (() => {
     window.__AU_PASSO = (dt, n) => { for (let i = 0; i < (n || 1); i++) update(dt || 1 / 60); render(); };   // avanza la simulazione a mano (prove dal pannello in secondo piano)
   }
 
-  return { registra, reg, sprite, PAL, hz, pick, mix, avvia, versione: '0.25' };
+  return { registra, reg, sprite, PAL, hz, pick, mix, avvia, versione: '0.26' };
 })();
 </script>
-<script>/* ArcadeU — pad virtuale condiviso, v0.5 (06/11/2026: v0.2 mira a 16 angoli, mx/my; v0.3 tastiera WASD + frecce come tasti; v0.4 tasti e joystick più grandi in orizzontale,
-   Davide dall'iPhone 17 Pro: "forse troppo piccoli"; v0.5 revisione di Mr Robot: pad.blocca() per i momenti senza comandi (mezzo, cambio di livello) e dita azzerate
+<script>/* ArcadeU — pad virtuale condiviso, v0.6 (07/11/2026: solo commenti, senza nomi di persone); v0.5 (06/11/2026: v0.2 mira a 16 angoli, mx/my; v0.3 tastiera WASD + frecce come tasti; v0.4 tasti e joystick più grandi in orizzontale,
+   dalla prova sull'iPhone 17 Pro: "forse troppo piccoli"; v0.5 revisione di Mr Robot: pad.blocca() per i momenti senza comandi (mezzo, cambio di livello) e dita azzerate
    quando la pagina va in secondo piano, così il joystick non resta "tenuto" se iOS perde la fine del tocco). Modulo comune: lo usa Boom, lo possono usare gli altri giochi.
    Sinistra: joystick a 8 direzioni (la base compare dove si appoggia il pollice). Destra: quattro tasti a rombo
    come un pad a 16 bit: A a destra, B in basso, X in alto, Y a sinistra. Si scivola da un tasto all'altro senza staccare.
@@ -1962,7 +1962,7 @@ window.AU = (() => {
    La mappa dei tasti della tastiera è un dato (AU.pad.MAPPA), da rivedere dopo le prove. */
 AU.pad = (() => {
   'use strict';
-  // Tastiera (Davide, 06/11/2026, provando nel browser): WASD muove e mira; le frecce sono i quattro tasti del rombo,
+  // Tastiera (06/11/2026, provando nel browser): WASD muove e mira; le frecce sono i quattro tasti del rombo,
   // nella stessa posizione: destra = A (salto), giù = B (abbassati), su = X (mossa 1), sinistra = Y (mossa 2). Spazio salta anche lui.
   const MAPPA = { su: ['KeyW'], giu: ['KeyS'], sinistra: ['KeyA'], destra: ['KeyD'], A: ['ArrowRight', 'Space'], B: ['ArrowDown'], X: ['ArrowUp'], Y: ['ArrowLeft'] };
   const TASTI = ['A', 'B', 'X', 'Y'];
@@ -1974,7 +1974,7 @@ AU.pad = (() => {
   function crea(canvas) {
     const ctx = canvas.getContext('2d');
     // dx/dy: direzione "digitale" per muoversi (solo quando il joystick è abbastanza orizzontale o verticale);
-    // mx/my: direzione di mira a 16 angoli (22,5°), 0/0 se il joystick è fermo (Davide, 06/11/2026: "da 8 a 16 angoli")
+    // mx/my: direzione di mira a 16 angoli (22,5°), 0/0 se il joystick è fermo (06/11/2026: "da 8 a 16 angoli")
     const stato = { dx: 0, dy: 0, ax: 0, ay: 0, mx: 0, my: 0, attivo: false, A: false, B: false, X: false, Y: false };
     const scatti = { A: false, B: false, X: false, Y: false };
     const keys = { su: false, giu: false, sinistra: false, destra: false, A: false, B: false, X: false, Y: false };
@@ -2129,11 +2129,11 @@ AU.pad = (() => {
     pad.disegna = disegna;
     return pad;
   }
-  return { crea, MAPPA, TASTI, versione: '0.5' };
+  return { crea, MAPPA, TASTI, versione: '0.6' };
 })();
 </script>
 <script>// Livello "Rovine nella giungla": tempio di pietra coperto di muschio, alberi giganti, liane, foschia. Rocce a gradini e arcate di pietra,
-// ostacoli bloccanti: blocchi di pietra, colonne cadute, casse. Mine a terra. Stile sparatutto da sala giochi (richiesta di Davide, 06/11/2026).
+// ostacoli bloccanti: blocchi di pietra, colonne cadute, casse. Mine a terra. Stile sparatutto da sala giochi (richiesta, 06/11/2026).
 (() => {
   const PIETRA = '#8a7a62', PIETRA2 = '#6b5c47', PIETRA3 = '#4f4336', MUSCHIO = '#5f8a3a', MUSCHIO2 = '#3f6b2a', LEGNO = '#8a5a30', LEGNO2 = '#5a3a1a';
   const blocchi = (ctx, x, y, w, h, seme) => { // muratura a blocchi con il muschio in cima e qualche crepa
@@ -2278,7 +2278,7 @@ AU.pad = (() => {
 })();
 </script>
 <script>// Aiuti per le mosse finali di Boom (v0.21): traiettorie, esplosioni, fungo atomico e lampo. Non è un modulo del catalogo.
-// Dal 06/11/2026 sera (richiesta di Davide) ogni mossa viene lanciata verso i nemici: il motore dà a ogni effetto il punto di partenza
+// Dal 06/11/2026 sera (richiesta) ogni mossa viene lanciata verso i nemici: il motore dà a ogni effetto il punto di partenza
 // (e.x0, e.y0), il bersaglio a terra nella metà dello schermo davanti al protagonista (e.tx, e.ty), la direzione (e.dir) e la telecamera
 // al lancio (e.cam); spazza via tutto al momento di `ritardo` e tiene l'animazione per altri `coda` secondi.
 AU.fuoco = {
@@ -2338,7 +2338,7 @@ AU.registra('mossa', 'bombardamento-aereo', { nome: { it: 'Bombardamento aereo',
   suono(a, t) { for (let i = 0; i < 8; i++) a.tone(90 + i * 12, t + i * 0.12, 0.14, 'sawtooth', 0.04, 60); a.tone(50, t + 1.1, 0.7, 'sawtooth', 0.12, 20); if (a.drum) { a.drum('k', t + 1.1); a.drum('k', t + 1.2); a.drum('s', t + 1.25); } },
   disegna(ctx, e, S) {
     const r = e.ritardo || 1.1, k = Math.min(1, e.t / r), cam = e.cam, F = AU.fuoco, N = 8, dir = e.dir;
-    // le bombe coprono tutto lo schermo, da bordo a bordo (Davide, 06/11/2026: "non solo la prima metà")
+    // le bombe coprono tutto lo schermo, da bordo a bordo (06/11/2026: "non solo la prima metà")
     const bx = i => cam + 24 + i * (360 - 48) / (N - 1), ty = e.ty;
     // l'aereo passa in alto nel verso in cui guarda il protagonista
     const ax = dir > 0 ? cam - 70 + 500 * k : cam + 430 - 500 * k, ay = 24 + Math.sin(e.t * 8) * 2;
@@ -2367,8 +2367,8 @@ AU.registra('bonus', 'elmetto-d-oro', { nome: { it: "l'elmetto d'oro", en: 'the 
 <script>// Bonus emoji: il cliente scrive un'emoji e diventa un bonus da raccogliere (scheda: "emoji:🍩"). Disegnata grande, con l'ombra, per vedersi nei livelli di Boom.
 AU.registra('bonus', 'emoji', {
   crea(ch) {
-    return { id: 'emoji:' + ch, nome: { it: ch, en: ch }, emoji: ch, w: 36, h: 36, punti: 50,   // più grande (Davide, 06/11/2026: "si vedono appena")
-      disegna(ctx, o, S, bob) { ctx.save(); ctx.font = '32px "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillStyle = 'rgba(0,0,0,.35)'; ctx.beginPath(); ctx.ellipse(o.x + o.w / 2, o.y + o.h + 2, 10, 3, 0, 0, 7); ctx.fill(); ctx.fillStyle = '#000'; /* l'emoji a colori prende l'alfa del colore: con quello dell'ombra usciva al 35 % (Davide, 06/11/2026) */ ctx.fillText(ch, o.x + o.w / 2, o.y + o.h / 2 + (bob || 0)); ctx.restore(); } };
+    return { id: 'emoji:' + ch, nome: { it: ch, en: ch }, emoji: ch, w: 36, h: 36, punti: 50,   // più grande (06/11/2026: "si vedono appena")
+      disegna(ctx, o, S, bob) { ctx.save(); ctx.font = '32px "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillStyle = 'rgba(0,0,0,.35)'; ctx.beginPath(); ctx.ellipse(o.x + o.w / 2, o.y + o.h + 2, 10, 3, 0, 0, 7); ctx.fill(); ctx.fillStyle = '#000'; /* l'emoji a colori prende l'alfa del colore: con quello dell'ombra usciva al 35 % (06/11/2026) */ ctx.fillText(ch, o.x + o.w / 2, o.y + o.h / 2 + (bob || 0)); ctx.restore(); } };
   }
 });
 </script>
@@ -2411,7 +2411,7 @@ AU.registra('pericolo', 'drone', { nome: { it: 'il drone', en: 'the drone' }, em
   } });
 </script>
 <script>// Pericolo "Avvoltoio": uccellaccio marrone con la testa rossa spelacchiata e le ali che battono, pattuglia in volo; si schiva o si distrugge a colpi
-// (al posto della "mina volante", troppo simile al pallone mina: Davide, 06/11/2026)
+// (al posto della "mina volante", troppo simile al pallone mina: 06/11/2026)
 AU.registra('pericolo', 'avvoltoio', { nome: { it: "l'avvoltoio", en: 'the vulture' }, emoji: '🦅', famiglia: 'volo', w: 36, h: 22,
   disegna(ctx, o, S) {
     const cx = o.x + o.w / 2, cy = o.y + o.h / 2 + Math.sin(S.anim * 3 + o.x) * 2, dir = o.dir || -1, batt = Math.sin(S.anim * 9 + o.x) * 7;
@@ -2436,10 +2436,10 @@ AU.registra('pericolo', 'avvoltoio', { nome: { it: "l'avvoltoio", en: 'the vultu
 AU.registra('pericolo', 'emoji', {
   crea(ch, famiglia) {
     const volo = famiglia === 'volo';
-    return { id: 'emoji:' + ch + (volo ? ':volo' : ''), nome: { it: ch, en: ch }, famiglia: volo ? 'volo' : 'terra', w: volo ? 38 : 34, h: volo ? 38 : 34, emoji: ch,   // più grande (Davide, 06/11/2026); a terra 34 per poterla scavalcare (v0.25)
+    return { id: 'emoji:' + ch + (volo ? ':volo' : ''), nome: { it: ch, en: ch }, famiglia: volo ? 'volo' : 'terra', w: volo ? 38 : 34, h: volo ? 38 : 34, emoji: ch,   // più grande (06/11/2026); a terra 34 per poterla scavalcare (v0.25)
       disegna(ctx, o, S) { ctx.save(); ctx.font = Math.round(o.w * 0.9) + 'px "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
         if (!volo) { ctx.fillStyle = 'rgba(0,0,0,.35)'; ctx.beginPath(); ctx.ellipse(o.x + o.w / 2, o.y + o.h, 12, 3, 0, 0, 7); ctx.fill(); }
-        ctx.fillStyle = '#000';   // l'emoji a colori prende l'alfa del colore: con quello dell'ombra usciva al 35 % (Davide, 06/11/2026)
+        ctx.fillStyle = '#000';   // l'emoji a colori prende l'alfa del colore: con quello dell'ombra usciva al 35 % (06/11/2026)
         ctx.fillText(ch, o.x + o.w / 2, o.y + o.h / 2 + (volo ? Math.sin(S.anim * 6) * 2 : 0)); ctx.restore(); } };
   }
 });
@@ -2465,7 +2465,7 @@ AU.registra('mezzo', 'jeep', { nome: { it: 'la jeep', en: 'the jeep' }, emoji: '
 AU.registra('mezzo', 'elicottero', { nome: { it: "l'elicottero", en: 'the helicopter' }, emoji: '🚁', terra: false, sella: { x: 32, y: -12 }, scia: ['#d9d6ee', '#8a8f9c'],
   suono(a, t) { for (let i = 0; i < 12; i++) a.tone(60 + i * 4, t + i * 0.18, 0.16, 'square', 0.03, 90); if (a.drum) for (let i = 0; i < 10; i++) a.drum('h', t + i * 0.2); },
   disegna(ctx, c, S) {
-    // girato verso destra, dove va (Davide, 06/11/2026): si disegna specchiato attorno al centro (x + 41,5), muso e vetro a destra, coda a sinistra
+    // girato verso destra, dove va (06/11/2026): si disegna specchiato attorno al centro (x + 41,5), muso e vetro a destra, coda a sinistra
     const x = c.rx, y = c.ry, f = Math.floor(S.anim * 24) % 2;
     ctx.save(); ctx.translate(2 * x + 83, 0); ctx.scale(-1, 1);
     ctx.strokeStyle = '#2b2b2b'; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(x + 6, y); ctx.lineTo(x + 62, y); ctx.moveTo(x + 16, y); ctx.lineTo(x + 20, y - 8); ctx.moveTo(x + 50, y); ctx.lineTo(x + 46, y - 8); ctx.stroke();
@@ -2525,7 +2525,7 @@ AU.corpoBoom = function (id, def) {
     ctx.fillStyle = K; ctx.beginPath(); ctx.ellipse(cx - f.w * 0.08, cy, f.w / 2 + 3, f.h * 0.17, -0.18, 0, 7); ctx.fill();
     ctx.fillStyle = col; ctx.beginPath(); ctx.ellipse(cx - f.w * 0.08, cy - 1, f.w / 2 + 1.5, f.h * 0.14, -0.18, 0, 7); ctx.fill(); };
   // bandana: fascia sulla fronte con il nodo di lato
-  // bandana: `alt` dice a che altezza del viso sta (quota dell'ovale, 0 = cima); di base 0,3, il commando la porta più in alto, sulla fronte (Davide, 06/11/2026)
+  // bandana: `alt` dice a che altezza del viso sta (quota dell'ovale, 0 = cima); di base 0,3, il commando la porta più in alto, sulla fronte (06/11/2026)
   AU.bandana = (c, col, alt) => (ctx, o) => { const f = ovale(c, o), y = f.y + f.h * (alt == null ? 0.3 : alt);
     ctx.fillStyle = K; ctx.fillRect(f.x - 1, y - 1, f.w + 2, f.h * 0.17 + 2);
     ctx.fillStyle = col; ctx.fillRect(f.x, y, f.w, f.h * 0.17); ctx.fillRect(f.x + f.w - 2, y + 2, 6, 3); ctx.fillRect(f.x + f.w + 1, y + 5, 5, 3); };
@@ -2570,7 +2570,7 @@ AU.corpoBoom = function (id, def) {
   const B = BUSTO.concat([".......jjjjjj.....", ".......jjjjjj.....", ".......jjj.jjj....", ".......ooo.ooo....", "......oooo.oooo..."]);
   const c = AU.corpoBoom('commando', { tipo: 'protagonista', genere: 'm', nome: { it: 'Commando', en: 'Commando' }, px: 2, faccia: { x: 2.5, y: -17.5, w: 13, h: 19 }, mano: { x: 15.5, y: 4.5 },
     frames: [A, B], pal: { w: '#f4f1ea', o: '#6b4a2a', A: '#d9a93b', j: '#2f4a78', s: '#f2c7a5' } });
-  c.extra = AU.bandana(c, '#d9534f', 0.1);   // sulla fronte, non davanti agli occhi (Davide, 06/11/2026)
+  c.extra = AU.bandana(c, '#d9534f', 0.1);   // sulla fronte, non davanti agli occhi (06/11/2026)
 })();
 </script>
 <script>// Aiuto per i corpi dei nemici: busto di 7 righe (18 colonne) + gambe in due pose. Non è un modulo del catalogo.
@@ -2648,6 +2648,6 @@ AU.reg.corpo.assaltatore.extra = AU.visiera(AU.reg.corpo.assaltatore, '#2f4a78')
 })();
 </script>
 <script>AU.avvia();</script>
-<!-- ArcadeU · arcadeu-boom-53e86e3396cb20a3 · 2026-11-06 -->
+<!-- ArcadeU · arcadeu-boom-e468363639ddc2df · 2026-11-07 -->
 </body>
 </html>
