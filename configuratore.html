@@ -2606,7 +2606,16 @@ window.ARCADEU_FIRMA_JSON = {"elenco": "{\"v\":1,\"data\":\"2026-11-07\",\"codic
     if (f.type && !f.type.startsWith('image/') && !/\.(heic|heif|hif)$/i.test(f.name || '')) return 'Questo file non è una foto: scegli un\'immagine (JPG, PNG, HEIC…)';
     return null;
   }
-  function scegliFile(cb) { const i = document.createElement('input'); i.type = 'file'; i.accept = 'image/*,.heic,.heif,.hif'; i.addEventListener('change', () => { const f = i.files[0]; if (!f) return; const err = controllaFile(f); if (err) { toast(tr(err)); return; } cb(f); }); i.click(); }
+  // (07/11/2026) su iPhone l'input non agganciato alla pagina può essere eliminato dal browser prima che arrivi "change": la foto scelta
+  // spariva nel nulla. Ora l'input sta nella pagina (fuori schermo) finché la scelta non è finita, come in foto.js.
+  function scegliFile(cb) {
+    const i = document.createElement('input'); i.type = 'file'; i.accept = 'image/*,.heic,.heif,.hif';
+    i.style.cssText = 'position:fixed;left:-9999px;top:0;opacity:0';
+    let finito = false; const fine = () => { if (finito) return; finito = true; setTimeout(() => i.remove(), 1000); };
+    i.addEventListener('change', () => { const f = i.files && i.files[0]; fine(); if (!f) return; const err = controllaFile(f); if (err) { toast(tr(err)); return; } cb(f); });
+    i.addEventListener('cancel', fine);
+    document.body.append(i); i.click();
+  }
   // Lettura delle foto: prima il browser (JPG, PNG, WebP, GIF, BMP, AVIF e, su Safari, anche HEIC); se non ce la fa e il file è
   // HEIC/HEIF (le foto dell'iPhone, che Chrome e Android non decodificano), si carica al volo libheif (libheif/libheif-bundle.js,
   // accanto alla pagina, ~2 MB, scaricato solo quando serve) e si decodifica qui, sul dispositivo.
@@ -2653,7 +2662,7 @@ window.ARCADEU_FIRMA_JSON = {"elenco": "{\"v\":1,\"data\":\"2026-11-07\",\"codic
   function scegliFoto(forma, cb) {
     scegliFile(async file => {
       let im; try { im = await caricaImmagine(file); } catch (e) { toast(tr('Non riesco a leggere questa foto: prova a salvarla come JPG')); return; }
-      ritaglia(im, cb, forma);
+      try { ritaglia(im, cb, forma); } catch (e) { toast(tr('Non riesco a leggere questa foto: prova a salvarla come JPG')); }
     });
   }
   const R = { im: null, s: 1, ox: 0, oy: 0, cb: null, drag: null };
